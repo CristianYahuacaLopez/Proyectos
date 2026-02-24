@@ -1,0 +1,71 @@
+/* =========================================
+   RESET CSS BÁSICO
+   Elimina estilos por defecto del navegador
+   ========================================= */
+ 
+/* Elimina márgenes y rellenos por defecto */ 
+*, /* es para que el conjunto de propiedades se agreguen a todas las etiquetas de html*/
+*::before, /* ::bedore ::adfet son pseudo clases que se utilizan para modificar el comportamiento de elementos*/
+*::after {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box; /* me permite especificar como calcular el espacio*/
+  /*el valor por defecto de box-sizing: content-box que indica que el espacio de padding y margin se sumen*/
+}
+ 
+/* Ajustes básicos del documento */
+html { /*es para toda mi página html*/
+  font-size: 16px;
+  line-height: 1.5; /*interlineado*/
+}
+ 
+/* Elimina estilos por defecto del body */
+body {
+  font-family: sans-serif;
+  background-color: #fff;
+  color: #000000; /*color del texto*/
+}
+ 
+/* Elimina estilos de listas */
+ul,
+ol {
+  list-style: none;
+}
+ 
+/* Elimina subrayado y color por defecto en enlaces */
+a {
+  text-decoration: none;
+  color: inherit; /*heredará el color del padre (en que parte se ecuentre la etiqueta a*/
+}
+ 
+/* Normaliza imágenes */
+img,
+picture,
+video,
+canvas,
+svg {
+  display: block;
+  max-width: 100%;
+}
+ 
+/* Elimina estilos por defecto en botones e inputs */
+button,
+input,
+textarea,
+select {
+  font: inherit;
+  border: none;
+  background: none;
+  outline: none;
+}
+ 
+/* Evita que textarea cambie tamaño sin control */
+textarea {
+  resize: none;
+}
+ 
+/* Corrige comportamiento de tablas */
+table {
+  border-collapse: collapse;
+  border-spacing: 0;
+}
