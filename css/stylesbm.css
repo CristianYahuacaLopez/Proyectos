@@ -13,7 +13,7 @@
 body {
     font-family: Arial, sans-serif;
     line-height: 1.6;
-    background-color: var(--primario);
+    background-color: var(--fondo);
     color:var(--color-texto);
 
     display:flex;
@@ -23,11 +23,11 @@ body {
  
 /* Header */
 header {
-    background-color: var(--secundario);
+    background-color: var(--primario);
     color: white;
     padding: 10px; /* padding aplicado  separacion del borde con respecto al texto*/
     text-align: center;
-    border/*-bottom*/: 4px solid var(--terciario); /* borde aplicado */
+    border/*-bottom*/: 4px solid var(--secundario); /* borde aplicado */
     margin-bottom: 10px; /* margen aplicado */
 }
  
@@ -44,11 +44,11 @@ header {
     flex-grow: 1;
 }
  
-/* Sidebar (menu lateral) */
+/* Sidebar (menu hamburguesa) */
 .sidebar {
-    background-color:var(--secundario);;
+    background-color:var(--primario);;
     color: white; /*Color del texto*/
-    border/*-bottom*/: 6px solid var(--terciario);
+    border/*-bottom*/: 6px solid var(--secundario);
     width: 20%; /* ancho fijo */
     padding: 20px; /* padding dentro del box */
     border-radius: 8px; /* borde redondeado */
@@ -81,16 +81,93 @@ header {
 }
  
 .sidebar ul li a:hover { /*hover es para identificar cuando el mouse está por encima*/
-    background-color:var(--terciario);        /* El fondo cambia a blanco */
+    background-color:var(#E3EFFD);        /* El fondo cambia a blanco */
     color: var(--secundario);               /* La letra cambia a morado */
     transform: scale(1.05);         
     box-shadow: 0 4px 8px rgba(0,0,0,0.2); 
 }
+
+details summary::-webkit-details-marker {
+    display: none;
+}
+
+summary {
+    list-style: none; /* Quita la flecha en otros navegadores */
+}
+
+
+.nombre_alumno {
+    cursor:pointer;
+    display:flex;
+    justify-content: space-between;
+    align-items:left;
+    color:white;
+    font-size: 1.1rem;
+    font-weight: bold;
+    padding: 12px 15 ps;
+    background-color:var(--primario);
+    border-radius: 8px;
+    transition: all 0.3s ease;
+    text-decoration: none;
+    margin-bottom: 5px;
+    list-style: none;
+}
+
+.nombre_alumno:hover{
+    background-color: var(#E3EFFD));
+    color:var(--secundario);
+}
+
+.submenu li a {
+    color: white !important;
+    font-size: 0.9rem !important;
+    padding: 8px 15px !important;
+    text-decoration: none;
+    display: block;
+    border-left: 2px solid var(#E3EFFD));
+    margin-left: 10px;
+}
+
+
+
+.nombre_alumno::after{
+    content: '▼';
+    font-size: 0.8rem;
+    transition: transform 0.3s ease; 
+}
+
+details[open].nombre_alumno::after{
+    transform: rotate(180deg);
+}
+
+.submenu li a:hover {
+    color: var(#E3EFFD)) !important;
+}
+
+.submenu{
+    display: none; /*escondido por defecto*/
+    padding-left: 15px;
+    margin-top: 5px;
+    margin-bottom: 15px;
+}
+
+details[open].submenu{
+    animation: slideDown 0.3s ease-out;
+}
+
+/* Animación simple --checar-- */
+@keyframes slideDown {
+    from { opacity: 0; transform: translateY(-10px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+
+
+
  
 /* Contenido principal */
 .content {
     flex: 1;                
-    background-color: white;
+    background-color: var(--fondo);
     padding: 10px; 
     border: 2px solid #ddd; 
     border-radius: 8px;
