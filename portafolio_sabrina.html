@@ -95,8 +95,7 @@
         </main>
     </div>
 
-    <footer>
-        <p>&copy; 2026 Ingeniería Web</p>
+    <footer>2026 Ingeniería Web Guevara Ugarte Yaretzi Camila & Yahuaca Lopez Cristian</p>
     </footer>
 
     <script>
@@ -106,6 +105,11 @@
         menuBtn.addEventListener('click', () => {
             sidebar.classList.toggle('activo');
         });
+
+if (localStorage.getItem('tema-elegido') === 'oscuro') {
+            document.body.classList.add('dark-mode'); 
+        }
+        
     </script>
 </body>
 </html>
