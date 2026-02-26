@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Portafolio - Bad Bunny</title>
+    <link rel="stylesheet" href="css/reset.css">
+    <link rel="stylesheet" href="css/stylesbm.css"> 
+</head>
+<body>
+    
+    <header>
+        <div class="menu-hamburguesa" id="mobile-menu">
+            <span class="bar"></span>
+            <span class="bar"></span>
+            <span class="bar"></span>
+        </div>
+        <h1>Expediente Profesional</h1>
+    </header>
+
+    <div class="container">
+        
+        <nav class="sidebar" id="sidebar">
+            <ul>
+                <li><a href="main.html">Página de Inicio</a></li>
+                <li><a href="#">Cv's</a></li>
+                <li><a href="#">Portafolios</a></li>
+            </ul>
+        </nav>
+
+        <main class="content">
+            <section class="hero-portafolio" style="background-image: linear-gradient(rgba(0,0,0,0.4), rgba(0,0,0,0.8)), url('https://pyxis.nymag.com/v1/imgs/22a/7a1/ff7f34c85e332197644318a8c823129311-R343-ESA-TheCutBadBunny-017-06-FNL.rhorizontal.w610.jpg');">
+                <h1>Bad Bunny</h1>
+            </section>
+
+            <h2 class="titulo-carrera">Eventos y Proyectos Destacados</h2>
+            <hr style="margin: 20px 0; border: 0; border-top: 1px solid #ccc;">
+            
+            <section class="card-container perfiles-container">
+                
+                <div class="card-evento importancia-alta">
+                    <img src="https://imagenmiami.com/wp-content/uploads/2025/09/4E9F7358-5726-4CE1-B583-3FE33D9BA0ED.jpeg" alt="Super bowl 2026">
+                    <div class="info-evento">
+                        <span class="tag">Hito Principal</span>
+                        <h3>Show de medio tiempo - Super tazon LX</h3>
+                        <p>Hizo historia en 2026 como el primer artista latino en encabezar el show de medio tiempo en solitario, con una presentación impactante y totalmente en español.</p>
+                    </div>
+                </div>
+
+                <div class="card-evento importancia-baja">
+                    <img src="https://i.scdn.co/image/ab67616d0000b27349d694203245f241a1bcaa72" alt="Un Verano Sin Ti">
+                    <div class="info-evento">
+                        <h3>Un Verano Sin Ti</h3>
+                        <p>Álbum nominado al Grammy como Álbum del Año, un hito para la música en español.</p>
+                    </div>
+                </div>
+
+                <div class="card-evento importancia-baja">
+                    <img src="https://www.billboard.com/wp-content/uploads/2022/08/bad-bunny-orlando-2022-billboard-1548.jpg" alt="World's Hottest Tour">
+                    <div class="info-evento">
+                        <h3>World's Hottest Tour</h3>
+                        <p>Gira de estadios que rompió récords históricos de recaudación a nivel mundial.</p>
+                    </div>
+                </div>
+
+                <div class="card-evento importancia-media">
+                    <img src="https://i.insider.com/6980ed99d3c7faef0ecd66c6?width=700" alt="Grammys 2026">
+                    <div class="info-evento">
+                        <h3>Grammys 2026</h3>
+                        <p>Ganador del Álbum del Año con "Debí Tirar Más Fotos", el primer disco en español en llevarse este máximo galardón en la historia.</p>
+                    </div>
+                </div>
+
+                <div class="card-evento importancia-baja">
+                    <img src="https://media.revistagq.com/photos/663952114985fc297309685d/4:3/w_3213,h_2409,c_limit/2151777102" alt="Met Gala">
+                    <div class="info-evento">
+                        <h3>Met Gala 2024</h3>
+                        <p>Participación como uno de los anfitriones oficiales del evento de moda más exclusivo.</p>
+                    </div>
+                </div>
+
+            <div class="card-evento importancia-baja">
+                    <img src="https://i0.wp.com/gallimbolamagazine.com/wp-content/uploads/2025/10/BB_concierto_Alianza.jpg?fit=1200%2C800&ssl=1" alt="Residencia en Puerto Rico">
+                    <div class="info-evento">
+                        <h3>Residencia: No Me Quiero Ir de Aquí</h3>
+                        <p>Histórica residencia de 31 conciertos en el Coliseo de Puerto Rico en 2025, con venta exclusiva inicial para residentes de la isla.</p>
+                    </div>
+                </div>
+
+            <div style="margin-top: 40px; text-align: center;">
+                <a href="main.html" style="color: var(--secundario); text-decoration: none; font-weight: bold;">← Volver al Gestor de Perfiles</a>
+            </div>
+        </main>
+    </div>
+
+    <footer>
+        <p>&copy; 2026 Ingeniería Web</p>
+    </footer>
+
+    <script>
+        const menuBtn = document.getElementById('mobile-menu');
+        const sidebar = document.getElementById('sidebar');
+
+        menuBtn.addEventListener('click', () => {
+            sidebar.classList.toggle('activo');
+        });
+    </script>
+</body>
+</html>

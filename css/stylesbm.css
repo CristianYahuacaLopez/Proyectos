@@ -22,7 +22,7 @@ body {
 header {
     background-color: var(--primario);
     color: white;
-    padding: 10px;
+    padding: 20px;
     text-align: center;
     border-bottom: 4px solid var(--secundario);
     margin-bottom: 10px;
@@ -194,70 +194,65 @@ details[open] .submenu {
 /* =========================================
    CONTENIDO PRINCIPAL (BOLITAS) - ACTUALIZADO
    ========================================= */
-
 .content {
     flex: 1;
     background-color: var(--fondo);
-    padding: 10px;
+    padding: 20px 40px;
     border: 2px solid #ddd;
     border-radius: 8px;
-    overflow: hidden;
     margin-left: 10px;
+    min-height: 85vh;
+    display: block !important;
+    flex-direction: column;
 }
 
-.content h1 {
-    text-align: center;
-    margin-bottom: 10px;
-    margin-top: 5px;
+.titulo-carrera{
     font-size: 1.4rem;
-}
-
-.titulo-carrera {
-    font-size: 1.2rem;
-    color: var(--secundario);
-    margin-top: 20px;
-    margin-left: 20px;
+    color: var(--secundario) !important; /* Usa el azul de tu variable */
+    margin: 40px 0 20px 0;
     text-align: left;
+    font-weight: bold;
+    border-left: 6px solid var(--primario); /* Un detalle visual azul */
+    padding-left: 15px;
+    text-transform: uppercase;
+    letter-spacing: 1px;
 }
 
-.card-container {
-    display: flex;
-    flex-wrap: wrap;
-    gap: 30px; /* Aumenté un poco el espacio entre ellas */
-    margin-top: 15px;
-    padding: 5px;
+/* Unificamos las clases para que el Grid funcione sí o sí */
+.card-container.perfiles-container {
+    display: grid !important; /* Corregido de 'gird' a 'grid' */
+    grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+    gap: 40px; 
+    margin-top: 20px;
+    justify-items: center;
+    padding:20px 0;
+    width: 100% !important; /* Asegura que ocupe todo el ancho disponible */
 }
 
-.perfiles-container {
-    justify-content: flex-start;
-    padding-left: 20px;
-}
 
-/* CAMBIO 1: Contenedor más ancho */
 .perfil-bolita {
-    flex: 0 0 auto;
-    width: 170px; /* Antes era 120px */
+    width: 220px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
     background: transparent;
-    box-shadow: none;
-    border: none;
+    text-align: center;
 }
 
-/* CAMBIO 2: Imagen más grande */
 .perfil-bolita img {
-    width: 150px; /* Antes era 100px */
-    height: 150px; /* Antes era 100px */
+    width: 220px;
+    height: 220px;
     border-radius: 50%;
     object-fit: cover;
-    border: 5px solid var(--terciario); /* Borde un poquito más grueso */
-    margin: 0 auto;
-    display: block;
+    border: 6px solid var(--terciario);
     transition: transform 0.3s ease, box-shadow 0.3s ease;
 }
 
 .perfil-bolita:hover img {
-    transform: scale(1.05); /* Un efecto de zoom más sutil al ser más grandes */
-    box-shadow: 0 8px 15px rgba(0,0,0,0.2);
+    transform: scale(1.1); /* Un efecto de zoom más sutil al ser más grandes */
+    box-shadow: 0 10px 20px rgba(0,0,0,0.2);
     cursor: pointer;
+    border-color: var(--secundario);
 }
 
 .perfil-bolita .pie-foto {
@@ -269,7 +264,123 @@ details[open] .submenu {
 /* Ajuste al tamaño de la letra del nombre */
 .perfil-bolita h3 {
     color: var(--color-texto);
-    font-size: 1.1rem; /* Un poquito más grande */
+    font-size: 1.2rem; /* Un poquito más grande */
     margin-bottom: 2px;
+    font-weight: bold;
+}
+
+
+/*para portafolios*/
+
+.hero-portafolio {
+    height: 500px;
+    background: linear-gradient(rgba(0, 0, 0, 0.3), rgba(0, 0, 0, 0.6));
+    background-size: cover;
+    background-position: center 20%;
+    background-repeat: no-repeat;
+
+
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    border-radius: 15px;
+    margin-bottom: 40px;
+    color: white;
+    text-align: center;
+    box-shadow: 0 8px 20px rgba(0,0,0,0.15);
+}
+
+.hero-content h1 {
+    font-size: 3.5rem !important;
+    font-weight: bold;
+    text-shadow: 2px 3px 10px rgba(0,0,0,0.5);
+}
+
+/* Tarjetas de eventos con descripción */
+.card-evento {
+    background: #fff;
+    border: 1px solid #ddd;
+    border-radius: 15px;
+    overflow: hidden;
+    width: 100%; /* Un poco más anchas para que quepa el texto */
+    transition: 0.3s;
+}
+.importancia-alta{
+    grid-column: span 2;
+    grid-row: span 2;
+}
+.importancia-alta img{
+    height: 450px !important;
+    object-fit: cover;
+    object-position: center 15% !important;
+}
+
+.importancia-media{
+    grid-column: span 1;
+    grid-row: span 2;
+}
+
+.importancia-media img{
+    height: 450px !important;
+    object-fit: cover;
+    object-position: center 10% !important;
+}
+
+.importancia-baja{
+    grid-column: span 1;
+    grid-row: span 1;
+}
+
+.importancia-baja img{
+    height: 150px !important;
+    object-fit: cover;
+    object-position: center 20% !important;
+}
+
+.card-evento:hover {
+    transform: translateY(-10px);
+    box-shadow: 0 10px 20px rgba(0,0,0,0.1);
+}
+
+.card-evento img {
+    width: 100%;
+    height: 220px;
+    object-fit: cover;
+    background-position: center 20%;
+}
+
+.info-evento {
+    padding: 20px;
+    text-align: left;
+}
+
+.tag{
+    background: var(--terciario);
+    font-size: 0.7rem;
+    font-weight: bold;
+    padding: 4px 8px;
+    border-radius: 4px;
+    margin-bottom: 10px;
+    display: inline-block;
+}
+
+.info-evento h3 {
+    color: var(--secundario);
+    font-weight: bold;
+    margin-bottom: 8px;
+}
+
+.info-evento p {
+    font-size: 0.9rem;
+    color: #555;
+    line-height: 1.4;
+}
+
+.btn-volver {
+    display: inline-block;
+    margin-top: 30px;
+    color: var(--secundario);
+    text-decoration: none;
     font-weight: bold;
 }

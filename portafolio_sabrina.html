@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Portafolio - Sabrina Carpenter</title>
+    <link rel="stylesheet" href="css/reset.css">
+    <link rel="stylesheet" href="css/stylesbm.css"> 
+</head>
+<body>
+    
+    <header>
+        <div class="menu-hamburguesa" id="mobile-menu">
+            <span class="bar"></span>
+            <span class="bar"></span>
+            <span class="bar"></span>
+        </div>
+        <h1>Expediente Profesional</h1>
+    </header>
+
+    <div class="container">
+        
+        <nav class="sidebar" id="sidebar">
+            <ul>
+                <li><a href="main.html">Página de Inicio</a></li>
+                <li><a href="#">Cv's</a></li>
+                <li><a href="#">Portafolios</a></li>
+            </ul>
+        </nav>
+
+        <main class="content">
+            <section class="hero-portafolio" style="background-image: linear-gradient(rgba(0,0,0,0.4), rgba(0,0,0,0.8)), url('https://media.pitchfork.com/photos/68b19d735b86821a74fb4055/2:1/w_2560%2Cc_limit/Sabrina-Carpenter.jpeg');">
+                 
+                <h1>Sabrina Carpenter</h1>
+            </section>
+
+            <h2 class="titulo-carrera">Eventos y Proyectos Destacados</h2>
+            <hr style="margin: 20px 0; border: 0; border-top: 1px solid #ccc;">
+            
+            <section class="card-container perfiles-container">
+                
+                <div class="card-evento importancia-alta">
+                    <img src="https://simmonsvoice.com/wp-content/uploads/2024/10/Image-10-9-24-at-4.54-PM.jpg" alt="Short n Sweet Tour">
+                    <div class="info-evento">
+                        <span class="tag">Hito Principal</span>
+                        <h3>Short n' Sweet Tour 2024</h3>
+                        <p>Gira mundial que batió récords de preventa y consolidó su impacto en la cultura pop actual.</p>
+                    </div>
+                </div>
+
+                <div class="card-evento importancia-baja">
+                    <img src="https://www.billboard.com/wp-content/uploads/2025/10/sabrina-carpenter-performs-manchild-snl-billboard-1800.jpg" alt="SNL">
+                    <div class="info-evento">
+                        <h3>Saturday Night Live</h3>
+                        <p>Debut icónico como invitada musical en el legendario programa de comedia.</p>
+                    </div>
+                </div>
+
+                <div class="card-evento importancia-baja">
+                    <img src="https://i.scdn.co/image/ab67616d0000b273659cd4673230913b3918e0d5" alt="Espresso">
+                    <div class="info-evento">
+                        <h3>Single: Espresso</h3>
+                        <p>Lanzamiento del hit global que dominó las listas de éxitos durante todo el verano.</p>
+                    </div>
+                </div>
+
+                <div class="card-evento importancia-media">
+                    <img src="https://s.abcnews.com/images/GMA/Sabrina-carpenter-coachella-1-gty-jm-240414_1713100545805_hpMain_1x1_608.jpg" alt="Coachella">
+                    <div class="info-evento">
+                        <h3>Coachella 2024</h3>
+                        <p>Presentación estelar en el festival, aclamada por su escenografía y carisma.</p>
+                    </div>
+                </div>
+
+                <div class="card-evento importancia-baja">
+                    <img src="https://hips.hearstapps.com/hmg-prod/images/gettyimages-2151797573-663974be67938.jpg?crop=1xw:0.84375xh;0,0.0288xh" alt="Met Gala">
+                    <div class="info-evento">
+                        <h3>Met Gala 2024</h3>
+                        <p>Su debut en la alfombra roja más importante de la moda.</p>
+                    </div>
+                </div>
+
+                <div class="card-evento importancia-baja">
+                    <img src="https://i.scdn.co/image/ab67616d0000b2730f45623be014a592a5815827" alt="Emails I Can't Send">
+                    <div class="info-evento">
+                        <h3>Emails I Can't Send</h3>
+                        <p>El álbum que marcó su nueva era musical.</p>
+                    </div>
+                </div>
+            </section>
+
+            <div style="margin-top: 40px; text-align: center;">
+                <a href="main.html" style="color: var(--secundario); text-decoration: none; font-weight: bold;">← Volver al Gestor de Perfiles</a>
+            </div>
+        </main>
+    </div>
+
+    <footer>
+        <p>&copy; 2026 Ingeniería Web</p>
+    </footer>
+
+    <script>
+        const menuBtn = document.getElementById('mobile-menu');
+        const sidebar = document.getElementById('sidebar');
+
+        menuBtn.addEventListener('click', () => {
+            sidebar.classList.toggle('activo');
+        });
+    </script>
+</body>
+</html>
