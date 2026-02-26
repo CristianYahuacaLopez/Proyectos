@@ -4,7 +4,7 @@
     --terciario: #7CE2C0;
     --fondo: white;
     --color-texto: black;
-    --blanco-puro: #ffffff; /* Agregué esta variable que usabas más abajo pero no estaba en el root */
+    --blanco-puro: #ffffff; 
 }
 
 /* Estilos generales */
@@ -26,7 +26,7 @@ header {
     text-align: center;
     border-bottom: 4px solid var(--secundario);
     margin-bottom: 10px;
-    position: relative; /* Necesario para la hamburguesa */
+    position: relative; 
 }
 
 /* Contenedor principal */
@@ -44,7 +44,6 @@ header {
    MENÚ HAMBURGUESA Y SIDEBAR
    ========================================= */
 
-/* 1. Darle forma al icono de hamburguesa en el header */
 .menu-hamburguesa {
     display: flex;
     flex-direction: column;
@@ -65,7 +64,6 @@ header {
     border-radius: 5px;
 }
 
-/* 2. El Sidebar oculto */
 .sidebar {
     background-color: var(--primario);
     color: white;
@@ -77,9 +75,8 @@ header {
     justify-content: flex-start;
     text-align: left;
     
-    /* Configuración para ocultarlo */
     position: fixed;
-    left: -100%; /* Escondido a la izquierda */
+    left: -100%; 
     top: 0;
     height: 100vh;
     z-index: 999;
@@ -87,7 +84,6 @@ header {
     width: 300px;
 }
 
-/* 3. Clase activa para mostrar el menú */
 .sidebar.activo {
     left: 0;
 }
@@ -95,7 +91,7 @@ header {
 .sidebar ul {
     list-style: none;
     padding: 0;
-    margin-top: 60px; /* Para que el menú no tape la hamburguesa al abrirse */
+    margin-top: 60px; 
 }
 
 .sidebar ul li {
@@ -114,7 +110,7 @@ header {
 }
 
 .sidebar ul li a:hover {
-    background-color: #E3EFFD; /* CORREGIDO: Sin var() */
+    background-color: #E3EFFD; 
     color: var(--secundario);
     transform: scale(1.05);
     box-shadow: 0 4px 8px rgba(0,0,0,0.2);
@@ -132,7 +128,7 @@ summary {
     cursor: pointer;
     display: flex;
     justify-content: space-between;
-    align-items: center; /* Mejorado */
+    align-items: center; 
     color: white;
     font-size: 1.1rem;
     font-weight: bold;
@@ -146,7 +142,7 @@ summary {
 }
 
 .nombre_alumno:hover {
-    background-color: #E3EFFD; /* CORREGIDO: Sin var() */
+    background-color: #E3EFFD; 
     color: var(--secundario);
 }
 
@@ -168,7 +164,7 @@ details[open] .nombre_alumno::after {
 }
 
 details[open] .submenu {
-    display: block; /* Hacemos que se muestre al abrir */
+    display: block; 
     animation: slideDown 0.3s ease-out;
 }
 
@@ -178,12 +174,12 @@ details[open] .submenu {
     padding: 8px 15px !important;
     text-decoration: none;
     display: block;
-    border-left: 2px solid #E3EFFD; /* CORREGIDO: Sin var() */
+    border-left: 2px solid #E3EFFD; 
     margin-left: 10px;
 }
 
 .submenu li a:hover {
-    color: #E3EFFD !important; /* CORREGIDO: Sin var() */
+    color: #E3EFFD !important; 
 }
 
 @keyframes slideDown {
@@ -206,29 +202,28 @@ details[open] .submenu {
     flex-direction: column;
 }
 
-.titulo-carrera{
+.titulo-carrera {
     font-size: 1.4rem;
-    color: var(--secundario) !important; /* Usa el azul de tu variable */
+    color: var(--secundario) !important; 
     margin: 40px 0 20px 0;
-    text-align: left;
+    text-align: center; /* ¡Esta es la línea clave que lo centra! */
     font-weight: bold;
-    border-left: 6px solid var(--primario); /* Un detalle visual azul */
-    padding-left: 15px;
     text-transform: uppercase;
     letter-spacing: 1px;
+    width: 100%; /* Asegura que tome todo el espacio para centrarse perfecto */
 }
 
-/* Unificamos las clases para que el Grid funcione sí o sí */
+/* Contenedor de las bolitas en la página principal */
 .card-container.perfiles-container {
-    display: grid !important; /* Corregido de 'gird' a 'grid' */
-    grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
-    gap: 40px; 
+    display: flex !important; /* Cambiamos a flex para poder centrarlas perfecto */
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: center; /* ¡Esta es la magia que las pone justo en medio! */
+    gap: 80px; /* Aumentamos la separación (antes era 40px) */
     margin-top: 20px;
-    justify-items: center;
-    padding:20px 0;
-    width: 100% !important; /* Asegura que ocupe todo el ancho disponible */
+    padding: 20px 0;
+    width: 100% !important; 
 }
-
 
 .perfil-bolita {
     width: 220px;
@@ -249,7 +244,7 @@ details[open] .submenu {
 }
 
 .perfil-bolita:hover img {
-    transform: scale(1.1); /* Un efecto de zoom más sutil al ser más grandes */
+    transform: scale(1.1); 
     box-shadow: 0 10px 20px rgba(0,0,0,0.2);
     cursor: pointer;
     border-color: var(--secundario);
@@ -261,16 +256,50 @@ details[open] .submenu {
     text-align: center;
 }
 
-/* Ajuste al tamaño de la letra del nombre */
 .perfil-bolita h3 {
     color: var(--color-texto);
-    font-size: 1.2rem; /* Un poquito más grande */
+    font-size: 1.2rem; 
     margin-bottom: 2px;
     font-weight: bold;
 }
 
 
-/*para portafolios*/
+/* =========================================
+   PORTAFOLIOS (SABRINA, BENITO, ETC) - INDEPENDIENTE
+   ========================================= */
+
+.content-portafolio {
+    flex: 1;
+    background-color: var(--fondo);
+    padding: 20px 40px;
+    border: 2px solid #ddd;
+    border-radius: 8px;
+    margin-left: 10px;
+    min-height: 85vh;
+    display: block !important;
+    flex-direction: column;
+}
+
+.titulo-portafolio {
+    font-size: 1.4rem;
+    color: var(--secundario) !important;
+    margin: 40px 0 20px 0;
+    text-align: left;
+    font-weight: bold;
+    border-left: 6px solid var(--primario);
+    padding-left: 15px;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+}
+
+.grid-portafolio {
+    display: grid;
+    grid-template-columns: repeat(5, 1fr); 
+    grid-auto-rows: minmax(200px, auto); 
+    gap: 20px;
+    padding: 20px 0;
+    width: 100%;
+}
 
 .hero-portafolio {
     height: 500px;
@@ -278,8 +307,6 @@ details[open] .submenu {
     background-size: cover;
     background-position: center 20%;
     background-repeat: no-repeat;
-
-
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -297,42 +324,43 @@ details[open] .submenu {
     text-shadow: 2px 3px 10px rgba(0,0,0,0.5);
 }
 
-/* Tarjetas de eventos con descripción */
 .card-evento {
     background: #fff;
     border: 1px solid #ddd;
     border-radius: 15px;
     overflow: hidden;
-    width: 100%; /* Un poco más anchas para que quepa el texto */
+    width: 100%; 
     transition: 0.3s;
 }
-.importancia-alta{
+
+.importancia-alta {
     grid-column: span 2;
     grid-row: span 2;
 }
-.importancia-alta img{
+
+.importancia-alta img {
     height: 450px !important;
     object-fit: cover;
     object-position: center 15% !important;
 }
 
-.importancia-media{
+.importancia-media {
     grid-column: span 1;
     grid-row: span 2;
 }
 
-.importancia-media img{
+.importancia-media img {
     height: 450px !important;
     object-fit: cover;
     object-position: center 10% !important;
 }
 
-.importancia-baja{
+.importancia-baja {
     grid-column: span 1;
     grid-row: span 1;
 }
 
-.importancia-baja img{
+.importancia-baja img {
     height: 150px !important;
     object-fit: cover;
     object-position: center 20% !important;
@@ -355,7 +383,7 @@ details[open] .submenu {
     text-align: left;
 }
 
-.tag{
+.tag {
     background: var(--terciario);
     font-size: 0.7rem;
     font-weight: bold;
@@ -383,4 +411,192 @@ details[open] .submenu {
     color: var(--secundario);
     text-decoration: none;
     font-weight: bold;
+}
+
+/* =========================================
+   PÁGINA DE CV - INDEPENDIENTE
+   ========================================= */
+
+.content-cv {
+    flex: 1;
+    background-color: var(--fondo);
+    padding: 20px 40px;
+    border: 2px solid #ddd;
+    border-radius: 8px;
+    margin-left: 10px;
+    min-height: 85vh;
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+
+/* --- ESTILO LINKEDIN (HEADER) --- */
+.perfil-header-cv {
+    background: #fff;
+    border: 1px solid #d0e0f0; /* Borde ligeramente azulado */
+    border-radius: 12px;
+    overflow: hidden;
+    margin-bottom: 10px;
+    box-shadow: 0 4px 12px rgba(132, 174, 225, 0.15); /* Sombra azulita elegante */
+}
+
+.banner-cv {
+    height: 350px; /* La altura que definimos */
+    background-size: cover; /* Hace que la imagen cubra todo el espacio sin deformarse */
+    
+    /* ESTA ES LA LÍNEA MÁGICA PARA CENTRAR: */
+    background-position: center center; /* El primer 'center' es horizontal, el segundo es vertical */
+    
+    background-repeat: no-repeat; /* Para que no se repita como mosaico */
+}
+
+.datos-principales-cv {
+    padding: 0 25px 25px 25px;
+    position: relative;
+    /* Degradado sutil de blanco a azul muy claro en el fondo */
+    background: linear-gradient(to bottom, #ffffff 40%, #f4f9ff 100%); 
+}
+
+.foto-perfil-cv {
+    width: 160px;
+    height: 160px;
+    border-radius: 50%;
+    border: 4px solid #fff;
+    object-fit: cover;
+    margin-top: -80px;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+}
+
+.texto-perfil-cv {
+    margin-top: 15px;
+}
+
+.texto-perfil-cv h2 {
+    font-size: 1.8rem;
+    color: var(--color-texto);
+    margin-bottom: 5px;
+}
+
+.verificado-cv {
+    color: var(--secundario); /* Palomita de verificado en azul */
+    font-size: 1.2rem;
+    margin-left: 5px;
+}
+
+.titular-cv {
+    font-size: 1.1rem;
+    color: #333;
+    margin-bottom: 5px;
+    font-weight: bold;
+}
+
+.ubicacion-cv {
+    font-size: 0.9rem;
+    color: #666;
+    margin-bottom: 15px;
+}
+
+.ubicacion-cv a {
+    color: var(--secundario);
+    text-decoration: none;
+    font-weight: bold;
+}
+
+.botones-cv {
+    display: flex;
+    gap: 10px;
+}
+
+.botones-cv button {
+    padding: 8px 20px;
+    font-size: 1rem;
+    font-weight: bold;
+    border-radius: 20px;
+    cursor: pointer;
+    transition: 0.3s;
+}
+
+.btn-primario-cv {
+    background-color: var(--secundario);
+    color: white;
+    border: none;
+}
+
+.btn-primario-cv:hover {
+    background-color: var(--primario);
+}
+
+.btn-secundario-cv {
+    background-color: #f4f9ff; /* Fondo azulito claro para los secundarios */
+    color: var(--secundario);
+    border: 2px solid var(--secundario);
+}
+
+.btn-secundario-cv:hover {
+    background-color: #e0edff;
+}
+
+/* --- SECCIONES TIPO TARJETA --- */
+.tarjeta-cv {
+    background: #fff;
+    border: 1px solid #d0e0f0; /* Borde con toque azul */
+    border-radius: 12px;
+    padding: 25px;
+    margin-bottom: 10px;
+    box-shadow: 0 2px 6px rgba(132, 174, 225, 0.05);
+}
+
+.tarjeta-cv h3 {
+    font-size: 1.3rem;
+    color: var(--secundario); /* Título en azul secundario */
+    margin-bottom: 15px;
+    border-bottom: 3px solid var(--primario); /* Línea inferior en azul primario */
+    padding-bottom: 8px;
+    display: inline-block;
+    width: 100%;
+}
+
+.tarjeta-cv p {
+    color: #444;
+    font-size: 0.95rem;
+    line-height: 1.6;
+}
+
+/* --- ESTILO CV TRADICIONAL (GRID) --- */
+.grid-cv {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 40px;
+}
+
+.seccion-cv {
+    margin-bottom: 25px;
+}
+
+.item-cv {
+    margin-bottom: 15px;
+}
+
+.item-cv h4 {
+    color: var(--primario); /* Nombre del puesto en azul primario */
+    font-size: 1.05rem;
+    font-weight: bold;
+    margin-bottom: 2px;
+}
+
+.item-cv p.subtitulo-cv {
+    color: #667788; /* Gris azulado para subtítulos */
+    font-size: 0.9rem;
+    margin-bottom: 5px;
+    font-weight: 500;
+}
+
+.lista-cv {
+    padding-left: 20px;
+    color: #444;
+    font-size: 0.95rem;
+}
+
+.lista-cv li {
+    margin-bottom: 5px;
 }
