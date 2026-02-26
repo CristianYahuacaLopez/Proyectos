@@ -600,3 +600,242 @@ details[open] .submenu {
 .lista-cv li {
     margin-bottom: 5px;
 }
+
+
+/*paginas individuales*/
+.contenedor-seleccion {
+    width: 100%;
+    margin: 0 auto;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 20px;
+    padding-right: 20px;
+    flex-grow: 1;
+}
+
+area-trabajo-seleccion{
+    flex: 1;
+    width: 100%; 
+    background-color: var(--fondo);
+    padding: 40px;
+    border: 2px solid #ddd;
+    border-radius: 8px;
+    margin: 0 auto;
+    min-height: 85vh;
+    display: flex !important;
+    flex-direction: column;
+    align-items: center; 
+    justify-content: center;
+    text-align: center;
+}
+
+.perfil-hero{
+    display: flex;
+    flex-direction: column;
+    align-items: center; 
+    width: 100%;
+    margin-bottom: 60px;
+}
+
+.perfil-imagen-grande {
+    width: 250px;
+    height: 250px;
+    margin: 0 auto 20px auto; 
+}
+
+.perfil-imagen-grande img {
+    width: 100%;
+    height: 100%;
+    border-radius: 50%; 
+    object-fit: cover;
+    border: 8px solid var(--terciario); 
+    box-shadow: 0 8px 20px rgba(0,0,0,0.15);
+    transition: transform 0.3s ease, border-color 0.3s ease;
+}
+
+.perfil-hero:hover .perfil-imagen-grande img {
+    transform: scale(1.05);
+    border-color: var(--secundario); 
+}
+
+.nombre-perfil-grande {
+    font-size: 2.5rem;
+    color: var(--secundario);
+    font-weight: bold;
+    margin: 0;
+}
+
+.opciones-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 40px; 
+    width: 100%;
+    max-width: 800px; 
+    margin: 0 auto;
+}
+
+.card-opcion {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    width: 250px;
+    height: 200px;
+    background-color: white;
+    border: 3px solid #ddd;
+    border-radius: 15px;
+    text-decoration: none; 
+    color: var(--color-texto);
+    transition: all 0.3s ease;
+    box-shadow: 0 4px 10px rgba(0,0,0,0.05);
+}
+
+.card-opcion:hover {
+    transform: translateY(-10px); 
+    box-shadow: 0 15px 30px rgba(0,0,0,0.15);
+    border-color: var(--secundario); 
+}
+
+.icono-opcion {
+    font-size: 4rem;
+    margin-bottom: 15px;
+}
+
+.card-opcion h3 {
+    font-size: 1.8rem;
+    font-weight: bold;
+    margin: 0;
+}
+
+
+.opcion-cv:hover h3, .opcion-portafolio:hover h3 {
+    color: var(--secundario);
+}
+
+.btn-volver {
+    display: inline-block;
+    margin-top: 20px;
+    color: var(--secundario);
+    text-decoration: none;
+    font-weight: bold;
+    font-size: 1.1rem;
+    padding: 10px 20px;
+    border: 2px solid transparent;
+    border-radius: 5px;
+    transition: 0.3s;
+}
+
+.btn-volver:hover {
+    border-color: var(--secundario);
+    background-color: #f0f8ff;
+}
+
+
+/*Página de CV's principal*/
+.contenedor-galeria {
+    width: 100%;
+    display: flex;
+    justify-content: center; /* Empuja el área de trabajo al centro */
+    padding: 20px;
+    flex-grow: 1;
+}
+
+.area-trabajo-galeria {
+    width: 100%;
+    max-width: 900px; /* Agrupa todo en el centro para que no se estire feo */
+    display: flex !important;
+    flex-direction: column;
+    align-items: center; /* ¡Esto es lo que centra tu título y tus tarjetas! */
+    text-align: center;
+    background-color: var(--fondo);
+    padding: 40px;
+    border: 2px solid #ddd;
+    border-radius: 8px;
+    min-height: 80vh;
+}
+
+.titulo-galeria {
+    font-size: 2rem;
+    color: var(--secundario);
+    font-weight: bold;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    margin-bottom: 10px;
+}
+
+
+
+.grid-galeria {
+    display: flex;
+    flex-wrap: wrap; /* Si no caben, se pasan a la línea de abajo */
+    justify-content: center; /* Centra las tarjetas horizontalmente */
+    gap: 30px; /* Espacio entre cada tarjeta */
+    width: 100%;
+    max-width: 1000px; 
+    margin: 0 auto;
+}
+
+.card-galeria {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    width: 200px; /* Ancho fijo para que parezcan cuadrados */
+    height: 220px;
+    background-color: white;
+    border: 2px solid #ddd;
+    border-radius: 12px;
+    text-decoration: none;
+    color: var(--color-texto);
+    transition: all 0.3s ease;
+    box-shadow: 0 4px 8px rgba(0,0,0,0.05);
+    padding: 15px;
+    text-align: center;
+}
+
+.card-galeria:hover {
+    transform: translateY(-8px);
+    box-shadow: 0 12px 24px rgba(0,0,0,0.15);
+    border-color: var(--secundario);
+}
+
+.icono-galeria {
+    font-size: 4.5rem;
+    margin-bottom: 15px;
+}
+
+.profesion-galeria {
+    font-size: 0.85rem;
+    color: #666;
+    margin-bottom: 5px;
+    line-height: 1.2;
+}
+
+.nombre-galeria {
+    font-size: 1.2rem;
+    font-weight: bold;
+    color: var(--secundario);
+    margin: 0;
+}
+
+.btn-volver {
+    display: inline-block;
+    color: var(--secundario);
+    text-decoration: none;
+    font-weight: bold;
+    font-size: 1.1rem;
+    padding: 10px 20px;
+    border: 2px solid transparent;
+    border-radius: 5px;
+    transition: 0.3s;
+}
+
+.btn-volver:hover {
+    border-color: var(--secundario);
+    background-color: #f0f8ff;
+}
+
+
+

@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Conjunto de CV's</title>
+    <link rel="stylesheet" href="css/reset.css">
+    <link rel="stylesheet" href="css/stylesbm.css">
+</head>
+<body>
+    
+    <header>
+        <div class="menu-hamburguesa" id="mobile-menu">
+            <span class="bar"></span>
+            <span class="bar"></span>
+            <span class="bar"></span>
+        </div>
+        <h1>Acceso a expedientes profesionales</h1>
+    </header>
+
+    <div class="contenedor-galeria">
+        
+        <nav class="sidebar" id="sidebar">
+            <ul>
+                <li><a href="main.html">Página de Inicio</a></li>
+                <li><a href="Cvs_principal">Cv's</a></li>
+                <li><a href="Portafolios_principal.html">Portafolios</a></li>
+            </ul>
+        </nav>
+
+        <main class="area-trabajo-galeria">
+            
+            <h2 class="titulo-galeria">Conjunto de CV's</h2>
+            <hr style="margin: 20px 0 40px 0; border: 0; border-top: 1px solid #ccc; width: 100%;">
+            
+            <section class="grid-galeria">
+                
+                <a href="cv_sabrina.html" class="card-galeria">
+                    <div class="icono-galeria">📄</div>
+                    <h3 class="nombre-galeria">Sabrina Carpenter</h3>
+                </a>
+
+                <a href="cv_benito.html" class="card-galeria">
+                    <div class="icono-galeria">📄</div>
+                    <h3 class="nombre-galeria">Benito A. Martínez Ocasio</h3>
+                </a>
+            </section>
+            
+            <div style="margin-top: 50px; width: 100%; text-align: center;">
+                <a href="main.html" class="btn-volver">← Volver al Inicio</a>
+            </div>
+            
+        </main>
+    </div>
+
+    <footer>
+        <p>&copy; 2026 Ingeniería Web</p>
+    </footer>
+
+    <script>
+        const menuBtn = document.getElementById('mobile-menu');
+        const sidebar = document.getElementById('sidebar');
+
+        menuBtn.addEventListener('click', () => {
+            sidebar.classList.toggle('activo');
+        });
+    </script>
+</body>
+</html>

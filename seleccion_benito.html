@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Selección - Sabrina Carpenter</title>
+    <link rel="stylesheet" href="css/reset.css">
+    <link rel="stylesheet" href="css/stylesbm.css">
+</head>
+<body>
+    
+    <header>
+        <div class="menu-hamburguesa" id="mobile-menu">
+            <span class="bar"></span>
+            <span class="bar"></span>
+            <span class="bar"></span>
+        </div>
+        <h1>Acceso a expedientes profesionales</h1>
+    </header>
+
+    <div class="contenedor-seleccion">
+        
+        <nav class="sidebar" id="sidebar">
+            <ul>
+                <li><a href="main.html">Página de Inicio</a></li>
+                <li><a href="Cvs_principal.html">Cv's</a></li>
+                <li><a href="Portafolios_principal.html">Portafolios</a></li>
+            </ul>
+        </nav>
+
+        <main class="area-trabajo-seleccion">
+            
+            <section class="perfil-hero">
+                <div class="perfil-imagen-grande">
+                    <img src="https://tse3.mm.bing.net/th/id/OIP.uIfapLCeOKIUip8aIgfgCgHaEt?o=7rm=3&rs=1&pid=ImgDetMain&o=7&rm=3" alt="Foto de Benito">
+                </div>
+                <h2 class="nombre-perfil-grande">Benito A. Martínez Ocasio</h2>
+            </section>
+
+            <section class="opciones-container">
+                <a href="cv_benito.html" class="card-opcion opcion-cv">
+                    <div class="icono-opcion">📄</div>
+                    <h3>Ver CV</h3>
+                </a>
+
+                <a href="portafolio_benito.html" class="card-opcion opcion-portafolio">
+                    <div class="icono-opcion">📁</div>
+                    <h3>Ver Portafolio</h3>
+                </a>
+            </section>
+            
+            <div style="margin-top: 40px; text-align: center;">
+                <a href="main.html" class="btn-volver">← Volver al Inicio</a>
+            </div>
+
+        </main>
+    </div>
+
+    <footer>
+        <p>&copy; 2026 Ingeniería Web</p>
+    </footer>
+
+    <script>
+        const menuBtn = document.getElementById('mobile-menu');
+        const sidebar = document.getElementById('sidebar');
+
+        menuBtn.addEventListener('click', () => {
+            sidebar.classList.toggle('activo');
+        });
+    </script>
+</body>
+</html>
