@@ -36,8 +36,14 @@ export const mostrarRegistro = (req, res) => {
 };
 
 export const crearCuenta = async (req, res) => {
-    const { correo, password } = req.body;
-        const resultado = await guardarNuevoUsuario({ id: correo, password });
+    const {nombre, correo, password, preguntaSecreta, respuestaSecreta } = req.body;
+        const resultado = await guardarNuevoUsuario({ 
+            nombre, 
+            correo, 
+            password, 
+            preguntaSecreta, 
+            respuestaSecreta
+        });
     
     res.status(201).json(resultado);
 };

@@ -79,6 +79,19 @@ h2 {
     color: white;
     font-weight: 600;
     cursor: pointer;
+
+    transition: transform 0.3s ease, background-color 0.3s ease, box-shadow 0.3s ease;
+}
+
+.btn-signin:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.3);
+    background-color: #003d82; 
+}
+
+.btn-signin:active {
+    transform: translateY(-2px);
+    box-shadow: 0 5px 10px rgba(0, 0, 0, 0.2);
 }
 
 #registroForm .btn-signin {
@@ -142,13 +155,15 @@ input:focus{
 
 /* VALIDACIONES */
 .valido{
-    border:1px solid #2ecc71;
-    background:#f0fff5;
+    border: 2px solid #09529b !important;
+    background: #59abe6 !important; 
+    color: #333 !important;
 }
 
 .invalido{
-    border:1px solid #e74c3c;
-    background:#fff5f5;
+    border: 2px solid #e74c3c !important;
+    background: #e98686 !important;
+    color: #333 !important;
 }
 
 /* MENSAJES */

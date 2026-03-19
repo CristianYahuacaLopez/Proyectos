@@ -43,11 +43,22 @@ export const procesarRegistro = async (datos) => {
  * Servicio para registrar nuevos usuarios
  */
 export const guardarNuevoUsuario = async (usuario) => {
+    const regexSeguridad = /^(?=.*[0-9])(?=.*[+\-*]).{10,15}$/;
 
-    console.log("--- Proceso de Guardado Finalizado ---");
-    console.log(`ID (Correo): ${usuario.id}`);
-    console.log(`Password Guardada: ${usuario.password}`);
+    if (!regexSeguridad.test(usuario.password)) {
+        return {
+            success: false,
+            mensaje: "La contraseña no es segura: requiere 10 a 15 caracteres, un número y un signo (+, -, *)."
+        };
+    }
 
+    console.log("--- Iniciando Registro de Nuevo Usuario ---");
+    console.log(`Nombre: ${usuario.nombre}`);
+    console.log(`Correo: ${usuario.correo}`);
+    console.log(`Pregunta Secreta: ${usuario.preguntaSecreta}`);
+    console.log(`Respuesta Secreta: ${usuario.respuestaSecreta}`);
+    console.log("-------------------------------------------");
+    
     return {
         success: true,
         mensaje: "Usuario creado con éxito"

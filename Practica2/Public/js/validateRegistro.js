@@ -1,7 +1,7 @@
 const form = document.getElementById("registroForm"); 
 const resultado = document.getElementById("resultado");
 
-const campos = ["correo", "password", "confirmPassword"];
+const campos = ["nombre","correo", "password", "confirmPassword","preguntaSecreta", "respuestaSecreta"];
 
 function validarCampo(id) {
     const input = document.getElementById(id);
@@ -18,10 +18,38 @@ function validarCampo(id) {
         return false;
     }
 
+    if (id === "nombre") {
+        const regexNombre = /^[a-zA-ZáéíóúÁÉÍÓÚñÑ\s]+$/;
+        if (!regexNombre.test(input.value)) {
+            error.textContent = "El nombre solo debe contener letras";
+            input.classList.add("invalido");
+            return false;
+        }
+    }
+
     if (input.type === "email" && input.validity.typeMismatch) {
         error.textContent = "Correo electrónico inválido";
         input.classList.add("invalido");
         return false;
+    }
+
+    if (id === "password") {
+    const regexSeguridad = /^(?=.*[0-9])(?=.*[+\-*]).{10,15}$/;
+
+    if (!regexSeguridad.test(input.value)) {
+        error.textContent = "Debe tener entre 10 y 15 caracteres, un número y un signo (+, -, *)";
+        input.classList.add("invalido"); // Tu clase roja de CSS
+        return false;
+    }
+    }
+
+    if (id === "confirmPassword") {
+        const passwordOriginal = document.getElementById("password").value;
+        if (input.value !== passwordOriginal) {
+            error.textContent = "Las contraseñas no coinciden";
+            input.classList.add("invalido");
+            return false;
+        }
     }
 
     input.classList.add("valido");
