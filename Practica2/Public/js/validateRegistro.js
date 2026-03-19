@@ -1,9 +1,10 @@
-const form = document.getElementById("loginForm"); // Coincide con el id de tu login.html
+const form = document.getElementById("registroForm"); // ID del formulario en registro.html
 const resultado = document.getElementById("resultado");
 
-// Campos específicos del login
+// En el registro usamos los mismos campos
 const campos = ["correo", "password", "confirmPassword"];
 
+// La función de validar campos se queda igual porque la lógica es la misma
 function validarCampo(id) {
     const input = document.getElementById(id);
     const error = document.getElementById("error-" + id);
@@ -13,14 +14,12 @@ function validarCampo(id) {
     error.textContent = "";
     input.classList.remove("valido", "invalido");
 
-    /* 1. Validación: Campo obligatorio */
     if (input.required && input.validity.valueMissing) {
         error.textContent = "Este campo es obligatorio";
         input.classList.add("invalido");
         return false;
     }
 
-    /* 2. Validación: Formato de correo */
     if (input.type === "email" && input.validity.typeMismatch) {
         error.textContent = "Correo electrónico inválido";
         input.classList.add("invalido");
@@ -31,7 +30,6 @@ function validarCampo(id) {
     return true;
 }
 
-/* Eventos para validar mientras el usuario escribe */
 campos.forEach(id => {
     const input = document.getElementById(id);
     if (!input) return;
@@ -40,19 +38,17 @@ campos.forEach(id => {
     input.addEventListener("input", () => validarCampo(id));
 });
 
-/* Evento principal del botón Ingresar */
+/* Evento principal para CREAR CUENTA */
 form.addEventListener("submit", async function(e) {
-    e.preventDefault(); // Evita que la página se recargue
+    e.preventDefault(); 
     let valido = true;
 
-    // Validamos todos los campos uno por uno
     campos.forEach(id => {
         if (!validarCampo(id)) {
             valido = false;
         }
     });
 
-    // 3. Validación extra: ¿Las contraseñas son iguales?
     const pass = document.getElementById("password").value;
     const confirm = document.getElementById("confirmPassword").value;
     const errorConfirm = document.getElementById("error-confirmPassword");
@@ -65,12 +61,16 @@ form.addEventListener("submit", async function(e) {
 
     if (!valido) return;
 
-    // Si todo está bien, preparamos los datos en formato JSON
     const datos = Object.fromEntries(new FormData(form));
 
+    // Seleccionamos el botón para dar feedback visual
+    const btnSubmit = form.querySelector(".btn-signin");
+    btnSubmit.textContent = "Registrando...";
+    btnSubmit.disabled = true;
+
     try {
-        // Enviamos a la ruta de validarLogin definida en formRoutes.js
-        const response = await fetch("/validarLogin", {
+        // --- CAMBIO CLAVE: Ruta de Registro ---
+        const response = await fetch("/crearCuenta", {
             method: "POST",
             headers: {
                 "Content-Type": "application/json"
@@ -80,10 +80,10 @@ form.addEventListener("submit", async function(e) {
 
         const resultadoServidor = await response.json();
 
-        // Mostramos el mensaje de éxito o error en el <pre id="resultado">
         if (response.ok) {
             resultado.style.color = "#2ecc71"; // Verde éxito
             resultado.textContent = resultadoServidor.mensaje;
+            form.reset(); // Limpiamos el formulario después de registrar
         } else {
             resultado.style.color = "#ff6b6b"; // Rojo error
             resultado.textContent = resultadoServidor.mensaje;
@@ -91,7 +91,11 @@ form.addEventListener("submit", async function(e) {
 
     } catch (error) {
         console.error("Error en la petición:", error);
+        resultado.style.color = "#ff6b6b";
         resultado.textContent = "Error de conexión con el servidor";
+    } finally {
+        // Regresamos el botón a su estado normal
+        btnSubmit.textContent = "Registrarse";
+        btnSubmit.disabled = false;
     }
 });
-    

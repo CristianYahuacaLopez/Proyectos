@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Registro - EmoSync</title>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="../css/FormStyles.css" type="text/css" />
+</head>
+<body>
+
+    <div class="glass-card">
+        <h2>Crear Cuenta</h2>
+        
+        <form id="registroForm" action="/crearCuenta" method="POST" novalidate>
+            
+            <div class="input-group">
+                <label for="correo">Correo Electrónico (ID de usuario):</label>
+                <input type="email" id="correo" name="correo" placeholder="ejemplo@correo.com" required>
+                <span class="mensaje-error" id="error-correo"></span>
+            </div>
+            
+            <div class="input-group">
+                <label for="password">Contraseña:</label>
+                <input type="password" id="password" name="password" required>
+                <span class="mensaje-error" id="error-password"></span>
+            </div>
+            
+            <div class="input-group">
+                <label for="confirmPassword">Confirmar Contraseña:</label>
+                <input type="password" id="confirmPassword" name="confirmPassword" required>
+                <span class="mensaje-error" id="error-confirmPassword"></span>
+            </div>
+
+            <button type="submit" class="btn-signin">Registrarse</button>
+
+            <p class="footer-text">
+                ¿Ya tienes cuenta? <a href="/login">Ingresa aquí</a>
+            </p>
+        </form>
+
+        <pre id="resultado"></pre>
+    </div>
+
+    <script src="../js/validateRegistro.js"></script>
+</body>
+</html>

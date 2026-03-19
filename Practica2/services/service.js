@@ -26,7 +26,7 @@ export const verificarUsuario = async (datos) => {
     } else {
         return {
             success: false,
-            mensaje: "Correo o contraseña incorrectos. Intenta con yare@telemática.com / 123"
+            mensaje: "Correo o contraseña incorrectos"
         };
     }
 };
@@ -37,5 +37,27 @@ export const procesarRegistro = async (datos) => {
     return {
         success: true,
         mensaje: "Usuario guardado exitosamente"
+    };
+};
+
+/**
+ * Servicio para registrar nuevos usuarios
+ * El correo funciona como ID único.
+ */
+export const guardarNuevoUsuario = async (usuario) => {
+    // 1. Aquí ponemos el AWAIT.
+    // Simulamos que la base de datos tarda 1.5 segundos en procesar
+    await new Promise(resolve => setTimeout(resolve, 1500));
+
+    // En un proyecto real con MongoDB o MySQL, aquí escribirías algo como:
+    // await db.usuarios.insert(usuario);
+
+    console.log("--- Proceso de Guardado Finalizado ---");
+    console.log(`ID (Correo): ${usuario.id}`);
+    console.log(`Password Guardada: ${usuario.password}`);
+
+    return {
+        success: true,
+        mensaje: "¡Usuario creado con éxito! Ya puedes usar tu correo para entrar."
     };
 };

@@ -10,7 +10,7 @@
 
 //endpoints
 import express from "express";
-import { mostrarFormulario, registrarUsuario, mostrarLogin, validarLogin } from "../controllers/formControllers.js";
+import { mostrarFormulario, registrarUsuario, mostrarLogin, validarLogin, mostrarRegistro, crearCuenta } from "../controllers/formControllers.js";
 
 const router = express.Router();
 
@@ -18,6 +18,9 @@ const router = express.Router();
 router.get("/login", mostrarLogin); // Descomentado para que funcione
 router.post("/validarLogin", validarLogin); // Cambiado para que use el controlador correcto
 
+//Rutas de Registro
+router.get("/registro", mostrarRegistro); // Para cargar la pagina
+router.post("/crearCuenta", crearCuenta); // Para guardar los datos
 export default router; 
 
 
