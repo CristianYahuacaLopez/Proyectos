@@ -1,4 +1,4 @@
-const form = document.getElementById("loginForm"); l
+const form = document.getElementById("loginForm"); 
 const resultado = document.getElementById("resultado");
 
 const campos = ["correo", "password", "confirmPassword"];
@@ -25,17 +25,6 @@ function validarCampo(id) {
         input.classList.add("invalido");
         return false;
     }
-
-    if (id === "password") {
-    const regexPassword = /^(?=.*[0-9])(?=.*[+\-*]).{10,}$/;
-
-    if (!regexPassword.test(input.value)) {
-        error.textContent = "Mínimo 10 caracteres, un número y un signo (+, -, *)";
-        input.classList.add("invalido"); 
-        return false;
-    }
-}
-
 
     input.classList.add("valido");
     return true;
