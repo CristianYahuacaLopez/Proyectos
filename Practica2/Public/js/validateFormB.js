@@ -79,7 +79,9 @@ form.addEventListener("submit", async function(e) {
 
         if (response.ok) {
             resultado.style.color = "#2ecc71"; // Verde éxito
-            resultado.textContent = resultadoServidor.mensaje;
+            resultado.textContent = resultadoServidor.mensaje; 
+            resultado.style.fontSize = "1.2rem";
+            resultado.style.fontWeight = "bold";
         } else {
             resultado.style.color = "#ff6b6b"; // Rojo error
             resultado.textContent = resultadoServidor.mensaje;

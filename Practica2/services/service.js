@@ -50,6 +50,6 @@ export const guardarNuevoUsuario = async (usuario) => {
 
     return {
         success: true,
-        mensaje: "¡Usuario creado con éxito! Ya puedes usar tu correo para entrar."
+        mensaje: "Usuario creado con éxito"
     };
 };
