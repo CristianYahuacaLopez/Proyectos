@@ -10,17 +10,15 @@
 
 //endpoints
 import express from "express";
-import { mostrarFormulario,registrarUsuario } from "../controllers/formControllers.js";
+import { mostrarFormulario, registrarUsuario, mostrarLogin, validarLogin } from "../controllers/formControllers.js";
 
-const router = express.Router(); //guarda direcciones URL relacionadas con formularios
+const router = express.Router();
 
-router.get("/", mostrarFormulario); 
-/* get es petición de solo lectura, "/" es la ruta raíz-> localhost:3000/, Express busca esta línea.
-   ostrarFormulario: Es el "controlador". Express dice: "Ah, el usuario entró a /, 
-   entonces voy a ejecutar lo que diga la función mostrarFormulario
-*/
-router.post("/registrarUsuario", registrarUsuario); //para registrar a un usuario
-export default router;
+// Rutas para el Login
+router.get("/login", mostrarLogin); // Descomentado para que funcione
+router.post("/validarLogin", validarLogin); // Cambiado para que use el controlador correcto
+
+export default router; 
 
 
 
