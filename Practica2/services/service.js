@@ -13,7 +13,7 @@ export const verificarUsuario = async (datos) => {
     
     const usuarioDB = {
         correo: "yare@telematica.com",
-        password: "123"
+        password: "Yaretzi2905+"
     };
 
     if (datos.correo === usuarioDB.correo && datos.password === usuarioDB.password) {
@@ -43,7 +43,14 @@ export const procesarRegistro = async (datos) => {
  * Servicio para registrar nuevos usuarios
  */
 export const guardarNuevoUsuario = async (usuario) => {
+    const regexPassword = /^(?=.*[0-9])(?=.*[+\-*]).{10,}$/;
 
+    if (!regexPassword.test(usuario.password)) { //si no cumple
+        return {
+            success: false,
+            mensaje: "La contraseña debe tener al menos 10 caracteres, incluir un número y un signo (+, -, *)."
+        };
+    }
     console.log("--- Proceso de Guardado Finalizado ---");
     console.log(`ID (Correo): ${usuario.id}`);
     console.log(`Password Guardada: ${usuario.password}`);
