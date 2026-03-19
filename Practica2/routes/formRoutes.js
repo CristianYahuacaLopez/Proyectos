@@ -15,12 +15,12 @@ import { mostrarFormulario, registrarUsuario, mostrarLogin, validarLogin, mostra
 const router = express.Router();
 
 // Rutas para el Login
-router.get("/login", mostrarLogin); // Descomentado para que funcione
-router.post("/validarLogin", validarLogin); // Cambiado para que use el controlador correcto
+router.get("/login", mostrarLogin); 
+router.post("/validarLogin", validarLogin); 
 
 //Rutas de Registro
-router.get("/registro", mostrarRegistro); // Para cargar la pagina
-router.post("/crearCuenta", crearCuenta); // Para guardar los datos
+router.get("/registro", mostrarRegistro);
+router.post("/crearCuenta", crearCuenta);
 export default router; 
 
 

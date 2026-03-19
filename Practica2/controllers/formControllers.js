@@ -9,20 +9,18 @@
 
 import path from "path";
 import { fileURLToPath } from "url";
-// IMPORTANTE: Agregamos 'guardarNuevoUsuario' al import para que no marque error
 import { verificarUsuario, guardarNuevoUsuario, procesarRegistro } from "../services/service.js"; 
 
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
 
-// --- CONTROLADORES PARA EL LOGIN ---
 export const mostrarLogin = (req, res) => {
     res.sendFile(path.join(__dirname, "../public/html/login.html"));
 };
 
 export const validarLogin = async (req, res) => {
     const datos = req.body;
-    // Lógica para comparar con el usuario de prueba "yare@telematica.com"
+    // Lógica para comparar con el usuario de prueba 
     const resultado = await verificarUsuario(datos);
     
     if (resultado.success) {
@@ -32,22 +30,18 @@ export const validarLogin = async (req, res) => {
     }
 };
 
-// --- CONTROLADORES PARA EL REGISTRO (NUEVO) ---
+//para nuevo registro
 export const mostrarRegistro = (req, res) => {
     res.sendFile(path.join(__dirname, "../public/html/registro.html"));
 };
 
 export const crearCuenta = async (req, res) => {
     const { correo, password } = req.body;
-    
-    // Aquí usamos la función con el AWAIT de 1.5 segundos
-    // Mandamos el correo como "id" porque así lo espera tu service.js
-    const resultado = await guardarNuevoUsuario({ id: correo, password });
+        const resultado = await guardarNuevoUsuario({ id: correo, password });
     
     res.status(201).json(resultado);
 };
 
-// --- CONTROLADORES PARA EL FORMULARIO ORIGINAL (POR SI ACASO) ---
 export const mostrarFormulario = (req, res) => {
     res.sendFile(path.join(__dirname, "../public/html/formVIJS.html"));
 };

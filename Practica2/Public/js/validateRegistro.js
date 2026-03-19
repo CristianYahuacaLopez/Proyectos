@@ -1,10 +1,8 @@
-const form = document.getElementById("registroForm"); // ID del formulario en registro.html
+const form = document.getElementById("registroForm"); 
 const resultado = document.getElementById("resultado");
 
-// En el registro usamos los mismos campos
 const campos = ["correo", "password", "confirmPassword"];
 
-// La función de validar campos se queda igual porque la lógica es la misma
 function validarCampo(id) {
     const input = document.getElementById(id);
     const error = document.getElementById("error-" + id);
@@ -38,7 +36,6 @@ campos.forEach(id => {
     input.addEventListener("input", () => validarCampo(id));
 });
 
-/* Evento principal para CREAR CUENTA */
 form.addEventListener("submit", async function(e) {
     e.preventDefault(); 
     let valido = true;
@@ -63,13 +60,11 @@ form.addEventListener("submit", async function(e) {
 
     const datos = Object.fromEntries(new FormData(form));
 
-    // Seleccionamos el botón para dar feedback visual
     const btnSubmit = form.querySelector(".btn-signin");
     btnSubmit.textContent = "Registrando...";
     btnSubmit.disabled = true;
 
     try {
-        // --- CAMBIO CLAVE: Ruta de Registro ---
         const response = await fetch("/crearCuenta", {
             method: "POST",
             headers: {
@@ -94,7 +89,6 @@ form.addEventListener("submit", async function(e) {
         resultado.style.color = "#ff6b6b";
         resultado.textContent = "Error de conexión con el servidor";
     } finally {
-        // Regresamos el botón a su estado normal
         btnSubmit.textContent = "Registrarse";
         btnSubmit.disabled = false;
     }
