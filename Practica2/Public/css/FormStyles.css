@@ -31,9 +31,6 @@ body{
     box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.37);
 }
 
-.logo-container { margin-bottom: 20px; text-align: center; }
-.logo { border-radius: 50%; display: block; margin: 0 auto 10px; }
-
 /* TITULO */
 label { 
     display: block; 
@@ -53,7 +50,7 @@ h2 {
 }
 
 
-.forgot-link {
+.forgot-link { 
     display: block;
     text-align: left;        
     color: #000000 !important;  
@@ -97,8 +94,6 @@ h2 {
 #registroForm .btn-signin {
     margin-top: 35px; 
 }
-
-.separator { margin: 25px 0; text-align: center; font-size: 0.8rem; opacity: 0.6; }
 
 /* INPUTS */
 input {
@@ -166,59 +161,14 @@ input:focus{
     color: #333 !important;
 }
 
-/* MENSAJES */
-.mensaje{
-    color:#e74c3c;
-    font-size:10px;
-    min-height:14px;
-    margin-top:3px;
-}
-
-/* BOTONES */
-.btnContainer{
-    margin-top:20px;
-    display:flex;
-    gap:10px;
-}
-
-button{
-    flex:1;
-    padding:10px;
-    border:none;
-    border-radius:6px;
-    cursor:pointer;
-    font-size:14px;
-    transition:0.3s;
-}
-
-/* BOTON ENVIAR */
-.submit{
-    background:#3498db;
-    color:white;
-}
-
 .submit:hover{
     background:#2980b9;
 }
 
-/* BOTON RESET */
-.reset{
-    background:#95a5a6;
-    color:white;
-}
 
 .reset:hover{
     background:#7f8c8d;
 }
-
-/* MENSAJE EXITO */
-.success{
-    margin-top:15px;
-    font-weight:bold;
-    color:#27ae60;
-    text-align:center;
-}
-
 
 /* TABLETS */
 @media (max-width:768px){

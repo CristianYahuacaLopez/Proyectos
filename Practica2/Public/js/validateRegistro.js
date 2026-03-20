@@ -74,16 +74,7 @@ form.addEventListener("submit", async function(e) {
         }
     });
 
-    const pass = document.getElementById("password").value;
-    const confirm = document.getElementById("confirmPassword").value;
-    const errorConfirm = document.getElementById("error-confirmPassword");
-
-    if (pass !== confirm) {
-        errorConfirm.textContent = "Las contraseñas no coinciden";
-        document.getElementById("confirmPassword").classList.add("invalido");
-        valido = false;
-    }
-
+  
     if (!valido) return;
 
     const datos = Object.fromEntries(new FormData(form));

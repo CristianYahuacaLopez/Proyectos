@@ -20,14 +20,39 @@ function validarCampo(id) {
     }
 
     /* Validación: Formato de correo */
-    if (input.type === "email" && input.validity.typeMismatch) {
-        error.textContent = "Correo electrónico inválido";
+    if (id === "correo") {
+    const regexEmail = /^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/;
+    if (!regexEmail.test(input.value)) {
+        error.textContent = "Correo Invalido";
+        input.classList.add("invalido");
+        return false;
+        }
+    }
+
+    if (id === "password") {
+    // La misma regla: entre 10 y 15 caracteres, un número y un signo (+, -, *)
+    const regexSeguridad = /^(?=.*[0-9])(?=.*[+\-*]).{10,15}$/;
+
+    if (!regexSeguridad.test(input.value)) {
+        error.textContent = "Debe tener entre 10 y 15 caracteres, un número y un signo (+, -, *)";
         input.classList.add("invalido");
         return false;
     }
+}
+
+/* --- VALIDACIÓN DE COINCIDENCIA --- */
+if (id === "confirmPassword") {
+    const passwordOriginal = document.getElementById("password").value;
+    if (input.value !== passwordOriginal) {
+        error.textContent = "Las contraseñas no coinciden";
+        input.classList.add("invalido");
+        return false;
+    }
+}
 
     input.classList.add("valido");
     return true;
+
 }
 
 
@@ -50,17 +75,6 @@ form.addEventListener("submit", async function(e) {
             valido = false;
         }
     });
-
-    //contraseñas iguales
-    const pass = document.getElementById("password").value;
-    const confirm = document.getElementById("confirmPassword").value;
-    const errorConfirm = document.getElementById("error-confirmPassword");
-
-    if (pass !== confirm) {
-        errorConfirm.textContent = "Las contraseñas no coinciden";
-        document.getElementById("confirmPassword").classList.add("invalido");
-        valido = false;
-    }
 
     if (!valido) return;
 

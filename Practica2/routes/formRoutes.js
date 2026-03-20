@@ -10,7 +10,7 @@
 
 //endpoints
 import express from "express";
-import { mostrarFormulario, registrarUsuario, mostrarLogin, validarLogin, mostrarRegistro, crearCuenta } from "../controllers/formControllers.js";
+import { mostrarLogin, validarLogin, mostrarRegistro, crearCuenta } from "../controllers/formControllers.js";
 
 const router = express.Router();
 
