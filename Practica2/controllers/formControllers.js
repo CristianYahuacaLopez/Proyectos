@@ -48,12 +48,3 @@ export const crearCuenta = async (req, res) => {
     res.status(201).json(resultado);
 };
 
-export const mostrarFormulario = (req, res) => {
-    res.sendFile(path.join(__dirname, "../public/html/formVIJS.html"));
-};
-
-export const registrarUsuario = async (req, res) => {
-    const datos = req.body;
-    const resultado = await procesarRegistro(datos);
-    res.json(resultado);
-};

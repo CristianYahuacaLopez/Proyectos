@@ -40,16 +40,6 @@ function validarCampo(id) {
     }
 }
 
-/* --- VALIDACIÓN DE COINCIDENCIA --- */
-if (id === "confirmPassword") {
-    const passwordOriginal = document.getElementById("password").value;
-    if (input.value !== passwordOriginal) {
-        error.textContent = "Las contraseñas no coinciden";
-        input.classList.add("invalido");
-        return false;
-    }
-}
-
     input.classList.add("valido");
     return true;
 

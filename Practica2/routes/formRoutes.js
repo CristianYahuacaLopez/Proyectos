@@ -15,7 +15,7 @@ import { mostrarLogin, validarLogin, mostrarRegistro, crearCuenta } from "../con
 const router = express.Router();
 
 // Rutas para el Login
-router.get("/login", mostrarLogin); 
+router.get("/", mostrarLogin); 
 router.post("/validarLogin", validarLogin); 
 
 //Rutas de Registro

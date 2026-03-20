@@ -8,7 +8,7 @@
 
 /* BODY */
 body{
-   background-image: url('https://i.pinimg.com/736x/9b/38/2a/9b382ac589e72fdd67105e0ecaa882d5.jpg'); 
+   background-image: url('https://i.pinimg.com/736x/ea/6e/16/ea6e1675c9067ef12ef61739fd775a0f.jpg'); 
     background-size: cover;
     background-position: center;
     background-attachment: fixed;
@@ -53,7 +53,7 @@ h2 {
 .forgot-link { 
     display: block;
     text-align: left;        
-    color: #000000 !important;  
+    color: #ffffff !important;  
     font-weight: 600;          
     font-size: 0.95rem;         
     text-decoration: none;      
@@ -115,7 +115,7 @@ input::placeholder {
     margin-top: 35px;         
     font-size: 0.95rem;
     text-align: center;
-    color: #000000 !important; 
+    color: #ffffff !important; 
     font-weight: 600;          
 }
 
