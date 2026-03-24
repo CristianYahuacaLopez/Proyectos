@@ -95,8 +95,33 @@ h2 {
     margin-top: 35px; 
 }
 
+.btn-secundario {
+    width: 100%;
+    background: #002b5c; 
+    border: none;
+    padding: 12px;
+    border-radius: 8px;
+    color: white;
+    font-weight: 600;
+    cursor: pointer;
+    margin-top: 15px; /* Le damos espacio respecto al input */
+    
+    /* Reutilizamos tu efecto de movimiento suave */
+    transition: transform 0.3s ease, background-color 0.3s ease, box-shadow 0.3s ease;
+}
+
+.btn-secundario:hover {
+    transform: translateY(-3px); /* Un movimiento más sutil */
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+    background-color: #003d82; 
+}
+
+.btn-secundario:active {
+    transform: translateY(-1px);
+}
+
 /* INPUTS */
-input {
+input, select {
     width: 100%;
     background: rgba(255, 255, 255, 0.2) !important; 
     border: 1px solid rgba(255, 255, 255, 0.4) !important;
@@ -106,6 +131,12 @@ input {
     font-weight: 500;
     outline: none;
 }
+
+select option {
+    background-color: #002b5c; 
+    color: white;
+}
+
 
 input::placeholder { 
     color: rgba(255, 255, 255, 0.8) !important; 

@@ -10,7 +10,7 @@
 
 //endpoints
 import express from "express";
-import { mostrarLogin, validarLogin, mostrarRegistro, crearCuenta } from "../controllers/formControllers.js";
+import { mostrarLogin, validarLogin, mostrarRegistro, crearCuenta, mostrarRecuperar, getPregunta, verificarRecuperacion } from "../controllers/formControllers.js";
 
 const router = express.Router();
 
@@ -21,7 +21,11 @@ router.post("/validarLogin", validarLogin);
 //Rutas de Registro
 router.get("/registro", mostrarRegistro);
 router.post("/crearCuenta", crearCuenta);
+
+//Rutas para recuperación
+router.get("/recuperarForm", mostrarRecuperar);
+router.post("/obtenerPregunta", getPregunta);
+router.post("/verificarRespuesta", verificarRecuperacion);
+
 export default router; 
-
-
 

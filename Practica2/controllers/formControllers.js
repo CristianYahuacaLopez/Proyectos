@@ -9,7 +9,7 @@
 
 import path from "path";
 import { fileURLToPath } from "url";
-import { verificarUsuario, guardarNuevoUsuario, procesarRegistro } from "../services/service.js"; 
+import { verificarUsuario, guardarNuevoUsuario, obtenerPreguntaPorCorreo, validarRespuestaRecuperacion } from "../services/service.js"; 
 
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
@@ -48,3 +48,30 @@ export const crearCuenta = async (req, res) => {
     res.status(201).json(resultado);
 };
 
+//para recuperación de contraseña
+export const mostrarRecuperar = (req, res) => {
+    res.sendFile(path.join(__dirname, "../public/html/recuperarForm.html"));
+};
+
+export const getPregunta = async (req, res) => {
+    const { correo } = req.body;
+    const resultado = await obtenerPreguntaPorCorreo(correo);
+    
+    if (resultado.success) {
+        res.status(200).json(resultado);
+    } else {
+        res.status(404).json(resultado); 
+    }
+};
+
+// 4. Valida la respuesta y entrega el JSON con la contraseña
+export const verificarRecuperacion = async (req, res) => {
+    const { correo, respuestaSecreta } = req.body;
+    const resultado = await validarRespuestaRecuperacion(correo, respuestaSecreta);
+    
+    if (resultado.success) {
+        res.status(200).json(resultado);
+    } else {
+        res.status(401).json(resultado); 
+    }
+};

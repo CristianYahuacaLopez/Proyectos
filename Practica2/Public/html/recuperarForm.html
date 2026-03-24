@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Recuperación</title>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="../css/FormStyles.css" type="text/css" />
+</head>
+<body>
+
+    <div class="glass-card">
+        <h2>Recuperar contraseña</h2>
+
+        <form id="recuperarForm" action="/verificarRespuesta" method="POST" novalidate>
+            
+            <div class="input-group">
+                <label for="correo">Introduce tu email: </label>
+                <input type="email" id="correo" name="correo" placeholder="username@gmail.com" required autofocus>
+                <span class="mensaje-error" id="error-correo"></span>
+                <button type="button" id="btnCargarPregunta" class="btn-secundario">Buscar Pregunta</button>
+            </div>
+
+            <div class="input-group" id="contenedor-pregunta" style="display:none;">
+                <label for="password">Pregunta Secreta:</label>
+                <p id="textoPregunta" style="color: white; font-style: italic; margin-bottom: 10px;"></p>                
+                <label for="respuestaSecreta">Tu Respuesta:</label>
+                <input type="text" id="respuestaSecreta" name="respuestaSecreta" placeholder="Escribe tu respuesta aquí" required>
+                <span class="mensaje-error" id="error-respuestaSecreta"></span>
+            </div>
+
+            <button type="submit" class="btn-signin" id="btnRecuperar" style="display:none;">Ver Contraseña</button>
+
+            <p class="footer-text">
+                ¿Ya la recordaste? <a href="/">Regresar al ingreso</a>
+            </p>
+        </form>
+
+        <pre id="resultado"></pre>
+    </div>
+
+    <script src="../js/validateRecuperar.js"></script>
+</body>
+</html>

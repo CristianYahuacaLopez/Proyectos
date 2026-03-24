@@ -12,8 +12,11 @@ export const verificarUsuario = async (datos) => {
     console.log("Datos recibidos en el servicio:", datos);
     
     const usuarioDB = {
+        nombre: "Yaretzi",
         correo: "yare@telematica.com",
-        password: "Yaretzi2905+"
+        password: "Yaretzi2905+",
+        preguntaSecreta: "¿Nombre de tu primera mascota?", // Lo que verá el usuario
+        respuestaSecreta: "kishi"
     };
 
     if (datos.correo === usuarioDB.correo && datos.password === usuarioDB.password) {
@@ -63,4 +66,36 @@ export const guardarNuevoUsuario = async (usuario) => {
         success: true,
         mensaje: "Usuario creado con éxito"
     };
+};
+
+
+//para recuperar contraseña
+export const obtenerPreguntaPorCorreo = async (correo) => {
+    const usuarioDB = {
+        correo: "yare@telematica.com",
+        preguntaSecreta: "¿Nombre de tu primera mascota?"
+    };
+
+    if (correo === usuarioDB.correo) {
+        return { success: true, pregunta: usuarioDB.preguntaSecreta };
+    }
+    return { success: false, mensaje: "Correo no encontrado." };
+};
+
+
+export const validarRespuestaRecuperacion = async (correo, respuestaSecreta) => {
+   const usuarioDB = {
+        correo: "yare@telematica.com",
+        respuestaSecreta: "kishi",
+        password: "Yaretzi2905+"
+    };
+
+    if (correo === usuarioDB.correo && respuestaSecreta.toLowerCase() === usuarioDB.respuestaSecreta.toLowerCase()) {
+        return { 
+            success: true, 
+            mensaje: "¡Respuesta Correcta!", 
+            password: usuarioDB.password 
+        };
+    }
+    return { success: false, mensaje: "Respuesta incorrecta." }; 
 };

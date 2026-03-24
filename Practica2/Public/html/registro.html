@@ -39,7 +39,12 @@
 
             <div class="input-group">
                 <label for="preguntaSecreta">Pregunta Secreta:</label>
-                <input type="text" id="preguntaSecreta" name="preguntaSecreta" placeholder="¿Nombre de tu primera mascota?" required>
+                <select id="preguntaSecreta" name="preguntaSecreta" required>
+                    <option value="" disabled selected>Selecciona una pregunta...</option>
+                    <option value="mascota">¿Nombre de tu primera mascota?</option>
+                    <option value="escuela">¿Nombre de tu primera escuela?</option>
+                    <option value="ciudad">¿En qué ciudad naciste?</option>
+                </select>
                 <span class="mensaje-error" id="error-preguntaSecreta"></span>
             </div>
 
