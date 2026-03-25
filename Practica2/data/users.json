@@ -1,0 +1,23 @@
+[
+  {
+    "nombre": "Cris",
+    "correo": "Cris@gmail.com",
+    "contrasena": "$2a$12$j2HXqUGcb8riXW1f/ptcCevi3mPd28SvX70Im4eyJSwnLXNVK7Iiu",
+    "preguntarc": "Color favorito",
+    "respuestarc": "$2a$12$.PbPszyMZ.te6opvo7QzQOCeBngn4owaXX7rCYe4dlLK4SMwqVI6S"
+  },
+  {
+    "nombre": "Yaretzi",
+    "correo": "yare@telematica.com",
+    "contrasena": "$2a$12$UrTUalrn.ZXSydKtYL5iuuiPdcktsVymQ5ALhIlkJ0dx.LZy.JMKa",
+    "preguntarc": "¿Nombre de tu mascota?",
+    "respuestarc": "$2a$12$uxvUtnNU/iX1DGHJERq5Buxv0iEZzUs6yIYNn6XATNZ0/U52nFYie"
+  },
+  {
+    "nombre": "Admin",
+    "correo": "admin@telematica.com",
+    "contrasena": "$2a$12$.pwzz6SYOym5kTTFcvbHau0idfMiRf7ZYO6nsL/s5z8bYkty6pXB6",
+    "preguntarc": "Ciudad natal",
+    "respuestarc": "$2a$12$Hg.r.X2X8FGsXGVWXvh.K.osEBVDdDLCohIt4ABFela7UVSglQwcG"
+  }
+]

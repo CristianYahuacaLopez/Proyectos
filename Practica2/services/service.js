@@ -8,29 +8,26 @@
  */
 //async -> funcion asyncrona
 
-export const verificarUsuario = async (datos) => {
-    console.log("Datos recibidos en el servicio:", datos);
-    
-    const usuarioDB = {
-        nombre: "Yaretzi",
-        correo: "yare@telematica.com",
-        password: "Yaretzi2905+",
-        preguntaSecreta: "¿Nombre de tu primera mascota?", // Lo que verá el usuario
-        respuestaSecreta: "kishi"
-    };
+import { findUserByEmail } from "../models/model.js";
+import bcrypt from "bcrypt"; // Necesario para comparar hashes
 
-    if (datos.correo === usuarioDB.correo && datos.password === usuarioDB.password) {
-        return {
-            success: true,
-            mensaje: "¡Acceso concedido!",
-            usuario: datos.correo
-        };
-    } else {
-        return {
-            success: false,
-            mensaje: "Correo o contraseña incorrectos"
-        };
+export const verificarUsuario = async (datos) => {
+    const usuario = await findUserByEmail(datos.correo);
+
+    if (usuario) {
+        // Comparamos la contraseña plana contra el hash del JSON
+        const match = await bcrypt.compare(datos.password, usuario.contrasena);
+        
+        if (match) {
+            return { 
+                success: true, 
+                mensaje: `¡Bienvenido, ${usuario.nombre}!`, 
+                nombre: usuario.nombre 
+            };
+        }
     }
+    
+    return { success: false, mensaje: "El usuario no existe o los datos son incorrectos." };
 };
 
 // Mantenemos el de registro 
@@ -71,31 +68,37 @@ export const guardarNuevoUsuario = async (usuario) => {
 
 //para recuperar contraseña
 export const obtenerPreguntaPorCorreo = async (correo) => {
-    const usuarioDB = {
-        correo: "yare@telematica.com",
-        preguntaSecreta: "¿Nombre de tu primera mascota?"
-    };
+    // Buscamos en el JSON real
+    const usuario = await findUserByEmail(correo);
 
-    if (correo === usuarioDB.correo) {
-        return { success: true, pregunta: usuarioDB.preguntaSecreta };
+    if (usuario) {
+        // En tu JSON el campo se llama 'preguntarc'
+        return { success: true, pregunta: usuario.preguntarc };
     }
-    return { success: false, mensaje: "Correo no encontrado." };
+    return { success: false, mensaje: "Correo no encontrado en el archivo JSON." };
 };
 
 
+/* Archivo: services/service.js */
 export const validarRespuestaRecuperacion = async (correo, respuestaSecreta) => {
-   const usuarioDB = {
-        correo: "yare@telematica.com",
-        respuestaSecreta: "kishi",
-        password: "Yaretzi2905+"
-    };
+    // 1. Buscamos al usuario real en el JSON
+    const usuario = await findUserByEmail(correo);
 
-    if (correo === usuarioDB.correo && respuestaSecreta.toLowerCase() === usuarioDB.respuestaSecreta.toLowerCase()) {
-        return { 
-            success: true, 
-            mensaje: "¡Respuesta Correcta!", 
-            password: usuarioDB.password 
-        };
+    if (usuario) {
+        // 2. Comparamos la respuesta (si usas hashes, usa bcrypt.compare)
+        // Si en tu JSON el campo es 'respuestarc', úsalo aquí
+        const match = await bcrypt.compare(respuestaSecreta, usuario.respuestarc);
+        
+        if (match) {
+            return { 
+                success: true, 
+                mensaje: "¡Respuesta Correcta!", 
+                password: usuario.contrasena 
+            };
+        }
     }
-    return { success: false, mensaje: "Respuesta incorrecta." }; 
+    return { success: false, mensaje: "La respuesta de seguridad es incorrecta." }; 
 };
+
+
+

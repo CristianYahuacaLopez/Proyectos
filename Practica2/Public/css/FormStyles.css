@@ -120,6 +120,27 @@ h2 {
     transform: translateY(-1px);
 }
 
+/* Este ID debe coincidir con el div que envuelve la pregunta en tu HTML */
+#contenedor-pregunta {
+    margin-top: 30px !important; /* Aquí controlas el espacio con el botón de arriba */
+    padding-top: 20px;
+    border-top: 1px solid rgba(255, 255, 255, 0.1); /* Una línea sutil para separar secciones */
+}
+
+/* Para que el texto de la pregunta (ej. ¿Nombre de tu mascota?) se vea mejor */
+#textoPregunta {
+    display: block;
+    margin-bottom: 20px;
+    font-style: italic;
+    color: #0b3cbaef !important; /* Un color cyan para que resalte la pregunta */
+    font-size: 1.05rem;
+}
+
+/* Espacio extra para el botón final */
+#btnRecuperar {
+    margin-top: 20px;
+}
+
 /* INPUTS */
 input, select {
     width: 100%;
@@ -219,3 +240,41 @@ input:focus{
 
 .mensaje-error { color: #ff6b6b; font-size: 0.75rem; display: block; margin-top: 5px; }
 
+/* Este es el cuadro que antes era verde */
+.mensaje-exito {
+    /* CAMBIA ESTE VALOR: rgba(R, G, B, opacidad) */
+    background: rgba(0, 212, 255, 0.2) !important; /* Aquí puse el azul de tus botones */
+    
+    padding: 15px;
+    border-radius: 8px;
+    margin-top: 20px;
+    text-align: center;
+    border: 1px solid rgba(0, 212, 255, 0.4); /* Un borde del mismo color */
+}
+
+.mensaje-exito strong {
+    color: #00d4ff !important; /* El color del texto principal */
+    display: block;
+}
+
+/* Cuadro de error para respuestas incorrectas */
+.mensaje-error-box {
+    background: rgba(231, 76, 60, 0.2) !important; /* Rojo traslúcido */
+    padding: 15px;
+    border-radius: 8px;
+    margin-top: 20px;
+    text-align: center;
+    border: 1px solid rgba(231, 76, 60, 0.4); /* Borde rojizo */
+    backdrop-filter: blur(5px);
+}
+
+.mensaje-error-box strong {
+    color: #ff6b6b !important; /* Texto rojo claro para que resalte */
+    display: block;
+    margin-bottom: 5px;
+}
+
+.mensaje-error-box p {
+    color: white;
+    font-size: 0.9rem;
+}

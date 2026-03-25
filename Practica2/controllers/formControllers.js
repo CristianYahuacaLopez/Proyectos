@@ -19,14 +19,11 @@ export const mostrarLogin = (req, res) => {
 };
 
 export const validarLogin = async (req, res) => {
-    const datos = req.body;
-    // Lógica para comparar con el usuario de prueba 
-    const resultado = await verificarUsuario(datos);
-    
+    const resultado = await verificarUsuario(req.body);
     if (resultado.success) {
         res.status(200).json(resultado);
     } else {
-        res.status(401).json(resultado);
+        res.status(401).json(resultado); // 401 si no existe o falla
     }
 };
 
@@ -75,3 +72,4 @@ export const verificarRecuperacion = async (req, res) => {
         res.status(401).json(resultado); 
     }
 };
+

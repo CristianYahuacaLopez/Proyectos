@@ -1,7 +1,7 @@
 const form = document.getElementById("loginForm"); 
 const resultado = document.getElementById("resultado");
 
-const campos = ["correo", "password", "confirmPassword"];
+const campos = ["correo", "password"];
 
 function validarCampo(id) {
     const input = document.getElementById(id);
@@ -81,19 +81,30 @@ form.addEventListener("submit", async function(e) {
 
         const resultadoServidor = await response.json();
 
-        if (response.ok) {
-            resultado.style.color = "#2ecc71"; // Verde éxito
-            resultado.textContent = resultadoServidor.mensaje; 
-            resultado.style.fontSize = "1.2rem";
-            resultado.style.fontWeight = "bold";
+        if (response.ok && resultadoServidor.success) {
+            // --- CAMBIO 1: PANTALLA DE BIENVENIDA ---
+            // Buscamos el contenedor principal para rediseñarlo dinámicamente
+            const card = document.querySelector(".glass-card");
+            
+            card.innerHTML = `
+                <div style="text-align: center; padding: 20px;">
+                    <h2 style="color: #2ecc71;">¡Bienvenido, ${resultadoServidor.nombre}!</h2>
+                    <p style="color: white; margin-top: 15px;">Has iniciado sesión correctamente en el sistema.</p>
+                    <br>
+                    <button onclick="location.reload()" class="btn-signin">Cerrar Sesión</button>
+                </div>
+            `;
         } else {
-            resultado.style.color = "#ff6b6b"; // Rojo error
-            resultado.textContent = resultadoServidor.mensaje;
+            // --- CAMBIO 2: VENTANA ALERT ---
+            alert("Error: " + (resultadoServidor.mensaje || "El usuario no existe"));
+            
+            // Opcional: También podrías limpiar el password por seguridad
+            document.getElementById("password").value = "";
         }
 
     } catch (error) {
         console.error("Error en la petición:", error);
-        resultado.textContent = "Error de conexión con el servidor";
+        alert("Error de conexión con el servidor");
     }
 });
     

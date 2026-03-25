@@ -105,17 +105,30 @@ form.addEventListener("submit", async function(e) {
             body: JSON.stringify(datos)
         });
 
-        const resultadoServidor = await response.json();
+        // ... dentro del evento del botón Ver Contraseña ...
 
-        if (response.ok && resultadoServidor.success) {
-            resultado.style.color = "#2ecc71"; // Verde éxito
-            //resultado.textContent = resultadoServidor.mensaje;
-            resultado.textContent = JSON.stringify(resultadoServidor, null, 2);
-            form.reset(); // Limpiamos el formulario después de registrar
+    const resultadoServidor = await response.json();
+
+    if (response.ok && resultadoServidor.success) {
+    // CUADRO DE ÉXITO (El que ya tienes)
+    resultado.innerHTML = `
+        <div class="mensaje-exito">
+            <p><strong>¡Respuesta Correcta!</strong></p>
+            <p>¡Identidad confirmada!</p>
+        </div>
+    `;
         } else {
-            resultado.style.color = "#ff6b6b"; // Rojo error
-            resultado.textContent = resultadoServidor.mensaje;
-        }
+    // --- NUEVO: CUADRO DE ERROR ---
+    resultado.innerHTML = `
+        <div class="mensaje-error-box">
+            <p><strong>¡Respuesta Incorrecta!</strong></p>
+            <p>${resultadoServidor.mensaje || "La respuesta no coincide con nuestros registros."}</p>
+        </div>
+    `;
+    
+    // Opcional: Limpiar el campo de respuesta para que lo intenten de nuevo
+    document.getElementById("respuestaSecreta").value = "";
+}
 
     } catch (error) {
         console.error("Error en la petición:", error);
