@@ -57,8 +57,9 @@ campos.forEach(id => {
 
 form.addEventListener("submit", async function(e) {
     e.preventDefault(); // Evita que la página se recargue
+    const inputs = form.querySelectorAll("input"); //
     let valido = true;
-
+    
     // Validamos todos los campos uno por uno
     campos.forEach(id => {
         if (!validarCampo(id)) {
@@ -82,8 +83,6 @@ form.addEventListener("submit", async function(e) {
         const resultadoServidor = await response.json();
 
         if (response.ok && resultadoServidor.success) {
-            // --- CAMBIO 1: PANTALLA DE BIENVENIDA ---
-            // Buscamos el contenedor principal para rediseñarlo dinámicamente
             const card = document.querySelector(".glass-card");
             
             card.innerHTML = `
@@ -95,10 +94,8 @@ form.addEventListener("submit", async function(e) {
                 </div>
             `;
         } else {
-            // --- CAMBIO 2: VENTANA ALERT ---
             alert("Error: " + (resultadoServidor.mensaje || "El usuario no existe"));
             
-            // Opcional: También podrías limpiar el password por seguridad
             document.getElementById("password").value = "";
         }
 

@@ -8,7 +8,7 @@
  */
 //async -> funcion asyncrona
 
-import { findUserByEmail } from "../models/model.js";
+import { findUserByEmail , writeUser} from "../models/model.js";
 import bcrypt from "bcrypt"; // Necesario para comparar hashes
 
 export const verificarUsuario = async (datos) => {
@@ -52,17 +52,46 @@ export const guardarNuevoUsuario = async (usuario) => {
         };
     }
 
+    // Verificar si el correo ya existe para no duplicar
+    const existe = await findUserByEmail(usuario.correo);
+    if (existe) {
+        return { success: false, mensaje: "Este correo ya está registrado." };
+    }
+
+    const saltRounds = 12;
+    const hashedPass = await bcrypt.hash(usuario.password, saltRounds);
+    const hashedRespuesta = await bcrypt.hash(usuario.respuestaSecreta, saltRounds);
+
+    //Mapear a la estructura exacta de tu users.json
+    const nuevoRegistro = {
+        nombre: usuario.nombre,
+        correo: usuario.correo,
+        password: hashedPass, // Mapeo: password -> contrasena
+        preguntarc: usuario.preguntaSecreta, // Mapeo: preguntaSecreta -> preguntarc
+        respuestarc: hashedRespuesta // Mapeo: respuestaSecreta -> respuestarc
+    };
+
+    const guardadoExitoso = await writeUser(nuevoRegistro);
+
+    if (guardadoExitoso) {
+        return {
+            success: true,
+            mensaje: `Registro exitoso ${usuario.nombre}! Tu cuenta ha sido creada y guardada.`
+        };
+    } else {
+        return {
+            success: false,
+            mensaje: "Hubo un error al intentar guardar los datos en el sistema."
+        };
+    }
+
     console.log("--- Iniciando Registro de Nuevo Usuario ---");
     console.log(`Nombre: ${usuario.nombre}`);
     console.log(`Correo: ${usuario.correo}`);
     console.log(`Pregunta Secreta: ${usuario.preguntaSecreta}`);
     console.log(`Respuesta Secreta: ${usuario.respuestaSecreta}`);
     console.log("-------------------------------------------");
-    
-    return {
-        success: true,
-        mensaje: "Usuario creado con éxito"
-    };
+
 };
 
 

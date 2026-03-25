@@ -19,5 +19,12 @@
     "contrasena": "$2a$12$.pwzz6SYOym5kTTFcvbHau0idfMiRf7ZYO6nsL/s5z8bYkty6pXB6",
     "preguntarc": "Ciudad natal",
     "respuestarc": "$2a$12$Hg.r.X2X8FGsXGVWXvh.K.osEBVDdDLCohIt4ABFela7UVSglQwcG"
+  },
+  {
+    "nombre": "Carlos",
+    "correo": "carlos@telematica.com",
+    "password": "$2b$12$O6fH7SG6DVDY05XOYkvjAOf6pHCOE.Qbe5tr2zBh8GH65CpbXR4mW",
+    "preguntarc": "ciudad",
+    "respuestarc": "$2b$12$LyLnT1wWnh.6ld1smRQ.7ueaVqdzaNXQeEoGaVXNB6.C7aTeyHWmG"
   }
 ]
