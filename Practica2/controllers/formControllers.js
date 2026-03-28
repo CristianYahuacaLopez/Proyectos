@@ -9,7 +9,7 @@
 
 import path from "path";
 import { fileURLToPath } from "url";
-import { verificarUsuario, guardarNuevoUsuario, obtenerPreguntaPorCorreo, validarRespuestaRecuperacion } from "../services/service.js"; 
+import { verificarUsuario, guardarNuevoUsuario, obtenerPreguntaPorCorreo, validarRespuestaRecuperacion, modificarPassword } from "../services/service.js"; 
 
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
@@ -73,3 +73,14 @@ export const verificarRecuperacion = async (req, res) => {
     }
 };
 
+//para nueva contraseña
+export const mostrarCambiarPassword = (req, res) => {
+    res.sendFile(path.join(__dirname, "../public/html/cambiarPassword.html"));
+};
+
+// También asegúrate de exportar la que procesa el cambio
+export const actualizarPassword = async (req, res) => {
+    const { correo, password } = req.body;
+    const resultado = await modificarPassword(correo, password);
+    res.json(resultado);
+};

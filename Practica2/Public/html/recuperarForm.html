@@ -29,7 +29,7 @@
                 <span class="mensaje-error" id="error-respuestaSecreta"></span>
             </div>
 
-            <button type="submit" class="btn-signin" id="btnRecuperar" style="display:none;">Ver Contraseña</button>
+            <button type="submit" class="btn-signin" id="btnRecuperar" style="display:none;">Cambiar Contraseña</button>
 
             <p class="footer-text">
                 ¿Ya la recordaste? <a href="/">Regresar al ingreso</a>
@@ -40,5 +40,14 @@
     </div>
 
     <script src="../js/validateRecuperar.js"></script>
+
+    <div id="modalConfirmacion" class="modal-overlay" style="display: none;">
+    <div class="glass-card modal-content">
+        <h3>¡Identidad Confirmada!</h3>
+        <p>Por seguridad, ahora debes ingresar tu nueva contraseña.</p>
+        <button id="btnIrACambiar" class="btn-signin">Continuar</button>
+    </div>
+    </div>
+
 </body>
 </html>

@@ -45,3 +45,13 @@ export const findUserByEmail = async (email) => {
   const users = await readUsers();
   return users.find(u => u.correo.toLowerCase() === email.toLowerCase()) || null;
 };
+
+export const writeAllUsers = async (usersList) => {
+  try {
+    await writeFile(FILE_PATH, JSON.stringify(usersList, null, 2));
+    return true;
+  } catch (error) {
+    console.error('Error al actualizar el archivo JSON:', error);
+    return false;
+  }
+};

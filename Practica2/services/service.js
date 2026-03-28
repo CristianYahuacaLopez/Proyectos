@@ -8,7 +8,7 @@
  */
 //async -> funcion asyncrona
 
-import { findUserByEmail , writeUser} from "../models/model.js";
+import { findUserByEmail , writeUser, readUsers, writeAllUsers} from "../models/model.js";
 import bcrypt from "bcrypt"; // Necesario para comparar hashes
 
 export const verificarUsuario = async (datos) => {
@@ -16,7 +16,7 @@ export const verificarUsuario = async (datos) => {
 
     if (usuario) {
         // Comparamos la contraseña plana contra el hash del JSON
-        const match = await bcrypt.compare(datos.password, usuario.contrasena);
+        const match = await bcrypt.compare(datos.password, usuario.password);
         
         if (match) {
             return { 
@@ -122,12 +122,37 @@ export const validarRespuestaRecuperacion = async (correo, respuestaSecreta) => 
             return { 
                 success: true, 
                 mensaje: "¡Respuesta Correcta!", 
-                password: usuario.contrasena 
+                password: usuario.password 
             };
         }
     }
     return { success: false, mensaje: "La respuesta de seguridad es incorrecta." }; 
 };
 
+//para actualizar la contraseña
+export const modificarPassword = async (correo, nuevaPassword) => {
+    // 1. Segunda pared de seguridad: El Regex
+    const regexSeguridad = /^(?=.*[0-9])(?=.*[+\-*]).{10,15}$/;
 
+    if (!regexSeguridad.test(nuevaPassword)) {
+        return {
+            success: false,
+            mensaje: "La nueva contraseña no cumple con los requisitos de seguridad."
+        };
+    }
+
+    const usuarios = await readUsers();
+    const indice = usuarios.findIndex(u => u.correo.toLowerCase() === correo.toLowerCase());
+
+    if (indice !== -1) {
+        const saltRounds = 12;
+        const hashedPass = await bcrypt.hash(nuevaPassword, saltRounds);
+        
+        usuarios[indice].password = hashedPass;
+        await writeAllUsers(usuarios);
+        
+        return { success: true, mensaje: "Contraseña actualizada con éxito." };
+    }
+    return { success: false, mensaje: "Usuario no encontrado." };
+};
 

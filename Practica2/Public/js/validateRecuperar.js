@@ -110,6 +110,20 @@ form.addEventListener("submit", async function(e) {
     const resultadoServidor = await response.json();
 
     if (response.ok && resultadoServidor.success) {
+    const modal = document.getElementById("modalConfirmacion");
+    const btnContinuar = document.getElementById("btnIrACambiar");
+    const correo = document.getElementById("correo").value;
+
+    // 1. Mostramos nuestro modal personalizado
+    modal.style.display = "flex";
+
+    // 2. Programamos el botón del modal
+    btnContinuar.onclick = () => {
+        window.location.href = `/cambiarPassword?correo=${encodeURIComponent(correo)}`;
+    };
+}
+
+    /*if (response.ok && resultadoServidor.success) {
     // CUADRO DE ÉXITO (El que ya tienes)
     resultado.innerHTML = `
         <div class="mensaje-exito">
@@ -127,8 +141,7 @@ form.addEventListener("submit", async function(e) {
     `;
     
     // Opcional: Limpiar el campo de respuesta para que lo intenten de nuevo
-    document.getElementById("respuestaSecreta").value = "";
-}
+    document.getElementById("respuestaSecreta").value = "";*/
 
     } catch (error) {
         console.error("Error en la petición:", error);
