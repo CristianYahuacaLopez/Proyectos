@@ -8,7 +8,6 @@
    peticiones.
 */
 
-//endpoints
 import express from "express";
 import { mostrarLogin, validarLogin, mostrarRegistro, crearCuenta, mostrarRecuperar, 
    getPregunta, verificarRecuperacion,mostrarCambiarPassword,actualizarPassword } from "../controllers/formControllers.js";

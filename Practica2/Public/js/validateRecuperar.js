@@ -7,19 +7,29 @@ const resultado = document.getElementById("resultado");
 
 const campos = ["correo", "respuestaSecreta"];
 
-/**
- * PASO 1: Buscar la pregunta asociada al correo
- */
+function mostrarError(mensaje) {
+    const modalErr = document.getElementById("modalError");
+    const mensajeP = document.getElementById("mensajeErrorModal");
+    const btnCerrar = document.getElementById("btnCerrarError");
+
+    mensajeP.textContent = mensaje;
+    modalErr.style.display = "flex";
+
+    btnCerrar.onclick = () => {
+        modalErr.style.display = "none";
+    };
+}
+
 btnCargar.addEventListener("click", async () => {
     const correoInput = document.getElementById("correo");
-    
-    // Validamos el correo antes de buscar
+    const seccionEmail = document.getElementById("seccion-email"); 
+
     if (!validarCampo("correo")) {
-        alert("Por favor, ingresa un correo válido.");
+        mostrarError("Por favor, ingresa un correo válido.");
         return;
     }
 
-    try {
+   try {
         const response = await fetch("/obtenerPregunta", {
             method: "POST",
             headers: { "Content-Type": "application/json" },
@@ -29,18 +39,16 @@ btnCargar.addEventListener("click", async () => {
         const data = await response.json();
 
         if (data.success) {
-            // Si el correo existe, mostramos la pregunta y el campo de respuesta
+            seccionEmail.style.display = "none"; 
             textoPregunta.textContent = data.pregunta;
             contenedorPregunta.style.display = "block";
             btnRecuperar.style.display = "block";
-            resultado.textContent = ""; // Limpiamos errores previos
+            
         } else {
-            resultado.style.color = "#ff6b6b";
-            resultado.textContent = data.mensaje;
+            mostrarError(data.mensaje);
         }
-    }catch (error) {
-        console.error("Error:", error);
-        resultado.textContent = "Error de conexión al buscar el correo.";
+    } catch (error) {
+        mostrarError("Error de conexión.");
     }
 });
 
@@ -72,7 +80,6 @@ function validarCampo(id) {
 campos.forEach(id => {
     const input = document.getElementById(id);
     if (!input) return;
-
     input.addEventListener("blur", () => validarCampo(id));
     input.addEventListener("input", () => validarCampo(id));
 });
@@ -87,7 +94,6 @@ form.addEventListener("submit", async function(e) {
         }
     });
 
-  
     if (!valido) return;
 
     const datos = Object.fromEntries(new FormData(form));
@@ -99,29 +105,34 @@ form.addEventListener("submit", async function(e) {
     try {
         const response = await fetch("/verificarRespuesta", {
             method: "POST",
-            headers: {
-                "Content-Type": "application/json"
-            },
+            headers: { "Content-Type": "application/json" },
             body: JSON.stringify(datos)
         });
 
-        // ... dentro del evento del botón Ver Contraseña ...
+        const resultadoServidor = await response.json();
 
-    const resultadoServidor = await response.json();
+        if (response.ok && resultadoServidor.success) {
+            const modal = document.getElementById("modalConfirmacion");
+            const btnContinuar = document.getElementById("btnIrACambiar");
+            const correo = document.getElementById("correo").value;
 
-    if (response.ok && resultadoServidor.success) {
-    const modal = document.getElementById("modalConfirmacion");
-    const btnContinuar = document.getElementById("btnIrACambiar");
-    const correo = document.getElementById("correo").value;
+            modal.style.display = "flex";
 
-    // 1. Mostramos nuestro modal personalizado
-    modal.style.display = "flex";
+            btnContinuar.onclick = () => {
+                window.location.href = `/cambiarPassword?correo=${encodeURIComponent(correo)}`;
+            };
+        } else {
+            mostrarError(resultadoServidor.mensaje || "La respuesta secreta es incorrecta.");
+            document.getElementById("respuestaSecreta").value = ""; 
+        }
 
-    // 2. Programamos el botón del modal
-    btnContinuar.onclick = () => {
-        window.location.href = `/cambiarPassword?correo=${encodeURIComponent(correo)}`;
-    };
-}
+    } catch (error) {
+        mostrarError("Error de conexión con el servidor.");
+    } finally {
+        btnSubmit.textContent = "Ver Contraseña";
+        btnSubmit.disabled = false;
+    }
+});
 
     /*if (response.ok && resultadoServidor.success) {
     // CUADRO DE ÉXITO (El que ya tienes)
@@ -142,13 +153,3 @@ form.addEventListener("submit", async function(e) {
     
     // Opcional: Limpiar el campo de respuesta para que lo intenten de nuevo
     document.getElementById("respuestaSecreta").value = "";*/
-
-    } catch (error) {
-        console.error("Error en la petición:", error);
-        resultado.style.color = "#ff6b6b";
-        resultado.textContent = "Error de conexión con el servidor";
-    } finally {
-        btnSubmit.textContent = "Ver Contraseña";
-        btnSubmit.disabled = false;
-    }
-});

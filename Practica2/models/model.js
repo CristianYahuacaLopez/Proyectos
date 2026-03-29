@@ -18,17 +18,15 @@ const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
 const FILE_PATH = path.join(__dirname, "../data/users.json");
 
-// Rutina para leer el archivo JSON
 export const readUsers = async () => {
   try {
     const data = await readFile(FILE_PATH, 'utf-8');
     return JSON.parse(data);
   } catch (error) {
-    return []; // Si no hay archivo, devolvemos lista vacía
+    return []; 
   }
 };
 
-// Función para escribir (añadir al final del arreglo)
 export const writeUser = async (newUser) => {
   try {
     const users = await readUsers();

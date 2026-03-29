@@ -1,15 +1,12 @@
-/* Archivo: public/js/validateCambio.js */
 const form = document.getElementById("cambioPasswordForm");
 const modal = document.getElementById("modalExito");
 
-// 1. CAPTURAR EL CORREO (Sin esto, el servidor no sabe a quién cambiarle la clave)
 const urlParams = new URLSearchParams(window.location.search);
 const correoUrl = urlParams.get('correo');
 if (correoUrl) {
     document.getElementById("correo").value = correoUrl;
 }
 
-// 2. FUNCIÓN DE VALIDACIÓN (Regex + Igualdad)
 function validarCampo(id) {
     const input = document.getElementById(id);
     const error = document.getElementById("error-" + id);
@@ -40,13 +37,11 @@ function validarCampo(id) {
     return true;
 }
 
-// 3. ESCUCHAR EVENTOS
 ["password", "confirmPassword"].forEach(id => {
     const el = document.getElementById(id);
     el.addEventListener("input", () => validarCampo(id));
 });
 
-// 4. ENVÍO AL SERVIDOR
 form.addEventListener("submit", async (e) => {
     e.preventDefault();
     
@@ -64,7 +59,7 @@ form.addEventListener("submit", async (e) => {
         const res = await response.json();
 
         if (res.success) {
-            modal.style.display = "flex"; // Mostramos el modal en lugar de alert
+            modal.style.display = "flex"; 
             document.getElementById("btnRegresar").onclick = () => window.location.href = "/";
         } else {
             alert("Error: " + res.mensaje);

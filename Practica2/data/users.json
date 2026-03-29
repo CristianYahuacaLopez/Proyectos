@@ -2,7 +2,7 @@
   {
     "nombre": "Cris",
     "correo": "Cris@gmail.com",
-    "password": "$2b$12$GBgOfY9TBtChp0JfD/k0iuSbEiFlJOY4fBWDQ.s1mTIxlMgcAWnge",
+    "password": "$2b$12$wAKLQ/NLKRy2FYcahVxEIegxQEaNCXIBAo3nTB081L.R1RKxKmvqe",
     "preguntarc": "Color favorito",
     "respuestarc": "$2a$12$.PbPszyMZ.te6opvo7QzQOCeBngn4owaXX7rCYe4dlLK4SMwqVI6S"
   },
@@ -23,8 +23,22 @@
   {
     "nombre": "Carlos",
     "correo": "carlos@telematica.com",
-    "password": "$2b$12$O6fH7SG6DVDY05XOYkvjAOf6pHCOE.Qbe5tr2zBh8GH65CpbXR4mW",
+    "password": "$2b$12$GSOumHUEf829wWuGy5e9QuZRIMp.AY3GRoV1ZCQwshQyxBmWCIvym",
     "preguntarc": "ciudad",
     "respuestarc": "$2b$12$LyLnT1wWnh.6ld1smRQ.7ueaVqdzaNXQeEoGaVXNB6.C7aTeyHWmG"
+  },
+  {
+    "nombre": "Santiago Yahuaca",
+    "correo": "santi@voca3.com",
+    "password": "$2b$12$hWNjjaF8DLyDsJHOO4Z2TOYkVTsZDJk2YbKoFnZTcgXwqxCrjV4sC",
+    "preguntarc": "ciudad",
+    "respuestarc": "$2b$12$LMVFX6N5wbue/.oH.I2z2eVl3nYnC40GM69VtVRoz9zs3KGwrYM6C"
+  },
+  {
+    "nombre": "Daniel Martinez",
+    "correo": "dany@telematica.com",
+    "password": "$2b$12$m6JVk/Dcch0KfUqvU0OOgOIjJ4crgM3flVyylp8siKzHspL08hM4q",
+    "preguntarc": "mascota",
+    "respuestarc": "$2b$12$MuTLRUDfyc40zSGyXY0epe.tXDYtaqDNr.sdplDb3QSOVxvZWE76K"
   }
 ]

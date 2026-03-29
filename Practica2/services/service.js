@@ -9,13 +9,12 @@
 //async -> funcion asyncrona
 
 import { findUserByEmail , writeUser, readUsers, writeAllUsers} from "../models/model.js";
-import bcrypt from "bcrypt"; // Necesario para comparar hashes
+import bcrypt from "bcrypt"; 
 
 export const verificarUsuario = async (datos) => {
     const usuario = await findUserByEmail(datos.correo);
 
     if (usuario) {
-        // Comparamos la contraseña plana contra el hash del JSON
         const match = await bcrypt.compare(datos.password, usuario.password);
         
         if (match) {
@@ -29,8 +28,7 @@ export const verificarUsuario = async (datos) => {
     
     return { success: false, mensaje: "El usuario no existe o los datos son incorrectos." };
 };
-
-// Mantenemos el de registro 
+ 
 export const procesarRegistro = async (datos) => {
     console.log("Procesando registro en el servicio:", datos);
     return {
@@ -39,9 +37,6 @@ export const procesarRegistro = async (datos) => {
     };
 };
 
-/**
- * Servicio para registrar nuevos usuarios
- */
 export const guardarNuevoUsuario = async (usuario) => {
     const regexSeguridad = /^(?=.*[0-9])(?=.*[+\-*]).{10,15}$/;
 
@@ -52,7 +47,6 @@ export const guardarNuevoUsuario = async (usuario) => {
         };
     }
 
-    // Verificar si el correo ya existe para no duplicar
     const existe = await findUserByEmail(usuario.correo);
     if (existe) {
         return { success: false, mensaje: "Este correo ya está registrado." };
@@ -62,13 +56,12 @@ export const guardarNuevoUsuario = async (usuario) => {
     const hashedPass = await bcrypt.hash(usuario.password, saltRounds);
     const hashedRespuesta = await bcrypt.hash(usuario.respuestaSecreta, saltRounds);
 
-    //Mapear a la estructura exacta de tu users.json
     const nuevoRegistro = {
         nombre: usuario.nombre,
         correo: usuario.correo,
-        password: hashedPass, // Mapeo: password -> contrasena
-        preguntarc: usuario.preguntaSecreta, // Mapeo: preguntaSecreta -> preguntarc
-        respuestarc: hashedRespuesta // Mapeo: respuestaSecreta -> respuestarc
+        password: hashedPass, 
+        preguntarc: usuario.preguntaSecreta, 
+        respuestarc: hashedRespuesta 
     };
 
     const guardadoExitoso = await writeUser(nuevoRegistro);
@@ -94,28 +87,19 @@ export const guardarNuevoUsuario = async (usuario) => {
 
 };
 
-
-//para recuperar contraseña
 export const obtenerPreguntaPorCorreo = async (correo) => {
-    // Buscamos en el JSON real
     const usuario = await findUserByEmail(correo);
 
     if (usuario) {
-        // En tu JSON el campo se llama 'preguntarc'
         return { success: true, pregunta: usuario.preguntarc };
     }
-    return { success: false, mensaje: "Correo no encontrado en el archivo JSON." };
+    return { success: false, mensaje: "Correo no encontrado" };
 };
 
-
-/* Archivo: services/service.js */
 export const validarRespuestaRecuperacion = async (correo, respuestaSecreta) => {
-    // 1. Buscamos al usuario real en el JSON
     const usuario = await findUserByEmail(correo);
 
     if (usuario) {
-        // 2. Comparamos la respuesta (si usas hashes, usa bcrypt.compare)
-        // Si en tu JSON el campo es 'respuestarc', úsalo aquí
         const match = await bcrypt.compare(respuestaSecreta, usuario.respuestarc);
         
         if (match) {
@@ -129,9 +113,7 @@ export const validarRespuestaRecuperacion = async (correo, respuestaSecreta) => 
     return { success: false, mensaje: "La respuesta de seguridad es incorrecta." }; 
 };
 
-//para actualizar la contraseña
 export const modificarPassword = async (correo, nuevaPassword) => {
-    // 1. Segunda pared de seguridad: El Regex
     const regexSeguridad = /^(?=.*[0-9])(?=.*[+\-*]).{10,15}$/;
 
     if (!regexSeguridad.test(nuevaPassword)) {

@@ -38,7 +38,7 @@ function validarCampo(id) {
 
     if (!regexSeguridad.test(input.value)) {
         error.textContent = "Debe tener entre 10 y 15 caracteres, un número y un signo (+, -, *)";
-        input.classList.add("invalido"); // Tu clase roja de CSS
+        input.classList.add("invalido"); 
         return false;
     }
     }
@@ -94,14 +94,30 @@ form.addEventListener("submit", async function(e) {
 
         const resultadoServidor = await response.json();
 
-        if (response.ok) {
-            resultado.style.color = "#2ecc71"; // Verde éxito
-            resultado.textContent = resultadoServidor.mensaje;
-            form.reset(); // Limpiamos el formulario después de registrar
-        } else {
-            resultado.style.color = "#ff6b6b"; // Rojo error
-            resultado.textContent = resultadoServidor.mensaje;
-        }
+
+if (response.ok && resultadoServidor.success) {
+    const modal = document.getElementById("modalRegistroExito");
+    const mensajeP = document.getElementById("modalMensaje");
+    const tituloH2 = document.getElementById("modalTitulo");
+    const btnLogin = document.getElementById("btnIrALogin");
+
+    const nombreUsuario = document.getElementById("nombre").value;
+
+    tituloH2.textContent = `¡Bienvenido, ${nombreUsuario}!`;
+    mensajeP.textContent = "Tu cuenta ha sido creada y guardada correctamente en el sistema.";
+
+    modal.style.display = "flex";
+
+    btnLogin.onclick = () => {
+        window.location.href = "/"; 
+    };
+
+    form.reset(); 
+} else {
+    resultado.style.color = "#ff6b6b";
+    resultado.textContent = resultadoServidor.mensaje;
+}
+        
 
     } catch (error) {
         console.error("Error en la petición:", error);

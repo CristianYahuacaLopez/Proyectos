@@ -61,7 +61,7 @@ export const getPregunta = async (req, res) => {
     }
 };
 
-// 4. Valida la respuesta y entrega el JSON con la contraseña
+// valida la respuesta y entrega el JSON con la contraseña
 export const verificarRecuperacion = async (req, res) => {
     const { correo, respuestaSecreta } = req.body;
     const resultado = await validarRespuestaRecuperacion(correo, respuestaSecreta);

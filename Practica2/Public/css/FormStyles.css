@@ -1,4 +1,3 @@
-/* RESET */
 *{
     margin:0;
     padding:0;
@@ -6,7 +5,6 @@
     font-family: Arial, Helvetica, sans-serif, 'Poppins';
 }
 
-/* BODY */
 body{
    background-image: url('https://i.pinimg.com/736x/ea/6e/16/ea6e1675c9067ef12ef61739fd775a0f.jpg'); 
     background-size: cover;
@@ -31,7 +29,6 @@ body{
     box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.37);
 }
 
-/* TITULO */
 label { 
     display: block; 
     font-size: 0.9rem; 
@@ -41,14 +38,13 @@ label {
 }
 
 h2 {
-    margin-bottom: 30px;
+    margin-bottom: 15px !important; 
     color: #ffffff !important; 
     text-align: center;
-    font-weight: 700;        
+    font-weight: 700;                 
     font-size: 2.2rem;
     text-shadow: 0 2px 10px rgba(0,0,0,0.3);
 }
-
 
 .forgot-link { 
     display: block;
@@ -104,14 +100,12 @@ h2 {
     color: white;
     font-weight: 600;
     cursor: pointer;
-    margin-top: 15px; /* Le damos espacio respecto al input */
-    
-    /* Reutilizamos tu efecto de movimiento suave */
+    margin-top: 15px; 
     transition: transform 0.3s ease, background-color 0.3s ease, box-shadow 0.3s ease;
 }
 
 .btn-secundario:hover {
-    transform: translateY(-3px); /* Un movimiento más sutil */
+    transform: translateY(-3px); 
     box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
     background-color: #003d82; 
 }
@@ -120,31 +114,26 @@ h2 {
     transform: translateY(-1px);
 }
 
-/* Este ID debe coincidir con el div que envuelve la pregunta en tu HTML */
 #contenedor-pregunta {
-    margin-top: 30px !important; /* Aquí controlas el espacio con el botón de arriba */
-    padding-top: 20px;
-    border-top: 1px solid rgba(255, 255, 255, 0.1); /* Una línea sutil para separar secciones */
+    margin-top: 10px !important;  
+    padding-top: 10px;          
+    border-top: 1px solid rgba(255, 255, 255, 0.1); 
 }
 
-/* Para que el texto de la pregunta (ej. ¿Nombre de tu mascota?) se vea mejor */
 #textoPregunta {
     display: block;
-    margin-bottom: 20px;
+    margin-bottom: 10px; 
     font-style: italic;
-    color: #0b3cbaef !important; /* Un color cyan para que resalte la pregunta */
+    color: #00d4ff !important; 
     font-size: 1.05rem;
 }
 
-/* Espacio extra para el botón final */
 #btnRecuperar {
     margin-top: 20px;
 }
 
-/* INPUTS */
 input, select {
     width: 100%;
-    /* Reemplazamos el blanco por un azul que combine con tus botones */
     background: rgba(89, 171, 230, 0.3) !important; 
     border: 1px solid rgba(255, 255, 255, 0.4) !important;
     border-radius: 10px;
@@ -152,7 +141,7 @@ input, select {
     color: #ffffff !important;
     font-weight: 500;
     outline: none;
-    transition: background 0.3s ease; /* Para que el cambio de color sea suave */
+    transition: background 0.3s ease; 
 }
 
 select option {
@@ -184,7 +173,6 @@ input::placeholder {
     text-decoration: underline;
 }
 
-/* FORMULARIO */
 form {
     background: transparent !important; 
     box-shadow: none !important;
@@ -194,23 +182,20 @@ form {
     flex-direction: column;
 }
 
-
-/* FOCUS */
 input:focus{
     outline:none;
     border-color:#4a90e2;
     box-shadow:0 0 5px rgba(74,144,226,0.3);
 }
 
-/* Estilos para el Modal */
 .modal-overlay {
     position: fixed;
     top: 0;
     left: 0;
     width: 100%;
     height: 100%;
-    background: rgba(120, 145, 245, 0.6); /* Fondo oscuro traslúcido */
-    backdrop-filter: blur(8px);    /* Desenfoque del fondo */
+    background: rgba(120, 145, 245, 0.6); 
+    backdrop-filter: blur(8px);    
     display: flex;
     justify-content: center;
     align-items: center;
@@ -219,7 +204,7 @@ input:focus{
 
 .modal-content {
     text-align: center;
-    max-width: 350px !important; /* Más pequeño que el formulario */
+    max-width: 350px !important; 
     animation: aparecer 0.3s ease-out;
 }
 
@@ -234,13 +219,11 @@ input:focus{
     font-size: 0.95rem;
 }
 
-/* Animación de entrada */
 @keyframes aparecer {
     from { opacity: 0; transform: scale(0.8); }
     to { opacity: 1; transform: scale(1); }
 }
 
-/* VALIDACIONES */
 .valido{
     border: 2px solid #09529b !important;
     background: rgba(0, 212, 255, 0.4) !important; 
@@ -279,37 +262,33 @@ input:focus{
 
 
 .mensaje-error { color: #ff6b6b; font-size: 0.75rem; display: block; margin-top: 5px; }
-
-/* Este es el cuadro que antes era verde */
 .mensaje-exito {
-    /* CAMBIA ESTE VALOR: rgba(R, G, B, opacidad) */
-    background: rgba(0, 212, 255, 0.2) !important; /* Aquí puse el azul de tus botones */
+    background: rgba(0, 212, 255, 0.2) !important; 
     
     padding: 15px;
     border-radius: 8px;
     margin-top: 20px;
     text-align: center;
-    border: 1px solid rgba(0, 212, 255, 0.4); /* Un borde del mismo color */
+    border: 1px solid rgba(0, 212, 255, 0.4); 
 }
 
 .mensaje-exito strong {
-    color: #00d4ff !important; /* El color del texto principal */
+    color: #00d4ff !important; 
     display: block;
 }
 
-/* Cuadro de error para respuestas incorrectas */
 .mensaje-error-box {
-    background: rgba(231, 76, 60, 0.2) !important; /* Rojo traslúcido */
+    background: rgba(231, 76, 60, 0.2) !important; 
     padding: 15px;
     border-radius: 8px;
     margin-top: 20px;
     text-align: center;
-    border: 1px solid rgba(231, 76, 60, 0.4); /* Borde rojizo */
+    border: 1px solid rgba(231, 76, 60, 0.4); 
     backdrop-filter: blur(5px);
 }
 
 .mensaje-error-box strong {
-    color: #ff6b6b !important; /* Texto rojo claro para que resalte */
+    color: #ff6b6b !important; 
     display: block;
     margin-bottom: 5px;
 }
@@ -317,4 +296,30 @@ input:focus{
 .mensaje-error-box p {
     color: white;
     font-size: 0.9rem;
+}
+
+.modal-error {
+    border: 1px solid rgba(255, 107, 107, 0.4) !important; 
+    box-shadow: 0 8px 32px rgba(231, 76, 60, 0.3) !important; 
+}
+
+.modal-error h2 {
+    color: #ff6b6b; 
+}
+
+.btn-error {
+    background: #6e0000 !important; 
+    color: white;
+    border: none;
+    padding: 12px 20px;
+    border-radius: 8px;
+    cursor: pointer;
+    font-weight: 600;
+    width: 100%;
+    transition: background 0.3s ease, transform 0.2s;
+}
+
+.btn-error:hover {
+    background: #a10000 !important;
+    transform: scale(1.02);
 }
