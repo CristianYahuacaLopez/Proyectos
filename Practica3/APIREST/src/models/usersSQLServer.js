@@ -31,7 +31,12 @@ export const createUser = async (user) => {
 export const getByEmail = async (email) => {
   const pool = await getConnection();
   const result = await pool.request()
-  .input('emailParam',email)
-  .query(`SELECT u.* , p.pregunta FROM users u join Preguntas_Secretas p on u.id_pregunta = p.id_pregunta WHERE u.correo = @emailParam`);
-  return result.recordset;  
-}
+    .input('emailParam', email) 
+    .query(`
+      SELECT u.*, p.pregunta 
+      FROM users u 
+      JOIN Preguntas_Secretas p ON u.id_pregunta = p.id_pregunta 
+      WHERE u.correo = @emailParam
+    `);
+  return result.recordset; 
+};

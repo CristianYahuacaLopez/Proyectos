@@ -8,7 +8,7 @@
  */
 //async -> funcion asyncrona
 
-import { response } from "express";
+//import { response } from "express";
 import { findUserByEmail , writeUser, readUsers, writeAllUsers} from "../models/model.js";
 import bcrypt from "bcrypt"; 
 
@@ -106,7 +106,7 @@ export const guardarNuevoUsuario = async (usuario) => {
     const nuevoRegistro = {
         nombre: usuario.nombre,
         correo: usuario.correo,
-        password: hashedPass, 
+        contrasena: hashedPass, 
         id_pregunta: usuario.preguntaSecreta, 
         respuestarc: hashedRespuesta
     };
