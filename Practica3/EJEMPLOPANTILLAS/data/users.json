@@ -1,0 +1,44 @@
+[
+  {
+    "nombre": "Cris",
+    "correo": "Cris@gmail.com",
+    "password": "$2b$12$wAKLQ/NLKRy2FYcahVxEIegxQEaNCXIBAo3nTB081L.R1RKxKmvqe",
+    "preguntarc": "Color favorito",
+    "respuestarc": "$2a$12$.PbPszyMZ.te6opvo7QzQOCeBngn4owaXX7rCYe4dlLK4SMwqVI6S"
+  },
+  {
+    "nombre": "Yaretzi",
+    "correo": "yare@telematica.com",
+    "password": "$2a$12$UrTUalrn.ZXSydKtYL5iuuiPdcktsVymQ5ALhIlkJ0dx.LZy.JMKa",
+    "preguntarc": "¿Nombre de tu mascota?",
+    "respuestarc": "$2a$12$uxvUtnNU/iX1DGHJERq5Buxv0iEZzUs6yIYNn6XATNZ0/U52nFYie"
+  },
+  {
+    "nombre": "Admin",
+    "correo": "admin@telematica.com",
+    "password": "$2a$12$.pwzz6SYOym5kTTFcvbHau0idfMiRf7ZYO6nsL/s5z8bYkty6pXB6",
+    "preguntarc": "Ciudad natal",
+    "respuestarc": "$2a$12$Hg.r.X2X8FGsXGVWXvh.K.osEBVDdDLCohIt4ABFela7UVSglQwcG"
+  },
+  {
+    "nombre": "Carlos",
+    "correo": "carlos@telematica.com",
+    "password": "$2b$12$GSOumHUEf829wWuGy5e9QuZRIMp.AY3GRoV1ZCQwshQyxBmWCIvym",
+    "preguntarc": "ciudad",
+    "respuestarc": "$2b$12$LyLnT1wWnh.6ld1smRQ.7ueaVqdzaNXQeEoGaVXNB6.C7aTeyHWmG"
+  },
+  {
+    "nombre": "Santiago Yahuaca",
+    "correo": "santi@voca3.com",
+    "password": "$2b$12$hWNjjaF8DLyDsJHOO4Z2TOYkVTsZDJk2YbKoFnZTcgXwqxCrjV4sC",
+    "preguntarc": "ciudad",
+    "respuestarc": "$2b$12$LMVFX6N5wbue/.oH.I2z2eVl3nYnC40GM69VtVRoz9zs3KGwrYM6C"
+  },
+  {
+    "nombre": "Daniel Martinez",
+    "correo": "dany@telematica.com",
+    "password": "$2b$12$m6JVk/Dcch0KfUqvU0OOgOIjJ4crgM3flVyylp8siKzHspL08hM4q",
+    "preguntarc": "mascota",
+    "respuestarc": "$2b$12$MuTLRUDfyc40zSGyXY0epe.tXDYtaqDNr.sdplDb3QSOVxvZWE76K"
+  }
+]

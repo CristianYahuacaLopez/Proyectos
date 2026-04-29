@@ -1,0 +1,43 @@
+----------------------------------------------------------
+1. USUARIO: Cris
+   - Correo:Cris@gmail.com
+   - Password:Crismiau+2026
+   - Pregunta:Color favorito
+   - Respuesta:Azul Marino
+
+-----------------------------------------------------------
+2. USUARIO: Yare
+   - Correo:yare@telematica.com
+   - Password:Blackysauria+2026
+   - Pregunta:¿Nombre de tu mascota?
+   - Respuesta:Kishi
+
+-----------------------------------------------------------
+3. USUARIO: Admin
+   - Correo:admin@telematica.com
+   - Password:cachorro+sucio2
+   - Pregunta:Ciudad natal
+   - Respuesta:Aguascalientes
+
+-----------------------------------------------------------
+4. USUARIO: Carlos
+   - Correo:carlos@telematica.com
+   - Password:Profe+2025
+   - Pregunta:ciudad
+   - Respuesta:Oaxaca
+
+-----------------------------------------------------------
+5. USUARIO: Santiago Yahuaca
+   - Correo: santi@voca3.com
+   - Password:Santy+2026
+   - Pregunta: ciudad
+   - Respuesta:CDMX
+
+-----------------------------------------------------------
+6. USUARIO: Daniel Martinez
+   - Correo: dany@telematica.com
+   - Password:Daniel+2025
+   - Pregunta: mascota
+   - Respuesta:Kai
+
+===========================================================
