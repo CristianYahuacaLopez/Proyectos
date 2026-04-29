@@ -78,7 +78,7 @@ export const obtenerPreguntaPorCorreo = async (correo) => {
 
         if (usuario) {
             // Nota: Asegúrate de que tu API devuelva el texto de la pregunta o el ID
-            return { success: true, pregunta: usuario.id_pregunta }; 
+            return { success: true, pregunta: usuario.pregunta }; 
         }
         return { success: false, mensaje: "Correo no encontrado" };
     } catch (error) {
@@ -116,16 +116,19 @@ export const modificarPassword = async (correo, nuevaPassword) => {
 
     try {
         const hashedPass = await bcrypt.hash(nuevaPassword, 12);
-        
-        // Aquí deberías llamar a un endpoint de actualización (por ejemplo, vía POST o PUT)
         const res = await fetch(`${API_URL}/update-password`, {
             method: 'POST', 
             headers: { 'Content-Type': 'application/json' },
             body: JSON.stringify({ correo, contrasena: hashedPass })
         });
 
-        return res.ok ? { success: true, mensaje: "Contraseña actualizada" } : { success: false };
+        if (res.ok) {
+            return { success: true, mensaje: "Contraseña actualizada" };
+        } else {
+            const errorData = await res.json();
+            return { success: false, mensaje: errorData.mensaje || "Error en la API" };
+        }
     } catch (error) {
-        return { success: false, mensaje: "Error al conectar con la API" };
+        return { success: false, mensaje: "No se pudo conectar con la API" };
     }
 };

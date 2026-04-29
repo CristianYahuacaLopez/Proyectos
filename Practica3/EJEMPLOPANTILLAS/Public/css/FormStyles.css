@@ -124,7 +124,8 @@ h2 {
     display: block;
     margin-bottom: 10px; 
     font-style: italic;
-    color: #00d4ff !important; 
+    color: #ffffff !important; 
+    background: rgba(0, 110, 255, 0.181);
     font-size: 1.05rem;
 }
 

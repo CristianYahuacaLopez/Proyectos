@@ -46,33 +46,33 @@ campos.forEach(id => {
     input.addEventListener("input", () => validarCampo(id));
 });
 
-/*form.addEventListener("submit", async function(e) {
+form.addEventListener("submit", async (e)=> {
     e.preventDefault();
-    let valido = true;
+    /*let valido = true;
     
     campos.forEach(id => {
         if (!validarCampo(id)) {
             valido = false;
         }
     });*/
-form.addEventListener("submit", (event) => {
+//form.addEventListener("submit", (event) => {
     let valido = true;
   
-     ["correo", "password"].forEach(id => {
+    campos.forEach(id => {
         //const input = document.getElementById(id);
-        if (!validarCampo(input)) {
+        if (!validarCampo(id)) {
             valido = false;
         }
-});
+    });
 
     if (!valido){
-     event.preventDefault(); 
-     console.log("El formulario tiene errores. No se envía.");
-    } else{
-      console.log("Formulario válido. Enviando al servidor...");
+        console.log("Formulario con errores.");
+        return;
     }
     
-    /*const datos = Object.fromEntries(new FormData(form));
+    //const datos = Object.fromEntries(new FormData(form));
+    const formData = new FormData(form);
+    const datos = Object.fromEntries(formData.entries());
 
     try {
         const response = await fetch("/validarLogin", {
@@ -81,10 +81,15 @@ form.addEventListener("submit", (event) => {
             body: JSON.stringify(datos)
         });
 
-        const resultadoServidor = await response.json();
+        /*if (response.redirected) {
+            window.location.href = response.url;
+            return;
+        }*/
 
-        if (response.ok && resultadoServidor.success) {
-            const card = document.querySelector(".glass-card");
+        //const resultadoServidor = await response.json();
+
+        if (response.ok) {
+            /*const card = document.querySelector(".glass-card");
             card.innerHTML = `
                 <div style="text-align: center; padding: 20px;">
                     <h2 style="color: #00d4ff;">¡Bienvenido, ${resultadoServidor.nombre}!</h2>
@@ -92,20 +97,20 @@ form.addEventListener("submit", (event) => {
                     <br>
                     <button onclick="location.reload()" class="btn-signin">Cerrar Sesión</button>
                 </div>
-            `;
+            `;*/
+            window.location.href = "/bienvenida";
         } else {
+            const resultado = await response.json();
             const modalErr = document.getElementById("modalError");
             const mensajeP = document.getElementById("mensajeErrorModal");
             const btnCerrar = document.getElementById("btnCerrarError");
 
-            mensajeP.textContent = resultadoServidor.mensaje || "El usuario no existe o los datos son incorrectos.";
+            mensajeP.textContent = resultado.errors?.general || resultado.errors?.correo || resultado.errors?.contrasena || "Datos incorrectos";
             modalErr.style.display = "flex";
 
-            document.getElementById("password").value = "";
-
-            btnCerrar.onclick = () => {
+            document.getElementById("btnCerrar").onclick = () => {
                 modalErr.style.display = "none";
-                document.getElementById("password").focus();
+                //document.getElementById("password").focus();
             };
         }
 
@@ -118,5 +123,5 @@ form.addEventListener("submit", (event) => {
         document.getElementById("btnCerrarError").onclick = () => {
             modalErr.style.display = "none";
         };
-    }*/
+    }
 });

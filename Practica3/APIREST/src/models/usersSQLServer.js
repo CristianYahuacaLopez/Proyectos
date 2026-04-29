@@ -19,10 +19,25 @@ export const createUser = async (user) => {
     return result.recordset[0].id;
 };
 
+
 export const getByEmail = async (correo) => {
     const pool = await getConnection();
     const result = await pool.request()
         .input('correo', sql.NVarChar, correo)
-        .query('SELECT * FROM users WHERE correo = @correo');
+        .query(`
+            SELECT u.*, p.pregunta 
+            FROM Users.dbo.users u 
+            JOIN Users.dbo.Preguntas_Secretas p ON u.id_pregunta = p.id_pregunta 
+            WHERE u.correo = @correo
+        `);
     return result.recordset;
+};
+
+export const updatePassword = async (correo, nuevaContrasena) => {
+  const pool = await getConnection();
+  await pool.request()
+    .input('correo', sql.NVarChar, correo)
+    .input('pass', sql.NVarChar, nuevaContrasena)
+    .query('UPDATE users SET contrasena = @pass WHERE correo = @correo');
+  return true;
 };

@@ -27,7 +27,8 @@ export const validarLogin = async (req, res) => {
 
             // --- INTEGRACIÓN DE EJS ---
             // Renderizamos la vista dinámica pasando el nombre desde la BD
-            return res.render('pages/bienvenida', { nombre: resultado.data.nombre });
+            //return res.render('pages/bienvenida', { nombre: resultado.data.nombre });
+            return res.status(200).json({ success: true });
         } else {
             return res.status(401).json(resultado);
         }

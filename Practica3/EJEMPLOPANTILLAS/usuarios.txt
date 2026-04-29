@@ -15,7 +15,7 @@
 -----------------------------------------------------------
 3. USUARIO: Admin
    - Correo:admin@telematica.com
-   - Password:cachorro+sucio2
+   - Password:cachorro+sucio3
    - Pregunta:Ciudad natal
    - Respuesta:Aguascalientes
 
