@@ -32,6 +32,5 @@ export const findByEmail = async (req, res) => {
   }
 };
 
-
-const crudSQL = { getUsers, registerUser };
+const crudSQL = { getUsers, registerUser, findByEmail };
 export default crudSQL;
