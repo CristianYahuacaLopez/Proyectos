@@ -33,3 +33,9 @@ router.post("/actualizarPassword", actualizarPassword);
 
 
 export default router; 
+
+// Añade esta línea al final de tus rutas
+router.get("/logout", (req, res) => {
+    req.session.destroy(); // Elimina la sesión del servidor
+    res.redirect("/");    // Redirige al login
+});

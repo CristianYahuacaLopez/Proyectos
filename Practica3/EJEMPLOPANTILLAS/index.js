@@ -24,32 +24,54 @@
 
 */
 
-
 import express from "express";
+import session from "express-session";
 import path from "path"; 
 import { fileURLToPath } from "url";
-
-
 import formRoutes from "./routes/formRoutes.js"; 
 
 const PORT = 3000;
-
 const app = express();
-app.use(express.json());
-app.use(express.urlencoded({ extended: true }));
-
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
 
-app.set('view engine','ejs');
+// 1. Configuración de vistas (EJS)
+app.set('view engine', 'ejs');
+app.set('views', path.join(__dirname, 'views'));
 
-app.set('views',path.join(__dirname, 'views'));
+// 2. Middlewares de sesión y procesamiento
+app.use(session({
+    secret: 'DistriCorp_Secret_Key', 
+    resave: false,
+    saveUninitialized: false,
+    cookie: { 
+        maxAge: 3600000, 
+        secure: false   
+    }
+}));
 
-app.use("/", express.static(path.join(__dirname, "public"))); //app.use permite configurar un middleware 
+app.use(express.json());
+app.use(express.urlencoded({ extended: true }));
+app.use("/", express.static(path.join(__dirname, "public")));
 
-// Rutas
+// 3. Definición del Middleware de Autenticación
+const isAuthenticated = (req, res, next) => {
+    // Verificamos si existe el ID de usuario en la sesión
+    if (req.session.userId) {
+        return next(); 
+    }
+    res.redirect("/"); // Si no hay sesión, redirigir al login
+};
+
+// 4. Rutas protegidas y generales
+// CORRECCIÓN: Usamos 'app' en lugar de 'router'
+app.get("/bienvenida", isAuthenticated, (req, res) => {
+    res.render("pages/bienvenida", { nombre: req.session.nombre });
+});
+
 app.use("/", formRoutes); 
 
+// 5. El servidor escucha al final
 app.listen(PORT, () => { 
     console.log(`Servidor ejecutándose en http://localhost:${PORT}`); 
 });
