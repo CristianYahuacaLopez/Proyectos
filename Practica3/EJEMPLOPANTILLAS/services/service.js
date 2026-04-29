@@ -107,12 +107,12 @@ export const guardarNuevoUsuario = async (usuario) => {
         nombre: usuario.nombre,
         correo: usuario.correo,
         password: hashedPass, 
-        preguntarc: usuario.preguntaSecreta, 
+        id_pregunta: usuario.preguntaSecreta, 
         respuestarc: hashedRespuesta
     };
 
     //const guardadoExitoso = await writeUser(nuevoRegistro);
-    const guardadoExitoso = await fetch('http://localhost:5000/sqlserver/users', {
+    const guardadoExitoso = await fetch('http://localhost:5000/api/sqlserver/users', {
             method: 'POST',
             headers: { 'Content-Type': 'application/json' },
             body: JSON.stringify(nuevoRegistro)
