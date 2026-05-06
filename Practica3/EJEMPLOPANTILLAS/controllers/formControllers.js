@@ -20,13 +20,11 @@ export const validarLogin = async (req, res) => {
 
         if (resultado.success) {
             // --- INTEGRACIÓN DE SESIONES ---
-            // Guardamos la información del usuario en la sesión
             req.session.userId = resultado.data.id;
             req.session.nombre = resultado.data.nombre;
             req.session.correo = resultado.data.correo;
 
             // --- INTEGRACIÓN DE EJS ---
-            // Renderizamos la vista dinámica pasando el nombre desde la BD
             //return res.render('pages/bienvenida', { nombre: resultado.data.nombre });
             return res.status(200).json({ success: true });
         } else {
@@ -42,9 +40,7 @@ export const validarLogin = async (req, res) => {
     }
 };
 
-/**
- * Cierra la sesión del usuario y limpia la cookie del servidor.
- */
+
 export const logout = (req, res) => {
     req.session.destroy((err) => {
         if (err) {
@@ -85,7 +81,6 @@ export const crearCuenta = async (req, res) => {
     }
 };
 
-// --- MÉTODOS DE RECUPERACIÓN ---
 
 export const mostrarRecuperar = (req, res) => {
     res.sendFile(path.join(__dirname, "../public/html/recuperarForm.html"));

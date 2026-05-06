@@ -73,7 +73,8 @@ form.addEventListener("submit", async (e)=> {
     //const datos = Object.fromEntries(new FormData(form));
     const formData = new FormData(form);
     const datos = Object.fromEntries(formData.entries());
-
+    console.log("antes de validarlogin");
+    
     try {
         const response = await fetch("/validarLogin", {
             method: "POST",
@@ -108,7 +109,7 @@ form.addEventListener("submit", async (e)=> {
             mensajeP.textContent = resultado.errors?.general || resultado.errors?.correo || resultado.errors?.contrasena || "Datos incorrectos";
             modalErr.style.display = "flex";
 
-            document.getElementById("btnCerrar").onclick = () => {
+            document.getElementById("btnCerrarError").onclick = () => {
                 modalErr.style.display = "none";
                 //document.getElementById("password").focus();
             };

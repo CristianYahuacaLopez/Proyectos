@@ -56,22 +56,20 @@ app.use("/", express.static(path.join(__dirname, "public")));
 
 // 3. Definición del Middleware de Autenticación
 const isAuthenticated = (req, res, next) => {
-    // Verificamos si existe el ID de usuario en la sesión
+    // existe el ID de usuario en la sesión
     if (req.session.userId) {
         return next(); 
     }
     res.redirect("/"); // Si no hay sesión, redirigir al login
 };
 
-// 4. Rutas protegidas y generales
-// CORRECCIÓN: Usamos 'app' en lugar de 'router'
+
 app.get("/bienvenida", isAuthenticated, (req, res) => {
     res.render("pages/bienvenida", { nombre: req.session.nombre });
 });
 
 app.use("/", formRoutes); 
 
-// 5. El servidor escucha al final
 app.listen(PORT, () => { 
     console.log(`Servidor ejecutándose en http://localhost:${PORT}`); 
 });
