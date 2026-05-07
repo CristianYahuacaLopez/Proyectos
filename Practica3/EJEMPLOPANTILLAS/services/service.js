@@ -2,9 +2,6 @@ import bcrypt from "bcrypt";
 
 const API_URL = 'http://localhost:5000/api/sqlserver/users';
 
-/**
- * Verifica las credenciales del usuario consultando la API de SQL Server.
- */
 export const verificarUsuario = async (correo, contrasena) => {
     try {
         const response = await fetch(`${API_URL}/${correo}`);
@@ -29,9 +26,7 @@ export const verificarUsuario = async (correo, contrasena) => {
     }
 };
 
-/**
- * Registra un nuevo usuario enviando los datos hasheados a la API.
- */
+
 export const guardarNuevoUsuario = async (usuario) => {
     const regexSeguridad = /^(?=.*[0-9])(?=.*[+\-*]).{10,15}$/;
     if (!regexSeguridad.test(usuario.password)) {
@@ -67,9 +62,7 @@ export const guardarNuevoUsuario = async (usuario) => {
     }
 };
 
-/**
- * Obtiene la pregunta secreta desde la base de datos.
- */
+
 export const obtenerPreguntaPorCorreo = async (correo) => {
     try {
         const response = await fetch(`${API_URL}/${correo}`);
@@ -86,9 +79,7 @@ export const obtenerPreguntaPorCorreo = async (correo) => {
     }
 };
 
-/**
- * Valida la respuesta de recuperación comparando el hash.
- */
+
 export const validarRespuestaRecuperacion = async (correo, respuestaSecreta) => {
     try {
         const response = await fetch(`${API_URL}/${correo}`);
@@ -105,9 +96,7 @@ export const validarRespuestaRecuperacion = async (correo, respuestaSecreta) => 
     }
 };
 
-/**
- * Actualiza la contraseña en la base de datos (Requiere implementar un endpoint PUT/PATCH en tu API).
- */
+
 export const modificarPassword = async (correo, nuevaPassword) => {
     const regexSeguridad = /^(?=.*[0-9])(?=.*[+\-*]).{10,15}$/;
     if (!regexSeguridad.test(nuevaPassword)) {

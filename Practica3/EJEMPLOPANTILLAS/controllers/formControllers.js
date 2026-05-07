@@ -10,21 +10,19 @@ export const mostrarLogin = (req, res) => {
     res.sendFile(path.join(__dirname, "../public/html/login.html"));
 };
 
-/**
- * Valida las credenciales, inicia la sesión y renderiza la bienvenida con EJS.
- */
+
 export const validarLogin = async (req, res) => {
     const { correo, password } = req.body;
     try {
         const resultado = await verificarUsuario(correo, password);
 
         if (resultado.success) {
-            // --- INTEGRACIÓN DE SESIONES ---
+            // --- SESIONES ---
             req.session.userId = resultado.data.id;
             req.session.nombre = resultado.data.nombre;
             req.session.correo = resultado.data.correo;
 
-            // --- INTEGRACIÓN DE EJS ---
+            // ---EJS ---
             //return res.render('pages/bienvenida', { nombre: resultado.data.nombre });
             return res.status(200).json({ success: true });
         } else {
