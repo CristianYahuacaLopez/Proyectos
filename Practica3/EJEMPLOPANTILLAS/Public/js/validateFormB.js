@@ -73,7 +73,7 @@ form.addEventListener("submit", async (e)=> {
     //const datos = Object.fromEntries(new FormData(form));
     const formData = new FormData(form);
     const datos = Object.fromEntries(formData.entries());
-
+    console.log("antes");
     try {
         const response = await fetch("/validarLogin", {
             method: "POST",

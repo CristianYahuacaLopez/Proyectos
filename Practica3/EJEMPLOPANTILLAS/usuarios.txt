@@ -1,7 +1,7 @@
 ----------------------------------------------------------
 1. USUARIO: Cris
-   - Correo:Cris@gmail.com
-   - Password:Crismiau+2026
+   - Correo:cris@telematica.com
+   - Password:Crismiau2026+
    - Pregunta:Color favorito
    - Respuesta:Azul Marino
 

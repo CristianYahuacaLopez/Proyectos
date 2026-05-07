@@ -8,7 +8,6 @@
  *  3. Modificar contraseña
  */
 
-/* Archivo: models/userModel.js */
 
 import { readFile, writeFile } from 'fs/promises';
 import path from "path";
