@@ -25,11 +25,10 @@ export const sqlServerConfig = {
 // src/config/sqlserver.js
 export const getConnection = async () => {
   try {
-    // Es mejor usar un pool global para no abrir conexiones infinitas
     const pool = await sql.connect(sqlServerConfig);
     return pool;
   } catch (error) {
     console.error('¡ERROR CRÍTICO! No se pudo conectar a SQL Server:', error.message);
-    throw error; // Lanzar el error para que el controlador lo atrape
+    throw error; 
   }
 };
