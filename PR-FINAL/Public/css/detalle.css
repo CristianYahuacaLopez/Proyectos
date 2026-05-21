@@ -202,7 +202,7 @@
 
 .lux-card:hover {
     transform: translateY(-5px);
-    border-color: rgba(197, 159, 89, 0.805); /* Brillo dorado al pasar el mouse */
+    border-color: rgba(197, 159, 89, 0.581); /* Brillo dorado al pasar el mouse */
     background: #252525;
 }
 
