@@ -1,0 +1,125 @@
+/* Contenedor general del catálogo */
+.catalog-container {
+    padding: 140px 5% 60px 5%; /* Espacio arriba para que no lo tape la navbar fija */
+    max-width: 1300px;
+    margin: 0 auto;
+}
+
+/* Encabezado de la página */
+.catalog-header {
+    text-align: center;
+    margin-bottom: 50px;
+}
+
+.catalog-header h1 {
+    color: #FFFFFF;
+    font-size: 2.5rem;
+    font-weight: 300;
+    letter-spacing: 1px;
+    margin-bottom: 10px;
+}
+
+.catalog-header p {
+    color: #A0A0A0;
+    font-size: 1rem;
+}
+
+/* La magia del mosaico (CSS Grid) */
+.catalog-grid {
+    display: grid;
+    /* Crea columnas automáticas. Mínimo medirán 320px. Si hay espacio, se acomodan de 3 en 3 o de 4 en 4 */
+    grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+    gap: 40px; /* Espacio de separación entre tarjetas */
+}
+
+/* Diseño de cada tarjeta de casa */
+.house-card {
+    background: #1E1E1E; /* Gris oscuro para resaltar del fondo negro #1111 */
+    border-radius: 20px;
+    overflow: hidden; /* Corta las esquinas de la imagen para que sigan la curva */
+    border: 1px solid rgba(255, 255, 255, 0.05);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+/* Efecto flotante al pasar el mouse sobre la tarjeta */
+.house-card:hover {
+    transform: translateY(-8px);
+    box-shadow: 0 15px 30px rgba(0, 0, 0, 0.8), 0 0 15px rgba(197, 160, 89, 0.4);
+    border-color: #C5A059;
+}
+
+/* Contenedor de la foto y efecto de zoom */
+.card-img-container {
+    width: 100%;
+    height: 240px;
+    overflow: hidden;
+    background-color: #2a2a2a; /* Color de carga si no hay foto */
+}
+
+.card-img-container img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover; /* Ajusta la imagen sin deformarla */
+    transition: transform 0.5s ease;
+}
+
+.house-card:hover .card-img-container img {
+    transform: scale(1.06); /* Zoom suave a la foto al hacer hover */
+}
+
+/* Información interna de la tarjeta */
+.card-info {
+    padding: 25px;
+}
+
+.card-info h3 {
+    color: #FFFFFF;
+    font-size: 1.3rem;
+    margin-bottom: 5px;
+    font-weight: 600;
+}
+
+.card-info .location {
+    color: #C5A059; /* Ubicación en Dorado */
+    font-size: 0.9rem;
+    margin-bottom: 15px;
+    font-weight: 500;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+}
+
+/* Especificaciones (Hab, Baños, m2) */
+.card-info .specs {
+    color: #A0A0A0;
+    font-size: 0.9rem;
+    margin-bottom: 20px;
+}
+
+/* Precio */
+.card-info .price {
+    color: #FFFFFF;
+    font-size: 1.4rem;
+    font-weight: 700;
+    margin-bottom: 20px;
+}
+
+/* Botón "Ver Detalles" */
+.btn-view {
+    width: 100%;
+    padding: 12px;
+    background: transparent;
+    border: 1px solid #C5A059; /* Borde dorado */
+    color: #C5A059;
+    border-radius: 25px;
+    font-size: 0.9rem;
+    font-weight: 600;
+    cursor: pointer;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    transition: all 0.3s ease;
+}
+
+.btn-view:hover {
+    background: #C5A059; /* Se rellena de dorado */
+    color: #111111; /* Texto oscuro para contraste */
+}

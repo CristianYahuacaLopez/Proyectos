@@ -1,0 +1,311 @@
+/* Sección Hero Principal (Fondo de pantalla completa) */
+.detalle-hero {
+    /* IMPORTANTE: Necesitas una foto real de tu casa aquí */
+    background-image: url('../img/casa1.jpg'); 
+    background-size: cover;
+    background-position: center;
+    height: 100vh;
+    position: relative;
+    display: flex;
+    align-items: center;
+}
+
+/* Panel flotante estilo Vidrio Esmerilado (Glassmorphism de image_4.png + Lux Aesthetics) */
+.glass-panel {
+    position: absolute;
+    left: 7%; /* Lo separamos de la orilla izquierda */
+    top: 55%;
+    transform: translateY(-50%); /* Centrado verticalmente */
+    width: 90%;
+    max-width: 440px; /* Ancho similar a tu referencia */
+    
+    /* EFECTO GLASSMORPHISM LUXURY (Fondo negro transparente y desenfoque suave) */
+    background: rgba(17, 17, 17, 0.65);
+    backdrop-filter: blur(18px);
+    -webkit-backdrop-filter: blur(18px);
+    border: 1px solid rgba(255, 255, 255, 0.08); /* Borde sutil */
+    
+    padding: 35px;
+    border-radius: 12px;
+    color: white;
+    box-shadow: 0 20px 40px rgba(0, 0, 0, 0.6);
+}
+
+/* Encabezado del panel */
+.panel-header {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 8px;
+    margin-bottom: 25px;
+}
+
+.panel-header .project-sub {
+    color: #A0A0A0;
+    font-size: 0.8rem;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+}
+
+.property-title {
+    color: #FFFFFF;
+    font-size: 2.3rem; /* Título grande */
+    font-weight: 800;
+    letter-spacing: 1px;
+    text-shadow: 1px 1px 3px rgba(0,0,0,0.8);
+}
+
+/* Grupos de información (Icono + Texto) */
+.info-group {
+    display: flex;
+    align-items: flex-start;
+    gap: 15px;
+    margin-bottom: 25px;
+}
+
+.info-group .text-data p {
+    margin: 0;
+}
+
+.info-group .highlight {
+    font-size: 1.1rem;
+    font-weight: 600;
+    margin-bottom: 5px;
+}
+
+.info-group .sub-text {
+    font-size: 0.85rem;
+    color: #A0A0A0;
+}
+
+.info-group .price {
+    font-size: 1.3rem;
+    font-weight: 700;
+    margin-top: 5px;
+}
+
+/* Botón principal (Estilo "Conoce el desarrollo" de image_4.png adaptado) */
+.btn-main {
+    width: 100%;
+    padding: 16px;
+    background-color: transparent;
+    border: 1px solid #C5A059; /* Borde de Oro Sólido */
+    color: #C5A059; /* Texto de Oro Sólido */
+    font-size: 0.95rem;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    margin-top: 10px;
+    margin-bottom: 25px;
+}
+
+.btn-main:hover {
+    background-color: #C5A059; /* Se rellena de oro */
+    color: #111111; /* Texto oscuro para contraste */
+    transform: translateY(-2px); /* Animación suave */
+}
+
+/* Sección de compartir (Iconos cuadrados de image_4.png adaptados) */
+.share-section p {
+    font-size: 0.85rem;
+    color: #A0A0A0;
+    margin-bottom: 10px;
+}
+
+.social-icons {
+    display: flex;
+    gap: 10px;
+}
+
+/* Botoncitos cuadrados con iconos dorados */
+.social-icons a {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 38px;
+    height: 38px;
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    color: #FFFFFF;
+    text-decoration: none;
+    transition: all 0.3s ease;
+}
+
+.social-icons a:hover {
+    border-color: #C5A059; /* Borde oro sutil */
+    color: #C5A059; /* Icono oro */
+    background: rgba(197, 160, 89, 0.1);
+}
+
+/* Contenedor principal que envuelve todo lo de abajo */
+.property-details-container {
+    background-color: #111111; /* Fondo negro Lux House */
+    padding: 60px 5% 100px 5%;
+    color: #FFFFFF;
+}
+
+/* Estilo general para cada sección (Descripción, Características, Amenidades) */
+.detail-section {
+    max-width: 1100px;
+    margin: 0 auto 70px auto; /* Centrado y con margen inferior */
+}
+
+.detail-section h2 {
+    color: #FFFFFF;
+    font-size: 2rem;
+    font-weight: 300;
+    margin-bottom: 25px;
+    letter-spacing: 1px;
+    border-left: 4px solid #C5A059; /* Una rayita dorada elegante al lado del título */
+    padding-left: 15px;
+}
+
+/* 1. Sección de Descripción */
+.description-section p {
+    color: #A0A0A0;
+    font-size: 1.1rem;
+    line-height: 1.8;
+    max-width: 900px;
+}
+
+/* 2. y 3. Sistema de Cuadrículas (Para Características y Amenidades) */
+.cards-grid {
+    display: grid;
+    gap: 25px;
+}
+
+/* Características: Tarjetas más anchas (3 columnas) */
+.features-grid {
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+}
+
+/* Amenidades: Tarjetas más cuadradas (varias columnas) */
+.amenities-grid {
+    grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
+}
+
+/* Tarjeta universal Lux House (Usada en Características y Amenidades) */
+.lux-card {
+    background: #1E1E1E; /* Fondo gris oscuro */
+    padding: 30px 20px;
+    border-radius: 12px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    gap: 15px;
+    border: 1px solid rgba(255, 255, 255, 0.05);
+    transition: transform 0.3s ease, border-color 0.3s ease;
+}
+
+.lux-card:hover {
+    transform: translateY(-5px);
+    border-color: rgba(197, 159, 89, 0.805); /* Brillo dorado al pasar el mouse */
+    background: #252525;
+}
+
+.lux-card svg {
+    color: #C5A059; /* Iconos dorados */
+}
+
+.lux-card p {
+    margin: 0;
+    color: #FFFFFF;
+    font-size: 0.95rem;
+    font-weight: 500;
+}
+
+/* 4. Sección de Tour Virtual y Mapas */
+.media-container {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(400px, 1fr));
+    gap: 40px;
+}
+
+.media-box h2 {
+    font-size: 1.6rem;
+}
+
+/* Cajas preparadas para insertar los iframes después */
+.placeholder-frame {
+    width: 100%;
+    height: 350px;
+    background-color: #1A1A1A;
+    border: 2px dashed rgba(197, 159, 89, 0.641); /* Borde punteado dorado */
+    border-radius: 12px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: #A0A0A0;
+    font-size: 1rem;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+}
+
+
+.gallery-section {
+    width: 100%;
+    margin-bottom: 70px;
+}
+
+/* El título se mantiene alineado con el resto del texto */
+.gallery-header {
+    max-width: 1100px;
+    margin: 0 auto 30px auto;
+}
+
+.gallery-header h2 {
+    color: #FFFFFF;
+    font-size: 2rem;
+    font-weight: 300;
+    margin-bottom: 10px;
+    letter-spacing: 1px;
+    border-left: 4px solid #C5A059;
+    padding-left: 15px;
+}
+
+.gallery-header p {
+    color: #A0A0A0;
+    font-size: 1.1rem;
+    padding-left: 19px;
+}
+
+/* La cuadrícula que ocupa todo el espacio de forma asimétrica */
+.editorial-grid {
+    display: grid;
+    /* Divide el espacio en 3 partes: 2 para la foto grande, 1 para las chicas */
+    grid-template-columns: 2fr 1fr; 
+    grid-template-rows: 250px 250px; /* Dos filas de 250px de alto */
+    gap: 15px; /* Separación elegante entre fotos */
+    width: 100%; /* Obliga a estirarse a todo lo ancho de la pantalla */
+}
+
+/* Contenedor de cada foto */
+.gallery-item {
+    position: relative;
+    overflow: hidden;
+    border-radius: 8px; /* Bordes ligeramente redondeados */
+    background-color: #1A1A1A; /* Fondo de carga */
+}
+
+/* Hacemos que la foto de la izquierda abarque las dos filas */
+.item-large {
+    grid-row: span 2; 
+}
+
+/* Diseño interno de la imagen */
+.gallery-item img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    opacity: 0.75; /* Ligeramente oscurecidas para no deslumbrar el modo oscuro */
+    transition: transform 0.8s ease, opacity 0.5s ease;
+}
+
+/* Efecto al pasar el mouse: se ilumina y hace un ligero zoom in */
+.gallery-item:hover img {
+    transform: scale(1.05);
+    opacity: 1; /* Sube al 100% de luz */
+}
