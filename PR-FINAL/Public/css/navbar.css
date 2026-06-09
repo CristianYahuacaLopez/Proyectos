@@ -4,23 +4,24 @@
     top: 20px;
     left: 50%;
     transform: translateX(-50%);
-    width: 95%; /* Un poco más ancha */
+    width: 95%; 
     max-width: 1100px;
     display: flex;
     justify-content: space-between;
     align-items: center;
-    padding: 12px 30px; /* Un poco más delgada */
+    padding: 12px 30px; 
     border-radius: 50px;
     z-index: 100;
 
-    /* EFECTO GLASSMORPHISM (Ajustado para fondo oscuro) */
-    background: rgba(17, 17, 17, 0.6); /* Negro transparente */
+    /* EFECTO GLASSMORPHISM AUTOMÁTICO CON VARIABLES */
+    background: var(--nav-cristal); 
+    border: 1px solid var(--borde-sutil);
     backdrop-filter: blur(15px);
     -webkit-backdrop-filter: blur(15px);
-    border: 1px solid rgba(255, 255, 255, 0.08); /* Borde casi invisible */
+    transition: background 0.4s ease, border 0.4s ease;
 }
 
-/* Estilos del logo (Alineación con el nuevo SVG) */
+/* Estilos del logo (Alineación con el SVG) */
 .navbar .logo {
     display: flex;
     align-items: center;
@@ -28,9 +29,9 @@
 }
 
 .navbar .logo h2 {
-    color: #C5A059; 
-    font-size: 2rem; /* Mucho más grande y dominante */
-    letter-spacing: 3px; /* Un poco más de aire entre letras para que respire */
+    color: var(--acento-oro); 
+    font-size: 2rem; 
+    letter-spacing: 3px; 
     font-weight: 800;
 }
 
@@ -43,18 +44,20 @@
     padding: 0;
 }
 
-/* Estilos de los enlaces (Minimalismo Apple) */
+/* Estilos de los enlaces (Minimalismo Apple que cambia según el modo) */
 .nav-links a {
     text-decoration: none;
-    color: rgba(255, 255, 255, 0.8); /* Blanco ligeramente mate */
+    color: var(--texto-principal); /* Se vuelve oscuro en modo claro y blanco en oscuro */
     font-size: 0.8rem;
     font-weight: 500;
-    transition: all 0.3s ease;
+    transition: color 0.3s ease, opacity 0.3s ease;
     text-transform: uppercase;
     letter-spacing: 1px;
+    opacity: 0.9;
 }
 
 /* Efecto al pasar el mouse */
 .nav-links a:hover {
-    color: #C5A059; /* Blanco puro en hover */
+    color: var(--acento-oro); 
+    opacity: 1;
 }

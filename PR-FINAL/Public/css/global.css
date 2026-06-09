@@ -1,18 +1,57 @@
-/* Reseteo básico y Modo Oscuro por defecto */
+/* =========================================
+   VARIABLES MAESTRAS (MODO OSCURO POR DEFECTO)
+   ========================================= */
+:root {
+    --bg-base: #111111;           /* Fondo general oscuro */
+    --bg-superficies: #1E1E1E;    /* Fondo de tarjetas y paneles */
+    --bg-elementos: #1A1A1A;      /* Cajas de media o inputs */
+    --texto-principal: #FFFFFF;   /* Títulos y textos fuertes */
+    --texto-secundario: #A0A0A0;  /* Párrafos y subtítulos */
+    --acento-oro: #C5A059;        /* El dorado de Lux House */
+    --nav-cristal: rgba(17, 17, 17, 0.65); /* Cristal oscuro */
+    --borde-sutil: rgba(255, 255, 255, 0.08); /* Bordes casi invisibles */
+    --sombra-fuerte: rgba(0, 0, 0, 0.8);
+    --hero-overlay: rgba(0, 0, 0, 0.7); /* Filtro negro oscuro */
+    --hero-texto: #FFFFFF; /* Texto blanco puro */
+}
+
+/* =========================================
+   VARIABLES MODO CLARO (BLANCO HUESO)
+   ========================================= */
+body.modo-claro {
+    --bg-base: #F4F1EA;           /* Blanco hueso elegante */
+    --bg-superficies: #FFFFFF;    /* Tarjetas blancas y limpias */
+    --bg-elementos: #EBE6DC;      /* Cajas más oscuras que el fondo */
+    --texto-principal: #2B2B2B;   /* Texto oscuro para legibilidad */
+    --texto-secundario: #555555;  /* Texto gris oscuro */
+    --nav-cristal: rgba(255, 255, 255, 0.8); /* Cristal claro */
+    --borde-sutil: rgba(0, 0, 0, 0.1); /* Borde gris sutil */
+    --sombra-fuerte: rgba(0, 0, 0, 0.15); /* Sombras más suaves */
+    color-scheme: light;
+    --hero-overlay: rgba(222, 219, 219, 0.222); /* Filtro blanco translúcido sutil */
+    --hero-texto: #000000; /* Texto oscuro para que resalte */
+}
+
+/* =========================================
+   RESETEO Y APLICACIÓN BASE
+   ========================================= */
 * {
     margin: 0;
     padding: 0;
     box-sizing: border-box;
     font-family: 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
-    color-scheme: dark; /* Ayuda a los navegadores a renderizar elementos oscuros */
 }
 
 body {
-    background-color: #111111; /* Negro profundo de la tarjeta */
-    color: #E0E0E0; /* Gris muy claro para lectura */
+    background-color: var(--bg-base);
+    color: var(--texto-secundario);
+    transition: background-color 0.4s ease, color 0.4s ease; /* Transición suave */
 }
 
-/* Configuración de la imagen de fondo principal */
+/* =========================================
+   SECCIÓN PRINCIPAL (HERO)
+   Textos fijos en blanco por el fondo de la foto
+   ========================================= */
 .hero {
     background-image: url('../img/fondo.jpg'); 
     background-size: cover;
@@ -23,10 +62,9 @@ body {
     justify-content: center;
     text-align: center;
     position: relative;
-    background-color: #111111; /* Fallback por si no carga la imagen */
+    background-color: var(--bg-base); 
 }
 
-/* Filtro oscuro más intenso sobre la foto para un look más "Lux" */
 .hero::before {
     content: '';
     position: absolute;
@@ -34,32 +72,35 @@ body {
     left: 0;
     width: 100%;
     height: 100%;
-    background-color: rgba(0, 0, 0, 0.7); /* Aumentada la opacidad a 0.7 */
+    background-color: var(--hero-overlay); /* Filtro dinámico */
+    transition: background-color 0.4s ease; /* Para que el cambio de filtro sea suave */
     z-index: 1;
 }
 
-/* Estilos para el texto y el botón del centro */
 .hero-content {
     position: relative;
     z-index: 2;
-    color: white;
+    color: var(--hero-texto); /* Texto dinámico */
     max-width: 800px;
     padding: 20px;
+    transition: color 0.4s ease;
 }
 
 .hero h1 {
     font-size: 2.5rem;
-    font-weight: 300;
+    font-weight: 400;
     margin-bottom: 30px;
     letter-spacing: 1px;
+    color: var(--hero-texto); /* Texto dinámico */
+    transition: color 0.4s ease;
 }
 
-/* Botón con el Dorado oficial de Lux House */
+/* Botón principal */
 .btn-agenda {
     padding: 15px 40px;
     font-size: 1.1rem;
-    color: #111111; /* Texto oscuro sobre el botón dorado */
-    background-color: #C5A059; /* Dorado oficial */
+    color: #111111; 
+    background-color: var(--acento-oro); 
     border: none;
     border-radius: 30px; 
     cursor: pointer;
@@ -70,6 +111,41 @@ body {
 }
 
 .btn-agenda:hover {
-    background-color: #FFFFFF; /* Cambia a blanco en hover para contraste */
-    transform: translateY(-2px); /* Pequeña animación */
+    background-color: #FFFFFF; 
+    color: #111111;
+    transform: translateY(-2px); 
+}
+
+/* =========================================
+   BOTÓN DE MODO CLARO / OSCURO (FLOTANTE)
+   ========================================= */
+.tema-toggle {
+    position: fixed !important; /* Esto es la magia que lo hace flotar */
+    bottom: 30px !important;    /* Distancia desde el borde inferior */
+    left: 30px !important;      /* Distancia desde el borde izquierdo */
+    z-index: 9999 !important;   /* Asegura que siempre esté por encima de la foto */
+    
+    /* Diseño circular */
+    background-color: var(--bg-superficies); 
+    border: 1px solid var(--borde-sutil);
+    color: var(--texto-principal);
+    font-size: 1.5rem;
+    width: 50px;
+    height: 50px;
+    border-radius: 50%; /* Lo hace un círculo perfecto */
+    
+    /* Centrado del icono */
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    
+    /* Sombrita para que no se pierda */
+    box-shadow: 0 4px 15px var(--sombra-fuerte);
+    cursor: pointer;
+    transition: transform 0.3s ease, background-color 0.4s ease, border-color 0.4s ease;
+}
+
+.tema-toggle:hover {
+    transform: scale(1.15) rotate(15deg); /* Efecto divertido al pasar el mouse */
+    border-color: var(--acento-oro); 
 }
