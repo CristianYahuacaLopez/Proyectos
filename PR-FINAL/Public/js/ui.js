@@ -34,3 +34,14 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     }
 });
+
+// Funciones para el Modal de Opciones de Cita en el inicio
+function abrirModalOpciones() {
+    const modal = document.getElementById('modalOpciones');
+    if(modal) modal.style.display = 'flex';
+}
+
+function cerrarModalOpciones() {
+    const modal = document.getElementById('modalOpciones');
+    if(modal) modal.style.display = 'none';
+}

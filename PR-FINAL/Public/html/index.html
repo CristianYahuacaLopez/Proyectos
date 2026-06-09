@@ -35,9 +35,26 @@
     <header class="hero">
         <div class="hero-content">
             <h1>SOMOS UNA INMOBILIARIA QUE QUIERE QUE ENCUENTRES TU PRÓXIMO HOGAR</h1>
-            <button class="btn-agenda" onclick="window.location.href='/html/captura.html'">AGENDA UNA CITA</button>
+            <button class="btn-agenda" onclick="abrirModalOpciones()">AGENDA UNA CITA</button>
         </div>
     </header>
+
+    <div id="modalOpciones" class="modal-overlay" style="display: none;">
+        <div class="glass-card modal-content" style="background: var(--bg-superficies); border: 1px solid var(--borde-sutil); border-radius: 15px; padding: 40px; text-align: center; max-width: 450px; width: 90%;">
+            <h3 style="color: var(--texto-principal); font-size: 1.8rem; margin-bottom: 15px;">¿En qué podemos ayudarte?</h3>
+            <p style="color: var(--texto-secundario); margin-bottom: 25px;">Selecciona la operación que deseas realizar para dirigirte al formulario adecuado.</p>
+            
+            <div style="display: flex; flex-direction: column; gap: 15px;">
+                <!-- Estos botones llevarán a los 3 nuevos archivos que crearemos -->
+                <button class="btn-opcion" onclick="window.location.href='/html/comprar.html'">Quiero Comprar una Propiedad</button>
+                <button class="btn-opcion" onclick="window.location.href='/html/vender.html'">Quiero Vender mi Propiedad</button>
+                <button class="btn-opcion" onclick="window.location.href='/html/tramite.html'">Trámite o Servicio Especializado</button>
+            </div>
+
+            <!-- Botón para cerrar la ventanita -->
+            <button onclick="cerrarModalOpciones()" style="margin-top: 25px; background: transparent; border: none; color: var(--texto-secundario); cursor: pointer; text-decoration: underline; font-size: 0.9rem;">Cancelar</button>
+        </div>
+    </div>
 
     <button id="btn-tema" class="tema-toggle" title="Cambiar tema">☀️</button>
 

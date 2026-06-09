@@ -149,3 +149,40 @@ body {
     transform: scale(1.15) rotate(15deg); /* Efecto divertido al pasar el mouse */
     border-color: var(--acento-oro); 
 }
+
+/* =========================================
+   MODALES Y VENTANAS EMERGENTES
+   ========================================= */
+.modal-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.8);
+    backdrop-filter: blur(8px);
+    -webkit-backdrop-filter: blur(8px);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 2000; 
+}
+
+/* Botones de selección de formulario */
+.btn-opcion {
+    padding: 15px;
+    background-color: transparent;
+    color: var(--acento-oro);
+    border: 1px solid var(--acento-oro);
+    border-radius: 8px;
+    font-size: 1rem;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+.btn-opcion:hover {
+    background-color: var(--acento-oro);
+    color: #111111;
+    transform: translateY(-2px);
+}

@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Lux House | Comprar Propiedad</title>
+    
+    <link rel="stylesheet" href="../css/global.css">
+    <link rel="stylesheet" href="../css/navbar.css">
+    <link rel="stylesheet" href="../css/captura.css">
+</head>
+<body>
+
+    <!-- Menú de Navegación -->
+    <nav class="navbar">
+        <div class="logo">
+            <svg width="45" height="45" viewBox="0 0 100 100" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <path d="M50 10L15 40V90H85V40L50 10Z" stroke="#C5A059" stroke-width="6" stroke-linejoin="round"/>
+                <path d="M30 50V75H45" stroke="#C5A059" stroke-width="6" stroke-linecap="round" stroke-linejoin="round"/>
+                <path d="M55 50V75" stroke="#C5A059" stroke-width="6" stroke-linecap="round"/>
+                <path d="M70 50V75" stroke="#C5A059" stroke-width="6" stroke-linecap="round"/>
+                <path d="M55 62.5H70" stroke="#C5A059" stroke-width="6" stroke-linecap="round"/>
+            </svg>
+            <h2>LUX HOUSE</h2>
+        </div>
+        <ul class="nav-links">
+            <li><a href="/">INICIO</a></li>
+            <li><a href="/html/catalogo.html">CATÁLOGO</a></li>
+            <li><a href="#">SERVICIOS</a></li>
+            <li><a href="#">TRÁMITES</a></li>
+            <li><a href="#">BLOG</a></li>
+        </ul>
+    </nav>
+
+    <!-- Formulario Principal -->
+    <div class="form-container">
+        <div class="glass-card">
+            <h2 class="form-main-title">Comprar una Propiedad</h2>
+            <p class="form-subtitle">Cuéntanos qué estás buscando y encontraremos la residencia ideal para ti.</p>
+            
+            <form id="formComprar">
+                <div class="section-title">Datos del Interesado</div>
+                <div class="row">
+                    <div class="col">
+                        <label for="nombre">Nombre:</label>
+                        <input type="text" id="nombre" name="nombre" placeholder="Ej. Cristian" required>
+                    </div>
+                    <div class="col">
+                        <label for="apellido">Apellido:</label>
+                        <input type="text" id="apellido" name="apellido" placeholder="Ej. Apellido" required>
+                    </div>
+                </div>
+                
+                <label for="correo">Correo Electrónico:</label>
+                <input type="email" id="correo" name="correo" placeholder="correo@cliente.com" required>
+
+                <div class="row">
+                    <div class="col">
+                        <label for="telefono_principal">Teléfono Principal:</label>
+                        <input type="tel" id="telefono_principal" name="telefono_principal" required>
+                    </div>
+                    <div class="col">
+                        <label for="telefono_secundario">Teléfono Secundario:</label>
+                        <input type="tel" id="telefono_secundario" name="telefono_secundario" placeholder="Opcional">
+                    </div>
+                </div>
+
+                <div class="section-title">Preferencias de Búsqueda</div>
+                <div class="row">
+                    <div class="col">
+                        <label for="presupuesto">Presupuesto Estimado ($):</label>
+                        <input type="number" id="presupuesto" name="presupuesto" step="0.01" placeholder="Ej. 2000000" required>
+                    </div>
+                    <div class="col">
+                        <label for="forma_pago">Forma de Pago:</label>
+                        <select id="forma_pago" name="forma_pago" required>
+                            <option value="" disabled selected>Seleccione...</option>
+                            <option value="1">Compra de contado</option>
+                            <option value="2">Crédito Infonavit</option>
+                            <option value="3">Crédito Bancario / Particulares</option>
+                        </select>
+                    </div>
+                </div>
+
+                <div class="btn-group">
+                    <button type="button" class="btn-cancelar" onclick="window.location.href='/'">Cancelar</button>
+                    <button type="button" class="btn-registrar" onclick="document.getElementById('modalExito').style.display='flex'">Agendar Asesoría</button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <!-- Modal de Éxito -->
+    <div id="modalExito" class="modal-overlay" style="display: none;">
+        <div class="glass-card modal-content">
+            <h3 style="color: var(--texto-principal); font-size: 1.8rem; margin-bottom: 15px;">¡Listo para comenzar!</h3>
+            <p style="color: var(--texto-secundario); margin-bottom: 25px;">Hemos recibido tus preferencias. Un experto de Lux House te mostrará las mejores opciones de nuestro catálogo.</p>
+            <button onclick="window.location.href='/'" class="btn-registrar" style="width: 100%;">Volver al Inicio</button>
+        </div>
+    </div>
+
+    <button id="btn-tema" class="tema-toggle" title="Cambiar tema">☀️</button>
+    <script src="../js/ui.js"></script>
+</body>
+</html>
