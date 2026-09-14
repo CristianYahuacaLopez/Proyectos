@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Lux House | Servicios Inmobiliarios</title>
+    <link rel="stylesheet" href="../css/global.css">
+    <link rel="stylesheet" href="../css/navbar.css">
+    <link rel="stylesheet" href="../css/servicios.css">
+</head>
+<body>
+    <nav class="navbar">
+        <div class="logo">
+            <svg width="45" height="45" viewBox="0 0 100 100" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <path d="M50 10L15 40V90H85V40L50 10Z" stroke="#C5A059" stroke-width="6" stroke-linejoin="round"/>
+                <path d="M30 50V75H45" stroke="#C5A059" stroke-width="6" stroke-linecap="round" stroke-linejoin="round"/>
+                <path d="M55 50V75" stroke="#C5A059" stroke-width="6" stroke-linecap="round"/>
+                <path d="M70 50V75" stroke="#C5A059" stroke-width="6" stroke-linecap="round"/>
+                <path d="M55 62.5H70" stroke="#C5A059" stroke-width="6" stroke-linecap="round"/>
+            </svg>
+            <h2>LUX HOUSE</h2>
+        </div>
+        <ul class="nav-links">
+            <li><a href="/">INICIO</a></li>
+            <li><a href="/html/catalogo.html">CATÁLOGO</a></li>
+            <li><a href="/html/servicios.html">SERVICIOS</a></li>
+            <li><a href="/html/tramites.html">TRÁMITES</a></li>
+            <li><a href="/html/blog.html">BLOG</a></li>
+        </ul>
+    </nav>
+
+    <main class="showcase-container">
+        <header class="showcase-header">
+            <h1>Servicios Exclusivos</h1>
+            <p>Soluciones integrales para tu patrimonio inmobiliario.</p>
+        </header>
+
+        <section class="services-grid">
+            <article class="service-card">
+                <svg width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"></path><polyline points="9 22 9 12 15 12 15 22"></polyline></svg>
+                <h3>Compra y Venta</h3>
+                <p>Asesoría especializada para adquirir propiedades de lujo o posicionar tu inmueble en el mercado ideal.</p>
+                <a href="/html/tramite.html?servicio=srv_compra_part" class="btn-outline">Solicitar Asesoría</a>
+            </article>
+
+            <article class="service-card">
+                <svg width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="5" width="20" height="14" rx="2"></rect><line x1="2" y1="10" x2="22" y2="10"></line></svg>
+                <h3>Créditos Bancarios</h3>
+                <p>Gestión y aprobación de créditos hipotecarios e Infonavit con las mejores tasas del sector financiero.</p>
+                <a href="/html/tramite.html?servicio=srv_infonavit" class="btn-outline">Solicitar Asesoría</a>
+            </article>
+
+            <article class="service-card">
+                <svg width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2v20"></path><path d="M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"></path></svg>
+                <h3>Operaciones de Contado</h3>
+                <p>Acompañamiento legal y fiscal para transacciones de contado, garantizando seguridad y rapidez.</p>
+                <a href="/html/tramite.html?servicio=srv_contado" class="btn-outline">Solicitar Asesoría</a>
+            </article>
+        </section>
+    </main>
+    <button id="btn-tema" class="tema-toggle" title="Cambiar tema">☀️</button>
+    <script src="../js/ui.js"></script>
+</body>
+</html>

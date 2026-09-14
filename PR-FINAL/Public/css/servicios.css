@@ -1,0 +1,17 @@
+/* Contenedor principal para Servicios y Trámites */
+.showcase-container { padding: 140px 5% 80px 5%; max-width: 1200px; margin: 0 auto; }
+.showcase-header { text-align: center; margin-bottom: 60px; }
+.showcase-header h1 { color: var(--texto-principal); font-size: 2.5rem; font-weight: 300; letter-spacing: 1px; margin-bottom: 10px; }
+.showcase-header p { color: var(--texto-secundario); font-size: 1.1rem; }
+
+/* Grid de Tarjetas de Servicio */
+.services-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 30px; margin-bottom: 80px; }
+.service-card { background: var(--bg-superficies); border: 1px solid var(--borde-sutil); border-radius: 15px; padding: 40px 30px; text-align: center; transition: transform 0.4s ease, border-color 0.4s ease, box-shadow 0.4s ease; }
+.service-card:hover { transform: translateY(-8px); border-color: var(--acento-oro); box-shadow: 0 15px 30px var(--sombra-fuerte); }
+.service-card svg { color: var(--acento-oro); margin-bottom: 20px; }
+.service-card h3 { color: var(--texto-principal); font-size: 1.3rem; margin-bottom: 15px; font-weight: 600; }
+.service-card p { color: var(--texto-secundario); font-size: 0.95rem; margin-bottom: 25px; line-height: 1.5; }
+
+/* Botones transparentes */
+.btn-outline { padding: 12px 25px; background: transparent; border: 1px solid var(--acento-oro); color: var(--acento-oro); border-radius: 25px; font-size: 0.9rem; font-weight: 600; cursor: pointer; text-transform: uppercase; letter-spacing: 1px; transition: all 0.3s ease; text-decoration: none; display: inline-block; }
+.btn-outline:hover { background: var(--acento-oro); color: #111111; }

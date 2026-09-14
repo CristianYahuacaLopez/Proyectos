@@ -37,9 +37,9 @@
         <ul class="nav-links">
             <li><a href="/">INICIO</a></li>
             <li><a href="/html/catalogo.html">CATÁLOGO</a></li>
-            <li><a href="#">SERVICIOS</a></li>
-            <li><a href="#">TRÁMITES</a></li>
-            <li><a href="#">BLOG</a></li>
+            <li><a href="/html/servicios.html">SERVICIOS</a></li>
+            <li><a href="/html/tramites.html">TRÁMITES</a></li>
+            <li><a href="/html/blog.html">BLOG</a></li>
         </ul>
     </nav>
 
@@ -138,7 +138,7 @@
 
                 <!-- Botones -->
                 <div class="btn-group">
-                    <button type="button" class="btn-cancelar" onclick="window.location.href='/'">Cancelar</button>
+                    <button type="button" class="btn-cancelar" onclick="window.history.back()">Cancelar</button>
                     <button type="button" class="btn-registrar" onclick="document.getElementById('modalExito').style.display='flex'">Solicitar Presupuesto</button>
                 </div>
             </form>
@@ -166,6 +166,34 @@
             const toggleTramites = document.getElementById('toggle_tramites');
             const seccionTramites = document.getElementById('seccion_tramites');
             const contenedorUbicacion = document.getElementById('contenedor_ubicacion');
+
+            // --- NUEVO: Lector de URL ---
+            const urlParams = new URLSearchParams(window.location.search);
+            const servicioSolicitado = urlParams.get('servicio');
+            const tramiteSolicitado = urlParams.get('tramite');
+
+            // Si viene de una tarjeta de Servicio principal
+            if (servicioSolicitado) {
+                const checkboxServicio = document.getElementById(servicioSolicitado);
+                if (checkboxServicio) {
+                    checkboxServicio.checked = true;
+                    // Disparamos el evento 'change' para que se abran los trámites sugeridos
+                    checkboxServicio.dispatchEvent(new Event('change')); 
+                }
+            }
+
+            // Si viene directo de una barra de Trámite específico
+            if (tramiteSolicitado) {
+                toggleTramites.checked = true;
+                seccionTramites.style.display = 'block'; // Abrimos la caja oculta
+                
+                const checkboxTramite = document.getElementById(tramiteSolicitado);
+                if (checkboxTramite) {
+                    checkboxTramite.checked = true;
+                    checkboxTramite.dispatchEvent(new Event('change')); // Evalúa si necesita dirección
+                }
+            }
+            // -----------------------------
 
             // Mostrar/ocultar panel de trámites
             toggleTramites.addEventListener('change', function() {
