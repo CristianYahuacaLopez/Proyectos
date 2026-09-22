@@ -23,12 +23,13 @@
             </svg>
             <h2>LUX HOUSE</h2>
         </div>
-        <ul class="nav-links">
-            <li><a href="/">INICIO</a></li>
-            <li><a href="/html/catalogo.html">CATÁLOGO</a></li>
-            <li><a href="/html/servicios.html">SERVICIOS</a></li>
-            <li><a href="/html/tramites.html">TRÁMITES</a></li>
-            <li><a href="/html/blog.html">BLOG</a></li>
+      <ul class="nav-links">
+            <li><a href="index.html">INICIO</a></li>
+            <li><a href="catalogo.html">CATÁLOGO</a></li>
+            <li><a href="servicios.html">SERVICIOS</a></li>
+            <li><a href="tramites.html">TRÁMITES</a></li>
+            <li><a href="blog.html">BLOG</a></li>
+            <li><a href="login.html" style="color: var(--acento-oro); font-weight: bold;">🔑 INTRANET</a></li>
         </ul>
     </nav>
 
@@ -104,8 +105,9 @@
                 </div>
 
                 <div class="btn-group">
-                    <button type="button" class="btn-cancelar" onclick="window.location.href='/'">Cancelar</button>
-                    <button type="button" class="btn-registrar" onclick="document.getElementById('modalExito').style.display='flex'">Agendar Asesoría</button>
+                   <button type="button" class="btn-cancelar" onclick="window.location.href='index.html'">Cancelar</button>
+                    <!-- Al hacer clic, por ahora mostramos el modal de éxito para que vean que funciona -->
+                    <button type="button" class="btn-registrar" onclick="document.getElementById('modalExito').style.display='flex'">Enviar Solicitud</button>
                 </div>
             </form>
         </div>

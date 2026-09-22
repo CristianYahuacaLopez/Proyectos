@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Lux House | Acceso Corporativo</title>
+    
+    <link rel="stylesheet" href="../css/global.css">
+    <link rel="stylesheet" href="../css/navbar.css">
+    <link rel="stylesheet" href="../css/captura.css"> <!-- Reutilizamos estilos de botones -->
+    <link rel="stylesheet" href="../css/login.css">
+</head>
+<body>
+
+    <nav class="navbar">
+        <div class="logo">
+            <h2>LUX HOUSE | CORPORATIVO</h2>
+        </div>
+     <ul class="nav-links">
+        <li><a href="index.html">INICIO</a></li>
+        <li><a href="catalogo.html">CATÁLOGO</a></li>
+        <li><a href="servicios.html">SERVICIOS</a></li>
+        <li><a href="tramites.html">TRÁMITES</a></li>
+        <li><a href="blog.html">BLOG</a></li>
+        <li><a href="login.html" style="color: var(--acento-oro); font-weight: bold;">🔑 INTRANET</a></li>
+     </ul>
+    </nav>
+
+    <div class="login-container">
+        <div class="glass-card login-card">
+            <h2 class="form-main-title">Iniciar Sesión</h2>
+            <p class="form-subtitle">Acceso exclusivo para personal autorizado.</p>
+            
+            <form id="formLogin">
+                <label for="correo">Correo Corporativo:</label>
+                <input type="email" id="correo" required placeholder="admin@empresa.com">
+
+                <label for="contrasena">Contraseña:</label>
+                <input type="password" id="contrasena" required placeholder="••••••">
+
+                <button type="submit" class="btn-registrar" style="width: 100%;">Entrar al Sistema</button>
+            </form>
+            
+            <div id="loginError" class="error-msg"></div>
+        </div>
+    </div>
+
+    <button id="btn-tema" class="tema-toggle" title="Cambiar tema">☀️</button>
+    <script src="../js/ui.js"></script>
+    <script src="../js/login.js"></script>
+</body>
+</html>
