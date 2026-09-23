@@ -27,7 +27,6 @@
             <li><a href="servicios.html">SERVICIOS</a></li>
             <li><a href="tramites.html">TRÁMITES</a></li>
             <li><a href="blog.html">BLOG</a></li>
-            <li><a href="login.html" style="color: var(--acento-oro); font-weight: bold;">🔑 INTRANET</a></li>
         </ul>
     </nav>
 
@@ -78,8 +77,8 @@
                         </span>
                     </div>
                     <p class="price">$14,500,000 MXN</p>
-                    <a href="detalle.html" class="btn-link"></a>
-                        <button class="btn-view">Ver Detalles</button>
+                    <a href="detalle.html" style="text-decoration: none;">
+                     <button class="btn-view">Ver Detalles</button>
                     </a>
                 </div>
             </article>
@@ -172,7 +171,13 @@
 
         </section>
     </main>
-    <button id="btn-tema" class="tema-toggle" title="Cambiar tema">☀️</button>
+
+        <div class="floating-controls">
+        <button id="btn-tema" class="tema-toggle" title="Cambiar tema">☀️</button>
+            <a href="login.html" class="btn-login-flotante">
+                <span>👤</span> Iniciar Sesión
+            </a>
+    </div>
     
     <script src="../js/ui.js"></script>
 

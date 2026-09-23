@@ -30,9 +30,10 @@
 
 .navbar .logo h2 {
     color: var(--acento-oro); 
-    font-size: 2rem; 
+    font-size: 1.0rem; /* Reducido para acomodar la palabra "CORPORATIVO" */
     letter-spacing: 3px; 
     font-weight: 800;
+    white-space: nowrap; /* Evita estrictamente que el texto se rompa en dos líneas */
 }
 
 /* Estilos de la lista de links */

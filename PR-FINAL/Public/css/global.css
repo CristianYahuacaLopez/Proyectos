@@ -2,34 +2,34 @@
    VARIABLES MAESTRAS (MODO OSCURO POR DEFECTO)
    ========================================= */
 :root {
-    --bg-base: #111111;           /* Fondo general oscuro */
-    --bg-superficies: #1E1E1E;    /* Fondo de tarjetas y paneles */
-    --bg-elementos: #1A1A1A;      /* Cajas de media o inputs */
-    --texto-principal: #FFFFFF;   /* Títulos y textos fuertes */
-    --texto-secundario: #A0A0A0;  /* Párrafos y subtítulos */
-    --acento-oro: #C5A059;        /* El dorado de Lux House */
-    --nav-cristal: rgba(17, 17, 17, 0.65); /* Cristal oscuro */
-    --borde-sutil: rgba(255, 255, 255, 0.08); /* Bordes casi invisibles */
+    --bg-base: #111111;           
+    --bg-superficies: #1E1E1E;    
+    --bg-elementos: #1A1A1A;      
+    --texto-principal: #FFFFFF;   
+    --texto-secundario: #A0A0A0;  
+    --acento-oro: #C5A059;        
+    --nav-cristal: rgba(17, 17, 17, 0.65); 
+    --borde-sutil: rgba(255, 255, 255, 0.08); 
     --sombra-fuerte: rgba(0, 0, 0, 0.8);
-    --hero-overlay: rgba(0, 0, 0, 0.7); /* Filtro negro oscuro */
-    --hero-texto: #FFFFFF; /* Texto blanco puro */
+    --hero-overlay: rgba(0, 0, 0, 0.7); 
+    --hero-texto: #FFFFFF; 
 }
 
 /* =========================================
    VARIABLES MODO CLARO (BLANCO HUESO)
    ========================================= */
 body.modo-claro {
-    --bg-base: #F4F1EA;           /* Blanco hueso elegante */
-    --bg-superficies: #FFFFFF;    /* Tarjetas blancas y limpias */
-    --bg-elementos: #EBE6DC;      /* Cajas más oscuras que el fondo */
-    --texto-principal: #2B2B2B;   /* Texto oscuro para legibilidad */
-    --texto-secundario: #555555;  /* Texto gris oscuro */
-    --nav-cristal: rgba(255, 255, 255, 0.8); /* Cristal claro */
-    --borde-sutil: rgba(0, 0, 0, 0.1); /* Borde gris sutil */
-    --sombra-fuerte: rgba(0, 0, 0, 0.15); /* Sombras más suaves */
+    --bg-base: #F4F1EA;           
+    --bg-superficies: #FFFFFF;    
+    --bg-elementos: #EBE6DC;      
+    --texto-principal: #2B2B2B;   
+    --texto-secundario: #555555;  
+    --nav-cristal: rgba(255, 255, 255, 0.8); 
+    --borde-sutil: rgba(0, 0, 0, 0.1); 
+    --sombra-fuerte: rgba(0, 0, 0, 0.15); 
     color-scheme: light;
-    --hero-overlay: rgba(222, 219, 219, 0.222); /* Filtro blanco translúcido sutil */
-    --hero-texto: #000000; /* Texto oscuro para que resalte */
+    --hero-overlay: rgba(222, 219, 219, 0.222); 
+    --hero-texto: #000000; 
 }
 
 /* =========================================
@@ -45,12 +45,11 @@ body.modo-claro {
 body {
     background-color: var(--bg-base);
     color: var(--texto-secundario);
-    transition: background-color 0.4s ease, color 0.4s ease; /* Transición suave */
+    transition: background-color 0.4s ease, color 0.4s ease; 
 }
 
 /* =========================================
    SECCIÓN PRINCIPAL (HERO)
-   Textos fijos en blanco por el fondo de la foto
    ========================================= */
 .hero {
     background-image: url('../img/fondo.jpg'); 
@@ -72,15 +71,15 @@ body {
     left: 0;
     width: 100%;
     height: 100%;
-    background-color: var(--hero-overlay); /* Filtro dinámico */
-    transition: background-color 0.4s ease; /* Para que el cambio de filtro sea suave */
+    background-color: var(--hero-overlay); 
+    transition: background-color 0.4s ease; 
     z-index: 1;
 }
 
 .hero-content {
     position: relative;
     z-index: 2;
-    color: var(--hero-texto); /* Texto dinámico */
+    color: var(--hero-texto); 
     max-width: 800px;
     padding: 20px;
     transition: color 0.4s ease;
@@ -91,11 +90,10 @@ body {
     font-weight: 400;
     margin-bottom: 30px;
     letter-spacing: 1px;
-    color: var(--hero-texto); /* Texto dinámico */
+    color: var(--hero-texto); 
     transition: color 0.4s ease;
 }
 
-/* Botón principal */
 .btn-agenda {
     padding: 15px 40px;
     font-size: 1.1rem;
@@ -117,40 +115,6 @@ body {
 }
 
 /* =========================================
-   BOTÓN DE MODO CLARO / OSCURO (FLOTANTE)
-   ========================================= */
-.tema-toggle {
-    position: fixed !important; /* Esto es la magia que lo hace flotar */
-    bottom: 30px !important;    /* Distancia desde el borde inferior */
-    left: 30px !important;      /* Distancia desde el borde izquierdo */
-    z-index: 9999 !important;   /* Asegura que siempre esté por encima de la foto */
-    
-    /* Diseño circular */
-    background-color: var(--bg-superficies); 
-    border: 1px solid var(--borde-sutil);
-    color: var(--texto-principal);
-    font-size: 1.5rem;
-    width: 50px;
-    height: 50px;
-    border-radius: 50%; /* Lo hace un círculo perfecto */
-    
-    /* Centrado del icono */
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    
-    /* Sombrita para que no se pierda */
-    box-shadow: 0 4px 15px var(--sombra-fuerte);
-    cursor: pointer;
-    transition: transform 0.3s ease, background-color 0.4s ease, border-color 0.4s ease;
-}
-
-.tema-toggle:hover {
-    transform: scale(1.15) rotate(15deg); /* Efecto divertido al pasar el mouse */
-    border-color: var(--acento-oro); 
-}
-
-/* =========================================
    MODALES Y VENTANAS EMERGENTES
    ========================================= */
 .modal-overlay {
@@ -168,7 +132,6 @@ body {
     z-index: 2000; 
 }
 
-/* Botones de selección de formulario */
 .btn-opcion {
     padding: 15px;
     background-color: transparent;
@@ -185,4 +148,93 @@ body {
     background-color: var(--acento-oro);
     color: #111111;
     transform: translateY(-2px);
+}
+
+/* =========================================
+   CONTROLES FLOTANTES (TEMA Y LOGIN)
+   ========================================= */
+.floating-controls {
+    position: fixed;
+    bottom: 20px;
+    left: 20px;
+    display: flex;
+    align-items: center;
+    gap: 15px; 
+    z-index: 9999;
+}
+
+.tema-toggle {
+    background-color: var(--bg-superficies); 
+    border: 1px solid var(--borde-sutil);
+    color: var(--texto-principal);
+    font-size: 1.5rem;
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    box-shadow: 0 4px 15px var(--sombra-fuerte);
+    cursor: pointer;
+    transition: transform 0.3s ease, background-color 0.4s ease, border-color 0.4s ease;
+    margin: 0;
+}
+
+.tema-toggle:hover {
+    transform: scale(1.15) rotate(15deg); 
+    border-color: var(--acento-oro); 
+}
+
+.btn-login-flotante {
+    position: fixed; /* Lo separa del contenedor y lo ancla a la pantalla */
+    bottom: 20px;
+    right: 20px; /* Lo manda directamente a la esquina derecha */
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    background: var(--acento-oro);
+    color: #111;
+    padding: 10px 22px;
+    border-radius: 30px;
+    text-decoration: none;
+    font-weight: 600;
+    font-size: 0.9rem;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3);
+    transition: all 0.3s ease;
+    z-index: 9999; /* Asegura que flote sobre todo lo demás */
+}
+
+.btn-login-flotante:hover {
+    transform: translateY(-3px); 
+    box-shadow: 0 6px 20px rgba(197, 160, 89, 0.5);
+    background: #FFFFFF; 
+}
+
+/* Clase dinámica para marcar errores en el formulario */
+.input-error {
+    border: 2px solid #ff4d4d !important;
+    box-shadow: 0 0 8px rgba(255, 77, 77, 0.4) !important;
+    transition: all 0.3s ease;
+}
+
+/* Borde rojo personalizado */
+.input-error {
+    border: 1px solid #ff4d4d !important;
+    outline: none !important; /* Quita el resplandor amarillo/naranja por defecto */
+}
+
+/* Letra pequeña debajo del input */
+.error-text {
+    color: #ff4d4d;
+    font-size: 0.8rem;
+    margin-top: 4px;
+    display: block;
+    font-weight: 500;
+    animation: aparecer 0.3s ease;
+}
+
+/* Efecto suave para que el texto no aparezca de golpe */
+@keyframes aparecer {
+    from { opacity: 0; transform: translateY(-5px); }
+    to { opacity: 1; transform: translateY(0); }
 }

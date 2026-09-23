@@ -30,7 +30,6 @@
         <li><a href="servicios.html">SERVICIOS</a></li>
         <li><a href="tramites.html">TRÁMITES</a></li>
         <li><a href="blog.html">BLOG</a></li>
-        <li><a href="login.html" style="color: var(--acento-oro); font-weight: bold;">🔑 INTRANET</a></li>
     </ul>
         </nav>
 
@@ -48,9 +47,9 @@
             
             <div style="display: flex; flex-direction: column; gap: 15px;">
                 <!-- Estos botones llevarán a los 3 nuevos archivos que crearemos -->
-                <button class="btn-opcion" onclick="window.location.href='/html/comprar.html'">Quiero Comprar una Propiedad</button>
-                <button class="btn-opcion" onclick="window.location.href='/html/vender.html'">Quiero Vender mi Propiedad</button>
-                <button class="btn-opcion" onclick="window.location.href='/html/tramite.html'">Trámite o Servicio Especializado</button>
+                <button class="btn-opcion" onclick="window.location.href='comprar.html'">Quiero Comprar una Propiedad</button>
+                <button class="btn-opcion" onclick="window.location.href='vender.html'">Quiero Vender mi Propiedad</button>
+                <button class="btn-opcion" onclick="window.location.href='tramite.html'">Trámite o Servicio Especializado</button>
             </div>
 
             <!-- Botón para cerrar la ventanita -->
@@ -58,8 +57,12 @@
         </div>
     </div>
 
-    <button id="btn-tema" class="tema-toggle" title="Cambiar tema">☀️</button>
-
+    <div class="floating-controls">
+        <button id="btn-tema" class="tema-toggle" title="Cambiar tema">☀️</button>
+            <a href="login.html" class="btn-login-flotante">
+                <span>👤</span> Iniciar Sesión
+            </a>
+    </div>
     <script src="../js/ui.js"></script>
 </body>
 </html>

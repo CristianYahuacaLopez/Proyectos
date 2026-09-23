@@ -1,0 +1,112 @@
+/* =========================================
+   ESTILOS DEL PANEL DE ADMINISTRACIÓN
+   ========================================= */
+
+.panel-container {
+    padding: 120px 5% 80px 5%; 
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+.panel-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 40px;
+}
+
+.welcome-msg h1 {
+    color: var(--texto-principal);
+    font-size: 2.2rem;
+    font-weight: 300;
+}
+
+.welcome-msg p {
+    color: var(--acento-oro);
+    font-weight: 600;
+    font-size: 1.1rem;
+    margin-top: 5px;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+}
+
+/* Tabla con diseño de cristal */
+.glass-table-container {
+    background: var(--bg-superficies);
+    border: 1px solid var(--borde-sutil);
+    border-radius: 15px;
+    padding: 30px;
+    box-shadow: 0 15px 30px var(--sombra-fuerte);
+    overflow-x: auto;
+}
+
+table {
+    width: 100%;
+    border-collapse: collapse;
+    text-align: left;
+}
+
+th {
+    color: var(--texto-secundario);
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    font-size: 0.9rem;
+    padding: 15px;
+    border-bottom: 1px solid var(--borde-sutil);
+}
+
+td {
+    color: var(--texto-principal);
+    padding: 15px;
+    border-bottom: 1px solid var(--borde-sutil);
+    font-size: 0.95rem;
+}
+
+tr:hover td {
+    background-color: var(--bg-elementos);
+}
+
+/* Etiquetas y Botones del Panel */
+.badge-rol {
+    display: inline-block;
+    background: rgba(197, 160, 89, 0.15);
+    color: var(--acento-oro);
+    padding: 5px 12px;
+    border-radius: 20px;
+    font-size: 0.8rem;
+    font-weight: bold;
+}
+
+.btn-logout {
+    padding: 10px 20px;
+    background-color: transparent;
+    color: #ff4d4d;
+    border: 1px solid #ff4d4d;
+    border-radius: 8px;
+    font-size: 0.9rem;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+.btn-logout:hover {
+    background-color: #ff4d4d;
+    color: #fff;
+}
+
+.btn-action {
+    padding: 6px 12px;
+    background: transparent;
+    border: 1px solid var(--acento-oro);
+    color: var(--acento-oro);
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 0.8rem;
+    transition: 0.3s;
+}
+
+.btn-action:hover {
+    background: var(--acento-oro);
+    color: #111;
+}

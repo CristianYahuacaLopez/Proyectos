@@ -29,7 +29,6 @@
             <li><a href="servicios.html">SERVICIOS</a></li>
             <li><a href="tramites.html">TRÁMITES</a></li>
             <li><a href="blog.html">BLOG</a></li>
-            <li><a href="login.html" style="color: var(--acento-oro); font-weight: bold;">🔑 INTRANET</a></li>
         </ul>
     </nav>
 
@@ -39,7 +38,8 @@
             <h2 class="form-main-title">Comprar una Propiedad</h2>
             <p class="form-subtitle">Cuéntanos qué estás buscando y encontraremos la residencia ideal para ti.</p>
             
-            <form id="formComprar">
+            <!-- Aquí agregamos el novalidate -->
+            <form id="formComprar" novalidate>
                 <div class="section-title">Datos del Interesado</div>
                 <div class="row">
                     <div class="col">
@@ -106,8 +106,8 @@
 
                 <div class="btn-group">
                    <button type="button" class="btn-cancelar" onclick="window.location.href='index.html'">Cancelar</button>
-                    <!-- Al hacer clic, por ahora mostramos el modal de éxito para que vean que funciona -->
-                    <button type="button" class="btn-registrar" onclick="document.getElementById('modalExito').style.display='flex'">Enviar Solicitud</button>
+                    <!-- Aquí cambiamos a type="submit" y quitamos el onclick -->
+                    <button type="submit" class="btn-registrar">Enviar Solicitud</button>
                 </div>
             </form>
         </div>
@@ -118,11 +118,17 @@
         <div class="glass-card modal-content">
             <h3 style="color: var(--texto-principal); font-size: 1.8rem; margin-bottom: 15px;">¡Listo para comenzar!</h3>
             <p style="color: var(--texto-secundario); margin-bottom: 25px;">Hemos recibido tus preferencias. Un experto de Lux House te mostrará las mejores opciones de nuestro catálogo.</p>
-            <button onclick="window.location.href='/'" class="btn-registrar" style="width: 100%;">Volver al Inicio</button>
+            <button onclick="window.location.href='index.html'" class="btn-registrar" style="width: 100%;">Volver al Inicio</button>
         </div>
     </div>
 
-    <button id="btn-tema" class="tema-toggle" title="Cambiar tema">☀️</button>
+    <div class="floating-controls">
+        <button id="btn-tema" class="tema-toggle" title="Cambiar tema">☀️</button>
+        <a href="login.html" class="btn-login-flotante">
+            <span>👤</span> Iniciar Sesión
+        </a>
+    </div>
+
     <script src="../js/ui.js"></script>
 </body>
 </html>

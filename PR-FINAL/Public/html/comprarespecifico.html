@@ -29,7 +29,6 @@
             <li><a href="servicios.html">SERVICIOS</a></li>
             <li><a href="tramites.html">TRÁMITES</a></li>
             <li><a href="blog.html">BLOG</a></li>
-            <li><a href="login.html" style="color: var(--acento-oro); font-weight: bold;">🔑 INTRANET</a></li>
         </ul>
     </nav>
 
@@ -97,11 +96,17 @@
         <div class="glass-card modal-content">
             <h3 style="color: var(--texto-principal); font-size: 1.8rem; margin-bottom: 15px;">¡Listo para comenzar!</h3>
             <p style="color: var(--texto-secundario); margin-bottom: 25px;">Hemos recibido tus preferencias. Un experto de Lux House te mostrará las mejores opciones de nuestro catálogo.</p>
-            <button onclick="window.location.href='/'" class="btn-registrar" style="width: 100%;">Volver al Inicio</button>
+            <button onclick="window.location.href='index.html'" class="btn-registrar" style="width: 100%;">Volver al Inicio</button>
         </div>
     </div>
 
-    <button id="btn-tema" class="tema-toggle" title="Cambiar tema">☀️</button>
+    <div class="floating-controls">
+        <button id="btn-tema" class="tema-toggle" title="Cambiar tema">☀️</button>
+            <a href="login.html" class="btn-login-flotante">
+                <span>👤</span> Iniciar Sesión
+            </a>
+    </div>
+
     <script src="../js/ui.js"></script>
 </body>
 </html>

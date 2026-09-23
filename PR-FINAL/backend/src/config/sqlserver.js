@@ -25,6 +25,7 @@ export const sqlServerConfig = {
 // src/config/sqlserver.js
 export const getConnection = async () => {
   try {
+    //console.log("Espiando credenciales:", sqlServerConfig);
     // Es mejor usar un pool global para no abrir conexiones infinitas
     const pool = await sql.connect(sqlServerConfig);
     return pool;

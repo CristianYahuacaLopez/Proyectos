@@ -26,7 +26,6 @@
         <li><a href="servicios.html">SERVICIOS</a></li>
         <li><a href="tramites.html">TRÁMITES</a></li>
         <li><a href="blog.html">BLOG</a></li>
-        <li><a href="login.html" style="color: var(--acento-oro); font-weight: bold;">🔑 INTRANET</a></li>
      </ul>
     </nav>
 
@@ -42,32 +41,37 @@
                 <svg width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M16 4h2a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2V6a2 2 0 0 1 2-2h2"></path><rect x="8" y="2" width="8" height="4" rx="1" ry="1"></rect></svg>
                 <h3>Gestión de Trámites en General</h3>
                 <p>Asesoría y acompañamiento integral para la regularización de propiedades y trámites administrativos diversos.</p>
-                <a href="/html/tramite.html?tramite=trm_general" class="btn-outline">Iniciar Trámite</a>
+                <a href="tramite.html?tramite=trm_general" class="btn-outline">Iniciar Trámite</a>
             </article>
 
             <article class="service-card">
                 <svg width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path><polyline points="14 2 14 8 20 8"></polyline><line x1="16" y1="13" x2="8" y2="13"></line><line x1="16" y1="17" x2="8" y2="17"></line><polyline points="10 9 9 9 8 9"></polyline></svg>
                 <h3>Cancelación de Hipotecas</h3>
                 <p>Liberación de gravámenes y escrituración de inmuebles ante el registro público, garantizando seguridad jurídica total.</p>
-                <a href="/html/tramite.html?tramite=trm_hipoteca" class="btn-outline">Iniciar Trámite</a>
+                <a href="tramite.html?tramite=trm_hipoteca" class="btn-outline">Iniciar Trámite</a>
             </article>
 
             <article class="service-card">
                 <svg width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"></path></svg>
                 <h3>Poderes Notariales</h3>
                 <p>Redacción y gestión de poderes especiales y generales para actos de dominio, pleitos, cobranzas o administración.</p>
-                <a href="/html/tramite.html?tramite=trm_poderes" class="btn-outline">Iniciar Trámite</a>
+                <a href="tramite.html?tramite=trm_poderes" class="btn-outline">Iniciar Trámite</a>
             </article>
 
             <article class="service-card">
                 <svg width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20"></path><path d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2z"></path></svg>
                 <h3>Gestión Notarial</h3>
                 <p>Revisión detallada de expedientes, certificados de libertad de gravamen y elaboración de contratos de compraventa.</p>
-                <a href="/html/tramite.html?tramite=trm_notarial" class="btn-outline">Iniciar Trámite</a>
+                <a href="tramite.html?tramite=trm_notarial" class="btn-outline">Iniciar Trámite</a>
             </article>
         </section>
     </main>
-    <button id="btn-tema" class="tema-toggle" title="Cambiar tema">☀️</button>
+    <div class="floating-controls">
+        <button id="btn-tema" class="tema-toggle" title="Cambiar tema">☀️</button>
+            <a href="login.html" class="btn-login-flotante">
+                <span>👤</span> Iniciar Sesión
+            </a>
+    </div>
     <script src="../js/ui.js"></script>
 </body>
 </html>

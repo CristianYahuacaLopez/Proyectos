@@ -1,0 +1,188 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Lux House | Panel de Control</title>
+    
+    <link rel="stylesheet" href="../css/global.css">
+    <link rel="stylesheet" href="../css/navbar.css">
+    <link rel="stylesheet" href="../css/panel.css"> <!-- Aquí mandamos llamar tu nuevo CSS -->
+</head>
+<body>
+
+    <!-- Menú Especial del Panel -->
+    <nav class="navbar">
+        <div class="logo">
+            <h2>LUX HOUSE | INTRANET</h2>
+        </div>
+        <ul class="nav-links">
+            <li><a href="index.html">Ir al Sitio Público</a></li>
+            <li><button class="btn-logout" onclick="cerrarSesion()">Cerrar Sesión</button></li>
+        </ul>
+    </nav>
+
+    <!-- Contenido del Dashboard -->
+    <div class="panel-container">
+        
+        <div class="panel-header">
+            <div class="welcome-msg">
+                <h1>Bienvenido, <span id="adminName">Cargando...</span></h1>
+                <p>Rol: <span id="adminRol">...</span></p>
+            </div>
+        </div>
+
+        <div class="glass-table-container">
+            <h3 style="color: var(--texto-principal); margin-bottom: 20px; font-weight: 400;">Usuarios Registrados en el Sistema</h3>
+            
+            <table>
+                <thead>
+                    <tr>
+                        <th>ID</th>
+                        <th>Nombre de Usuario</th>
+                        <th>Correo Electrónico</th>
+                        <th>Rol</th>
+                        <th>Acciones</th>
+                    </tr>
+                </thead>
+                <tbody id="tablaUsuarios">
+                    <!-- Aquí se inyectarán los usuarios desde SQL Server -->
+                    <tr>
+                        <td colspan="5" style="text-align: center; padding: 30px;">Cargando usuarios desde la base de datos...</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+
+    <!-- Botón de Tema Flotante -->
+    <div class="floating-controls">
+        <button id="btn-tema" class="tema-toggle" title="Cambiar tema">☀️</button>
+            <a href="login.html" class="btn-login-flotante">
+                <span>👤</span> Iniciar Sesión
+            </a>
+    </div>    
+    <script src="../js/ui.js"></script>
+
+    <!-- LÓGICA DE SEGURIDAD Y CONEXIÓN AL BACKEND -->
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            // 1. VALIDACIÓN DE SEGURIDAD (El Cadenero)
+            const token = localStorage.getItem('jwt_token');
+            
+            if (!token) {
+                // Si no hay token, lo mandamos a volar al login
+                alert('Acceso denegado. Por favor, inicia sesión.');
+                window.location.href = 'login.html';
+                return; // Detenemos la ejecución
+            }
+
+            // 2. MOSTRAR DATOS DEL USUARIO LOGUEADO
+            const userName = localStorage.getItem('user_name') || 'Usuario';
+            const userRol = localStorage.getItem('user_rol') || 'Sin Rol Asignado';
+            
+            document.getElementById('adminName').textContent = userName;
+            document.getElementById('adminRol').textContent = userRol;
+
+            // 3. OBTENER DATOS DE LA BASE DE DATOS
+            obtenerUsuarios(token);
+        });
+
+        // Función para consumir el endpoint protegido del backend
+        async function obtenerUsuarios(token) {
+            try {
+                // Hacemos la petición HTTP enviando el Token en las cabeceras
+                const respuesta = await fetch('http://localhost:5000/api/sqlserver/users', {
+                    method: 'GET',
+                    headers: {
+                        'Authorization': `Bearer ${token}`, // ¡Aquí viaja la llave!
+                        'Content-Type': 'application/json'
+                    }
+                });
+
+                if (!respuesta.ok) {
+                    // Si el token expiró o es inválido (401 o 403)
+                    if (respuesta.status === 401 || respuesta.status === 403) {
+                        alert('Tu sesión ha expirado. Vuelve a iniciar sesión.');
+                        cerrarSesion();
+                        return;
+                    }
+                    throw new Error('Error al cargar la lista de usuarios');
+                }
+
+                const usuarios = await respuesta.json();
+                renderizarTabla(usuarios);
+
+            } catch (error) {
+                console.error('Error:', error);
+                document.getElementById('tablaUsuarios').innerHTML = `
+                    <tr><td colspan="5" style="text-align:center; color: #ff4d4d;">No se pudo conectar con la base de datos.</td></tr>
+                `;
+            }
+        }
+
+        // Función para dibujar la tabla
+        function renderizarTabla(usuarios) {
+            const tbody = document.getElementById('tablaUsuarios');
+            tbody.innerHTML = ''; // Limpiamos el mensaje de "cargando"
+
+            if (usuarios.length === 0) {
+                tbody.innerHTML = '<tr><td colspan="5" style="text-align:center;">No hay usuarios activos.</td></tr>';
+                return;
+            }
+
+            usuarios.forEach(user => {
+                tbody.innerHTML += `
+                    <tr>
+                        <td>#${user.id_usuario}</td>
+                        <td style="font-weight: 500;">${user.username}</td>
+                        <td>${user.correo}</td>
+                        <td><span class="badge-rol">${user.nombre_rol}</span></td>
+                        <td>
+                            <button class="btn-action" onclick="eliminarUsuario(${user.id_usuario})">Dar de baja</button>
+                        </td>
+                    </tr>
+                `;
+            });
+        }
+
+        // Función para eliminar un usuario (Llamada al backend)
+        async function eliminarUsuario(id) {
+            if (!confirm('¿Estás seguro de que deseas eliminar (baja lógica) a este usuario?')) return;
+
+            const token = localStorage.getItem('jwt_token');
+
+            try {
+                const respuesta = await fetch(`http://localhost:5000/api/sqlserver/users/${id}`, {
+                    method: 'DELETE',
+                    headers: {
+                        'Authorization': `Bearer ${token}`
+                    }
+                });
+
+                const data = await respuesta.json();
+
+                if (respuesta.ok) {
+                    alert('Usuario eliminado correctamente.');
+                    obtenerUsuarios(token); // Recargamos la tabla
+                } else {
+                    alert('Error: ' + data.message); // Por ejemplo, si un Agente intenta borrar a otro
+                }
+            } catch (error) {
+                alert('Ocurrió un error al intentar eliminar el usuario.');
+            }
+        }
+
+        // Función para salir del sistema
+        function cerrarSesion() {
+            // Destruimos la evidencia (borramos la memoria)
+            localStorage.removeItem('jwt_token');
+            localStorage.removeItem('user_name');
+            localStorage.removeItem('user_rol');
+            
+            // Redirigimos al login
+            window.location.href = 'login.html';
+        }
+    </script>
+</body>
+</html>
