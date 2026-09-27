@@ -5,10 +5,10 @@ export const registrarCompra = async (req, res) => {
     try {
         const { 
             nombre, apellido, correo, telefonoPrincipal, telefonoSecundario, 
-            interesTipo, interesMunicipio, presupuesto, formaPago 
+            interesTipo, interesMunicipio, presupuesto, formaPago, idInmuebleDeseado 
         } = req.body || {};
 
-        const presupuestoLimpio = parseFloat(presupuesto) || 0.00;
+        const presupuestoLimpio = presupuesto ? parseFloat(presupuesto) : null;
         const pool = await getConnection();
         
         const query = `
@@ -33,9 +33,9 @@ export const registrarCompra = async (req, res) => {
             END
 
             INSERT INTO db_logica_negocio.dbo.Solicitudes_Compra 
-            (id_cliente, id_tipo_interes, id_municipio_interes, presupuesto, forma_pago)
+            (id_cliente, id_tipo_interes, id_municipio_interes, presupuesto, forma_pago, id_inmueble_deseado)
             VALUES 
-            (@id_cliente, @TipoInteres, @MunicipioInteres, @Presupuesto, @FormaPago);
+            (@id_cliente, @TipoInteres, @MunicipioInteres, @Presupuesto, @FormaPago, @IdInmuebleDeseado);
         `;
 
         await pool.request()
@@ -44,13 +44,14 @@ export const registrarCompra = async (req, res) => {
             .input('Correo', sql.VarChar, correo)
             .input('TelefonoPrincipal', sql.VarChar, telefonoPrincipal)
             .input('TelefonoSecundario', sql.VarChar, telefonoSecundario || null)
-            .input('TipoInteres', sql.SmallInt, interesTipo)
-            .input('MunicipioInteres', sql.SmallInt, interesMunicipio)
+            .input('TipoInteres', sql.SmallInt, interesTipo || null)
+            .input('MunicipioInteres', sql.SmallInt, interesMunicipio || null)
             .input('Presupuesto', sql.Decimal(12, 2), presupuestoLimpio) 
-            .input('FormaPago', sql.VarChar, formaPago)
+            .input('FormaPago', sql.VarChar, formaPago || null)
+            .input('IdInmuebleDeseado', sql.Int, idInmuebleDeseado || null)
             .query(query);
 
-        res.status(200).json({ mensaje: "Solicitud registrada con éxito en ambas tablas" });
+        res.status(200).json({ mensaje: "Solicitud registrada con éxito" });
         
     } catch (error) {
         console.error('Error al guardar el formulario de compra:', error);

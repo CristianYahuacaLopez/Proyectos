@@ -1,35 +1,54 @@
 // Aseguramos que el código se ejecute cuando el HTML esté listo
 document.addEventListener('DOMContentLoaded', () => {
     
+    // ==========================================
+    // 1. AUTO-SELECCIÓN DE TRÁMITES DESDE LA URL
+    // ==========================================
+    const urlParams = new URLSearchParams(window.location.search);
+    const tramiteSolicitado = urlParams.get('tramite');
+
+    if (tramiteSolicitado) {
+        // Buscamos todas las casillas de trámites en el formulario
+        const casillasTramites = document.querySelectorAll('.chk-tramite');
+        
+        if (casillasTramites.length > 0) {
+            // Primero desmarcamos todas por si acaso
+            casillasTramites.forEach(chk => chk.checked = false);
+
+            // Buscamos la casilla que coincida con el ID y la marcamos
+            const casillaObjetivo = Array.from(casillasTramites).find(chk => chk.value === tramiteSolicitado);
+            
+            if (casillaObjetivo) {
+                casillaObjetivo.checked = true;
+            }
+        }
+    }
+
+    // ==========================================
+    // 2. LÓGICA DEL TEMA OSCURO/CLARO
+    // ==========================================
     const btnTema = document.getElementById('btn-tema');
     const body = document.body;
 
-    // 1. REVISAR LA MEMORIA AL CARGAR LA PÁGINA
-    // Buscamos si ya existe una preferencia guardada con el nombre 'lux_theme'
     const temaGuardado = localStorage.getItem('lux_theme');
 
-    // Si la memoria dice 'claro', le ponemos la clase al body inmediatamente
     if (temaGuardado === 'claro') {
         body.classList.add('modo-claro');
-        if (btnTema) btnTema.textContent = '🌙'; // Ponemos la luna
+        if (btnTema) btnTema.textContent = '🌙'; 
     } else {
-        // Si no hay nada o dice 'oscuro', lo dejamos normal (oscuro)
-        if (btnTema) btnTema.textContent = '☀️'; // Ponemos el sol
+        if (btnTema) btnTema.textContent = '☀️'; 
     }
 
-    // 2. QUÉ HACER CUANDO LE DAN CLIC AL BOTÓN
-    if (btnTema) { // Verificamos que el botón exista en la página actual
+    if (btnTema) { 
         btnTema.addEventListener('click', () => {
-            // Alternamos la clase visualmente
             body.classList.toggle('modo-claro');
             
-            // Verificamos en qué modo quedó y lo GUARDAMOS en localStorage
             if (body.classList.contains('modo-claro')) {
                 btnTema.textContent = '🌙';
-                localStorage.setItem('lux_theme', 'claro'); // Guardar como claro
+                localStorage.setItem('lux_theme', 'claro'); 
             } else {
                 btnTema.textContent = '☀️';
-                localStorage.setItem('lux_theme', 'oscuro'); // Guardar como oscuro
+                localStorage.setItem('lux_theme', 'oscuro'); 
             }
         });
     }
@@ -50,48 +69,46 @@ function cerrarModalOpciones() {
 const formComprar = document.getElementById('formComprar');
 
 if (formComprar) {
+    // Detectar si el cliente viene del catálogo
+    const urlParams = new URLSearchParams(window.location.search);
+    const idInmuebleSolicitado = urlParams.get('inmueble');
+
     formComprar.addEventListener('submit', async (e) => {
         e.preventDefault(); 
 
         let formularioValido = true;
         
-        const camposObligatorios = [
-            'nombre', 'apellido', 'correo', 'telefono_principal', 
-            'interes_tipo', 'interes_municipio', 'presupuesto', 'forma_pago'
-        ];
+        // Si hay un inmueble en la URL, solo exigimos los datos personales
+        let camposObligatorios = ['nombre', 'apellido', 'correo', 'telefono_principal'];
+        
+        // Si NO hay inmueble en la URL, exigimos también las preferencias de búsqueda
+        if (!idInmuebleSolicitado) {
+            camposObligatorios.push('interes_tipo', 'interes_municipio', 'presupuesto', 'forma_pago');
+        }
 
         camposObligatorios.forEach(id => {
             const input = document.getElementById(id);
+            if (!input) return; // Evitar errores si el HTML cambia
             
-            // Buscamos si ya le habíamos puesto un mensaje de error antes
             const mensajeExistente = input.parentNode.querySelector('.error-text');
 
             if (!input.value.trim()) {
                 input.classList.add('input-error');
                 formularioValido = false;
                 
-                // Si está vacío y no tiene el mensaje, se lo creamos
                 if (!mensajeExistente) {
                     const spanMensaje = document.createElement('span');
                     spanMensaje.className = 'error-text';
                     spanMensaje.innerText = '* Por favor, rellene este campo';
-                    // Lo insertamos justo debajo del input
                     input.parentNode.insertBefore(spanMensaje, input.nextSibling);
                 }
             } else {
-                // Si el campo ya tiene texto, le quitamos el borde rojo
                 input.classList.remove('input-error');
-                
-                // Y borramos el mensajito si existía
-                if (mensajeExistente) {
-                    mensajeExistente.remove();
-                }
+                if (mensajeExistente) mensajeExistente.remove();
             }
         });
 
-        if (!formularioValido) {
-            return; 
-        }
+        if (!formularioValido) return; 
 
         const datosCompra = {
             nombre: document.getElementById('nombre').value,
@@ -99,10 +116,11 @@ if (formComprar) {
             correo: document.getElementById('correo').value,
             telefonoPrincipal: document.getElementById('telefono_principal').value,
             telefonoSecundario: document.getElementById('telefono_secundario').value || null,
-            interesTipo: document.getElementById('interes_tipo').value,
-            interesMunicipio: document.getElementById('interes_municipio').value,
-            presupuesto: document.getElementById('presupuesto').value,
-            formaPago: document.getElementById('forma_pago').value
+            interesTipo: document.getElementById('interes_tipo').value || null,
+            interesMunicipio: document.getElementById('interes_municipio').value || null,
+            presupuesto: document.getElementById('presupuesto').value || null,
+            formaPago: document.getElementById('forma_pago').value || null,
+            idInmuebleDeseado: idInmuebleSolicitado || null // Mandamos el ID al backend
         };
 
         try {
@@ -133,7 +151,6 @@ if (formVender) {
 
         let formularioValido = true;
         
-        // Excluimos telefono_secundario, vandalizada, invadida y credito_pendiente
         const camposObligatorios = [
             'nombre', 'apellido', 'correo', 'telefono_principal', 
             'ubicacion', 'codigo_postal', 'id_municipio', 'id_tipo', 'id_estado_in'
@@ -163,7 +180,6 @@ if (formVender) {
 
         if (!formularioValido) return; 
 
-        // Empacamos los datos
         const datosVenta = {
             nombre: document.getElementById('nombre').value,
             apellido: document.getElementById('apellido').value,
@@ -200,7 +216,6 @@ if (formVender) {
 }
 
 // Validar y enviar Formulario de Trámites
-// Validar y enviar Formulario de Trámites
 const formTramite = document.getElementById('formTramite');
 
 if (formTramite) {
@@ -209,7 +224,6 @@ if (formTramite) {
 
         let formularioValido = true;
         
-        // Exigimos el municipio en la validación roja
         const camposObligatorios = [
             'nombre', 'apellido', 'correo', 'telefono_principal', 'id_municipio'
         ];
@@ -236,19 +250,15 @@ if (formTramite) {
             }
         });
 
-        // Validar que eligiera al menos una casilla
         let serviciosSeleccionados = Array.from(document.querySelectorAll('.chk-servicio:checked')).map(cb => cb.value);
         let tramitesSeleccionados = Array.from(document.querySelectorAll('.chk-tramite:checked')).map(cb => cb.value);
         
-        // 🔥 NUEVA LÓGICA: Ignorar los datos ocultos si el usuario no activó el botón de extras
         const toggleExtras = document.getElementById('toggle_extras');
         const seccionSecundaria = document.getElementById('seccion_secundaria');
         
         if (toggleExtras && !toggleExtras.checked && seccionSecundaria) {
-            // Buscamos qué casillas se marcaron automáticamente estando escondidas
             const casillasOcultas = Array.from(seccionSecundaria.querySelectorAll('input[type="checkbox"]:checked'));
             
-            // Las eliminamos de nuestra lista final antes de enviarlas
             casillasOcultas.forEach(chk => {
                 if (chk.classList.contains('chk-servicio')) {
                     serviciosSeleccionados = serviciosSeleccionados.filter(val => val !== chk.value);
@@ -278,7 +288,6 @@ if (formTramite) {
 
         if (!formularioValido) return;
 
-        // Empacamos los datos
         const datosTramite = {
             nombre: document.getElementById('nombre').value,
             apellido: document.getElementById('apellido').value,
