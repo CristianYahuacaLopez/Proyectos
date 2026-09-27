@@ -23,8 +23,8 @@
             </svg>
             <h2>LUX HOUSE</h2>
         </div>
-       <ul class="nav-links">
-            <li><a href="index.html">INICIO</a></li>
+        <ul class="nav-links">
+            <li><a href="../index.html">INICIO</a></li>
             <li><a href="catalogo.html">CATÁLOGO</a></li>
             <li><a href="servicios.html">SERVICIOS</a></li>
             <li><a href="tramites.html">TRÁMITES</a></li>
@@ -65,27 +65,28 @@
                     </div>
                 </div>
 
-                <div class="section-title">Preferencias de Búsqueda</div>
-                <div class="row">
-                    <div class="col">
-                        <label for="presupuesto">Presupuesto Estimado ($):</label>
-                        <input type="number" id="presupuesto" name="presupuesto" step="0.01" placeholder="Ej. 2000000" required>
-                    </div>
-                    <div class="col">
-                        <label for="forma_pago">Forma de Pago:</label>
-                        <select id="forma_pago" name="forma_pago" required>
-                            <option value="" disabled selected>Seleccione...</option>
-                            <option value="1">Compra de contado</option>
-                            <option value="2">Crédito Infonavit</option>
-                            <option value="3">Crédito Bancario / Particulares</option>
-                        </select>
+                <div id="seccion_preferencias">
+                    <div class="section-title">Preferencias de Búsqueda</div>
+                    <div class="row">
+                        <div class="col">
+                            <label for="presupuesto">Presupuesto Estimado ($):</label>
+                            <input type="number" id="presupuesto" name="presupuesto" step="0.01" placeholder="Ej. 2000000">
+                        </div>
+                        <div class="col">
+                            <label for="forma_pago">Forma de Pago:</label>
+                            <select id="forma_pago" name="forma_pago">
+                                <option value="" disabled selected>Seleccione...</option>
+                                <option value="1">Compra de contado</option>
+                                <option value="2">Crédito Infonavit</option>
+                                <option value="3">Crédito Bancario / Particulares</option>
+                            </select>
+                        </div>
                     </div>
                 </div>
 
                 <div class="btn-group">
-                    <button type="button" class="btn-cancelar" onclick="window.location.href='index.html'">Cancelar</button>
-                    <!-- Al hacer clic, por ahora mostramos el modal de éxito para que vean que funciona -->
-                    <button type="button" class="btn-registrar" onclick="document.getElementById('modalExito').style.display='flex'">Enviar Solicitud</button>
+                    <button type="button" class="btn-cancelar" onclick="window.location.href='../index.html'">Cancelar</button>
+                    <button type="submit" class="btn-registrar">Enviar Solicitud</button>
                 </div>
             </form>
         </div>
@@ -96,7 +97,7 @@
         <div class="glass-card modal-content">
             <h3 style="color: var(--texto-principal); font-size: 1.8rem; margin-bottom: 15px;">¡Listo para comenzar!</h3>
             <p style="color: var(--texto-secundario); margin-bottom: 25px;">Hemos recibido tus preferencias. Un experto de Lux House te mostrará las mejores opciones de nuestro catálogo.</p>
-            <button onclick="window.location.href='index.html'" class="btn-registrar" style="width: 100%;">Volver al Inicio</button>
+            <button onclick="window.location.href='../index.html'" class="btn-registrar" style="width: 100%;">Volver al Inicio</button>
         </div>
     </div>
 

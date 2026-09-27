@@ -1,13 +1,13 @@
 import express from 'express';
 import dotenv from 'dotenv';
-import cors from 'cors'; // <-- NUEVO
+import cors from 'cors'; // 
 import usersRoutes from './routes/routes.js';
 
 dotenv.config();
 
 const app = express();
 
-app.use(cors()); // <-- NUEVO: Permite que el frontend se conecte
+app.use(cors()); // Permite que el frontend se conecte
 app.use(express.json());
 app.use('/api', usersRoutes);
 

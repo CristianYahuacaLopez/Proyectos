@@ -28,7 +28,7 @@
             <h2>LUX HOUSE</h2>
         </div>
         <ul class="nav-links">
-            <li><a href="index.html">INICIO</a></li>
+            <li><a href="../index.html">INICIO</a></li>
             <li><a href="catalogo.html">CATÁLOGO</a></li>
             <li><a href="servicios.html">SERVICIOS</a></li>
             <li><a href="tramites.html">TRÁMITES</a></li>
@@ -151,7 +151,7 @@
         <div class="glass-card modal-content">
             <h3 style="color: var(--texto-principal); font-size: 1.8rem; margin-bottom: 15px;">¡Petición Recibida!</h3>
             <p style="color: var(--texto-secundario); margin-bottom: 25px;">Nuestro equipo legal revisará los detalles seleccionados para enviarte una cotización.</p>
-            <button onclick="window.location.href='index.html'" class="btn-registrar" style="width: 100%;">Volver al Inicio</button>
+            <button onclick="window.location.href='../index.html'" class="btn-registrar" style="width: 100%;">Volver al Inicio</button>
         </div>
     </div>
 
@@ -163,127 +163,5 @@
     </div>    
     <script src="../js/ui.js"></script>
 
-    <script>
-    document.addEventListener('DOMContentLoaded', () => {
-        
-        const toggleExtras = document.getElementById('toggle_extras');
-        const seccionSecundaria = document.getElementById('seccion_secundaria');
-        const contenedorUbicacion = document.getElementById('contenedor_ubicacion');
-        const checkboxesServicios = document.querySelectorAll('.chk-servicio');
-        const checkboxesTramites = document.querySelectorAll('.chk-tramite');
-
-        // Referencias para el Modo Inteligente
-        const tituloFormulario = document.getElementById('titulo_formulario');
-        const subtituloFormulario = document.getElementById('subtitulo_formulario');
-        const tituloPrimario = document.getElementById('titulo_primario');
-        const descPrimaria = document.getElementById('desc_primaria');
-        const labelToggle = document.getElementById('label_toggle');
-        const descSecundaria = document.getElementById('desc_secundaria');
-        const contenedorPrimario = document.getElementById('contenedor_primario');
-        const contenedorSecundario = document.getElementById('contenedor_secundario');
-        const bloqueServicios = document.getElementById('bloque_servicios');
-        const bloqueTramites = document.getElementById('bloque_tramites');
-
-        // Lector de URL
-        const urlParams = new URLSearchParams(window.location.search);
-        const servicioSolicitado = urlParams.get('servicio');
-        const tramiteSolicitado = urlParams.get('tramite');
-
-        let modoActual = 'servicios'; // Modo por defecto
-
-        // MODO INTELIGENTE: Si viene de la página de trámites, volteamos el formulario
-        if (tramiteSolicitado && !servicioSolicitado) {
-            modoActual = 'tramites';
-            
-            // Cambiamos los textos
-            tituloFormulario.innerText = 'Gestoría y Trámites';
-            subtituloFormulario.innerText = 'Selecciona los trámites legales que requieres. Nosotros prepararemos tu expediente.';
-            tituloPrimario.innerText = 'Trámites Principales';
-            descPrimaria.innerText = 'Selecciona los trámites que requieres iniciar:';
-            labelToggle.innerText = '¿Deseas asociar este trámite a un servicio inmobiliario?';
-            descSecundaria.innerText = 'Opcional: Selecciona el servicio inmobiliario relacionado a tu trámite:';
-
-            // Magia pura: Intercambiamos los bloques visualmente sin romper la lógica
-            contenedorPrimario.appendChild(bloqueTramites);
-            contenedorSecundario.appendChild(bloqueServicios);
-        }
-
-        // Relaciones matemáticas
-        const relaciones = {
-            'srv_compra_part': ['trm_general', 'trm_notarial'],
-            'srv_venta_part': ['trm_general', 'trm_hipoteca'],
-            'srv_infonavit': ['trm_general', 'trm_notarial', 'trm_poderes'],
-            'srv_contado': ['trm_notarial']
-        };
-
-        function recalcularTramitesRecomendados() {
-            // Solo auto-sugiere si estamos en el modo clásico de servicios
-            if (modoActual === 'servicios') {
-                const algunServicioMarcado = Array.from(checkboxesServicios).some(chk => chk.checked);
-                
-                if (algunServicioMarcado) {
-                    checkboxesTramites.forEach(trm => trm.checked = false);
-                    
-                    checkboxesServicios.forEach(chkServicio => {
-                        if (chkServicio.checked) {
-                            const tramitesRecomendados = relaciones[chkServicio.id];
-                            if (tramitesRecomendados) {
-                                tramitesRecomendados.forEach(idTramite => {
-                                    const trmCheckbox = document.getElementById(idTramite);
-                                    if (trmCheckbox) trmCheckbox.checked = true;
-                                });
-                            }
-                        }
-                    });
-                }
-            }
-            evaluarMostrarUbicacion();
-        }
-
-        function evaluarMostrarUbicacion() {
-            const tramitesQueExigenDireccion = ['trm_hipoteca', 'trm_notarial'];
-            let necesitaDireccion = false;
-
-            checkboxesTramites.forEach(chk => {
-                if (chk.checked && tramitesQueExigenDireccion.includes(chk.id)) {
-                    necesitaDireccion = true;
-                }
-            });
-
-            contenedorUbicacion.style.display = necesitaDireccion ? 'block' : 'none';
-        }
-
-        // Mostrar/Ocultar sección secundaria
-        toggleExtras.addEventListener('change', function() {
-            seccionSecundaria.style.display = this.checked ? 'block' : 'none';
-            if (this.checked && modoActual === 'servicios') recalcularTramitesRecomendados();
-        });
-
-        checkboxesServicios.forEach(chkServicio => {
-            chkServicio.addEventListener('change', recalcularTramitesRecomendados);
-        });
-
-        checkboxesTramites.forEach(trm => {
-            trm.addEventListener('change', evaluarMostrarUbicacion);
-        });
-
-        // Marcar casillas automáticamente según la URL
-        if (servicioSolicitado) {
-            const checkboxServicio = document.getElementById(servicioSolicitado);
-            if (checkboxServicio) {
-                checkboxServicio.checked = true;
-                checkboxServicio.dispatchEvent(new Event('change')); 
-            }
-        }
-
-        if (tramiteSolicitado) {
-            const checkboxTramite = document.getElementById(tramiteSolicitado);
-            if (checkboxTramite) {
-                checkboxTramite.checked = true;
-                checkboxTramite.dispatchEvent(new Event('change')); 
-            }
-        }
-    });
-    </script>
 </body>
 </html>

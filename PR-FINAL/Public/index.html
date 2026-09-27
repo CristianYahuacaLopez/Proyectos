@@ -5,8 +5,9 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Lux House | Inmobiliaria de Lujo</title>
     
-    <link rel="stylesheet" href="../css/global.css">
-    <link rel="stylesheet" href="../css/navbar.css">
+    <!-- Rutas directas porque index.html ya está en la raíz -->
+    <link rel="stylesheet" href="css/global.css">
+    <link rel="stylesheet" href="css/navbar.css">
 </head>
 <body>
 
@@ -26,10 +27,10 @@
         
      <ul class="nav-links">
         <li><a href="index.html">INICIO</a></li>
-        <li><a href="catalogo.html">CATÁLOGO</a></li>
-        <li><a href="servicios.html">SERVICIOS</a></li>
-        <li><a href="tramites.html">TRÁMITES</a></li>
-        <li><a href="blog.html">BLOG</a></li>
+        <li><a href="html/catalogo.html">CATÁLOGO</a></li>
+        <li><a href="html/servicios.html">SERVICIOS</a></li>
+        <li><a href="html/tramites.html">TRÁMITES</a></li>
+        <li><a href="html/blog.html">BLOG</a></li>
     </ul>
         </nav>
 
@@ -46,23 +47,25 @@
             <p style="color: var(--texto-secundario); margin-bottom: 25px;">Selecciona la operación que deseas realizar para dirigirte al formulario adecuado.</p>
             
             <div style="display: flex; flex-direction: column; gap: 15px;">
-                <!-- Estos botones llevarán a los 3 nuevos archivos que crearemos -->
-                <button class="btn-opcion" onclick="window.location.href='comprar.html'">Quiero Comprar una Propiedad</button>
-                <button class="btn-opcion" onclick="window.location.href='vender.html'">Quiero Vender mi Propiedad</button>
-                <button class="btn-opcion" onclick="window.location.href='tramite.html'">Trámite o Servicio Especializado</button>
+                <!-- Rutas corregidas: Entrando a la carpeta html -->
+                <button class="btn-opcion" onclick="window.location.href='html/comprar.html'">Quiero Comprar una Propiedad</button>
+                <button class="btn-opcion" onclick="window.location.href='html/vender.html'">Quiero Vender mi Propiedad</button>
+                <button class="btn-opcion" onclick="window.location.href='html/tramite.html'">Trámite o Servicio Especializado</button>
             </div>
 
-            <!-- Botón para cerrar la ventanita -->
             <button onclick="cerrarModalOpciones()" style="margin-top: 25px; background: transparent; border: none; color: var(--texto-secundario); cursor: pointer; text-decoration: underline; font-size: 0.9rem;">Cancelar</button>
         </div>
     </div>
 
     <div class="floating-controls">
         <button id="btn-tema" class="tema-toggle" title="Cambiar tema">☀️</button>
-            <a href="login.html" class="btn-login-flotante">
+            <!-- Ruta corregida para el login -->
+            <a href="html/login.html" class="btn-login-flotante">
                 <span>👤</span> INICIAR SESIÓN 
             </a>
     </div>
-    <script src="../js/ui.js"></script>
+    
+    <!-- Ruta directa al script -->
+    <script src="js/ui.js"></script>
 </body>
 </html>
