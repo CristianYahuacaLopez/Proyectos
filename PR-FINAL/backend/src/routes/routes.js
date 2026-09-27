@@ -8,8 +8,8 @@ const router = Router();
 // RUTA PÚBLICA (No requiere token)
 router.post('/login', crudSQL.login);
 router.post('/register', crudSQL.register);
-router.post('/comprar', formSQL.registrarCompra); // <-- Nueva ruta del formulario
-router.post('/vender', formSQL.registrarVenta); // <-- Nueva ruta
+router.post('/comprar', formSQL.registrarCompra); 
+router.post('/vender', formSQL.registrarVenta); 
 router.post('/tramite', formSQL.registrarTramite);
 
 // RUTAS PROTEGIDAS (Requieren Token JWT)

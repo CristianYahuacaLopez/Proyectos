@@ -200,6 +200,7 @@ if (formVender) {
 }
 
 // Validar y enviar Formulario de Trámites
+// Validar y enviar Formulario de Trámites
 const formTramite = document.getElementById('formTramite');
 
 if (formTramite) {
@@ -208,7 +209,7 @@ if (formTramite) {
 
         let formularioValido = true;
         
-        // Ahora exigimos el municipio en la validación roja
+        // Exigimos el municipio en la validación roja
         const camposObligatorios = [
             'nombre', 'apellido', 'correo', 'telefono_principal', 'id_municipio'
         ];
@@ -236,10 +237,30 @@ if (formTramite) {
         });
 
         // Validar que eligiera al menos una casilla
-        const serviciosSeleccionados = Array.from(document.querySelectorAll('.chk-servicio:checked')).map(cb => cb.value);
-        const tramitesSeleccionados = Array.from(document.querySelectorAll('.chk-tramite:checked')).map(cb => cb.value);
-        const contenedorServicios = document.getElementById('servicios-container');
-        const mensajeCheckbox = contenedorServicios.querySelector('.error-text-checkbox');
+        let serviciosSeleccionados = Array.from(document.querySelectorAll('.chk-servicio:checked')).map(cb => cb.value);
+        let tramitesSeleccionados = Array.from(document.querySelectorAll('.chk-tramite:checked')).map(cb => cb.value);
+        
+        // 🔥 NUEVA LÓGICA: Ignorar los datos ocultos si el usuario no activó el botón de extras
+        const toggleExtras = document.getElementById('toggle_extras');
+        const seccionSecundaria = document.getElementById('seccion_secundaria');
+        
+        if (toggleExtras && !toggleExtras.checked && seccionSecundaria) {
+            // Buscamos qué casillas se marcaron automáticamente estando escondidas
+            const casillasOcultas = Array.from(seccionSecundaria.querySelectorAll('input[type="checkbox"]:checked'));
+            
+            // Las eliminamos de nuestra lista final antes de enviarlas
+            casillasOcultas.forEach(chk => {
+                if (chk.classList.contains('chk-servicio')) {
+                    serviciosSeleccionados = serviciosSeleccionados.filter(val => val !== chk.value);
+                }
+                if (chk.classList.contains('chk-tramite')) {
+                    tramitesSeleccionados = tramitesSeleccionados.filter(val => val !== chk.value);
+                }
+            });
+        }
+
+        const contenedorValidacion = document.getElementById('contenedor_primario');
+        const mensajeCheckbox = contenedorValidacion.querySelector('.error-text-checkbox');
 
         if (serviciosSeleccionados.length === 0 && tramitesSeleccionados.length === 0) {
             formularioValido = false;
@@ -247,7 +268,7 @@ if (formTramite) {
                 const spanMensajeCb = document.createElement('span');
                 spanMensajeCb.className = 'error-text-checkbox';
                 spanMensajeCb.innerText = '* Debe seleccionar al menos un servicio o trámite';
-                contenedorServicios.appendChild(spanMensajeCb);
+                contenedorValidacion.appendChild(spanMensajeCb);
             }
         } else {
              if (mensajeCheckbox) {
@@ -288,4 +309,3 @@ if (formTramite) {
         }
     });
 }
-

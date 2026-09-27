@@ -7,7 +7,8 @@
     
     <link rel="stylesheet" href="../css/global.css">
     <link rel="stylesheet" href="../css/navbar.css">
-    <link rel="stylesheet" href="../css/tarjetas.css"> </head>
+    <link rel="stylesheet" href="../css/tarjetas.css"> 
+</head>
 <body>
 
     <nav class="navbar">
@@ -122,7 +123,10 @@
                         </span>
                     </div>
                     <p class="price">$22,000,000 MXN</p>
-                    <button class="btn-view">Ver Detalles</button>
+                    <!-- Corrección aplicada aquí -->
+                    <a href="detalle.html" style="text-decoration: none;">
+                        <button class="btn-view">Ver Detalles</button>
+                    </a>
                 </div>
             </article>
 
@@ -165,22 +169,24 @@
                         </span>
                     </div>
                     <p class="price">$8,900,000 MXN</p>
-                    <button class="btn-view">Ver Detalles</button>
+                    <!-- Corrección aplicada aquí -->
+                    <a href="detalle.html" style="text-decoration: none;">
+                        <button class="btn-view">Ver Detalles</button>
+                    </a>
                 </div>
             </article>
 
         </section>
     </main>
 
-        <div class="floating-controls">
+    <div class="floating-controls">
         <button id="btn-tema" class="tema-toggle" title="Cambiar tema">☀️</button>
-            <a href="login.html" class="btn-login-flotante">
-                <span>👤</span> Iniciar Sesión
-            </a>
+        <a href="login.html" class="btn-login-flotante">
+            <span>👤</span> INICIAR SESIÓN 
+        </a>
     </div>
     
     <script src="../js/ui.js"></script>
-
 
 </body>
 </html>

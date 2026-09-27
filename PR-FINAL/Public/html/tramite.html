@@ -9,21 +9,9 @@
     <link rel="stylesheet" href="../css/navbar.css">
     <link rel="stylesheet" href="../css/captura.css">
     <style>
-        .checkbox-list {
-            display: flex;
-            flex-direction: column;
-            gap: 12px;
-        }
-        .animado {
-            transition: all 0.4s ease;
-        }
-        .error-text-checkbox {
-            color: #ff4d4d;
-            font-size: 0.8rem;
-            margin-top: 4px;
-            display: block;
-            font-weight: 500;
-        }
+        .checkbox-list { display: flex; flex-direction: column; gap: 12px; }
+        .animado { transition: all 0.4s ease; }
+        .error-text-checkbox { color: #ff4d4d; font-size: 0.8rem; margin-top: 4px; display: block; font-weight: 500; }
     </style>
 </head>
 <body>
@@ -50,8 +38,8 @@
 
     <div class="form-container">
         <div class="glass-card">
-            <h2 class="form-main-title">Servicios y Trámites</h2>
-            <p class="form-subtitle">Selecciona los servicios que requieres. Nosotros prepararemos tu expediente.</p>
+            <h2 class="form-main-title" id="titulo_formulario">Servicios y Trámites</h2>
+            <p class="form-subtitle" id="subtitulo_formulario">Selecciona los servicios que requieres. Nosotros prepararemos tu expediente.</p>
             
             <form id="formTramite" novalidate>
                 <div class="section-title">Datos del Solicitante</div>
@@ -80,8 +68,7 @@
                     </div>
                 </div>
 
-                <!-- Novedad: Menú desplegable del Municipio siempre visible -->
-                <label for="id_municipio" style="margin-top: 15px; display: block;">Municipio donde se realizará el servicio:</label>
+                <label for="id_municipio" style="margin-top: 15px; display: block;">Municipio donde se realizará el proceso:</label>
                 <select id="id_municipio" name="id_municipio" required style="width: 100%; margin-bottom: 20px;">
                     <option value="" disabled selected>Seleccione...</option>
                     <option value="1">Naucalpan</option>
@@ -89,52 +76,59 @@
                     <option value="3">Ecatepec</option>
                 </select>
 
-                <div class="section-title">Servicios Principales</div>
-                <p style="color: var(--texto-secundario); font-size: 0.9rem; margin-bottom: 15px;">Puedes seleccionar más de una opción:</p>
+                <!-- SECCIÓN PRIMARIA (Dinámica) -->
+                <div class="section-title" id="titulo_primario">Servicios Principales</div>
+                <p style="color: var(--texto-secundario); font-size: 0.9rem; margin-bottom: 15px;" id="desc_primaria">Puedes seleccionar más de una opción:</p>
                 
-                <div class="row-checkboxes checkbox-list" id="servicios-container">
-                    <div class="checkbox-group">
-                        <input type="checkbox" id="srv_compra_part" class="chk-servicio" value="1">
-                        <label for="srv_compra_part">Compra propiedad particulares</label>
-                    </div>
-                    <div class="checkbox-group">
-                        <input type="checkbox" id="srv_venta_part" class="chk-servicio" value="2">
-                        <label for="srv_venta_part">Venta propiedad particulares</label>
-                    </div>
-                    <div class="checkbox-group">
-                        <input type="checkbox" id="srv_infonavit" class="chk-servicio" value="3">
-                        <label for="srv_infonavit">Propiedad crédito infonavit o particulares</label>
-                    </div>
-                    <div class="checkbox-group">
-                        <input type="checkbox" id="srv_contado" class="chk-servicio" value="4">
-                        <label for="srv_contado">Compra de contado</label>
+                <div id="contenedor_primario">
+                    <div class="row-checkboxes checkbox-list" id="bloque_servicios">
+                        <div class="checkbox-group">
+                            <input type="checkbox" id="srv_compra_part" class="chk-servicio" value="1">
+                            <label for="srv_compra_part">Compra propiedad particulares</label>
+                        </div>
+                        <div class="checkbox-group">
+                            <input type="checkbox" id="srv_venta_part" class="chk-servicio" value="2">
+                            <label for="srv_venta_part">Venta propiedad particulares</label>
+                        </div>
+                        <div class="checkbox-group">
+                            <input type="checkbox" id="srv_infonavit" class="chk-servicio" value="3">
+                            <label for="srv_infonavit">Propiedad crédito infonavit o particulares</label>
+                        </div>
+                        <div class="checkbox-group">
+                            <input type="checkbox" id="srv_contado" class="chk-servicio" value="4">
+                            <label for="srv_contado">Compra de contado</label>
+                        </div>
                     </div>
                 </div>
 
+                <!-- BOTÓN DE DESPLIEGUE -->
                 <div class="checkbox-group" style="margin: 25px 0 15px 0;">
-                    <input type="checkbox" id="toggle_tramites">
-                    <label for="toggle_tramites" style="color: var(--acento-oro); font-weight: 600; font-size: 1.05rem;">¿Deseas agregar o revisar los trámites asociados?</label>
+                    <input type="checkbox" id="toggle_extras">
+                    <label for="toggle_extras" id="label_toggle" style="color: var(--acento-oro); font-weight: 600; font-size: 1.05rem;">¿Deseas agregar o revisar los trámites asociados?</label>
                 </div>
 
-                <div class="animado" id="seccion_tramites" style="display: none;">
-                    <p style="color: var(--texto-secundario); font-size: 0.9rem; margin-bottom: 15px;">Hemos preseleccionado los trámites recomendados para tu servicio, pero puedes ajustarlos:</p>
+                <!-- SECCIÓN SECUNDARIA (Dinámica y Oculta) -->
+                <div class="animado" id="seccion_secundaria" style="display: none;">
+                    <p style="color: var(--texto-secundario); font-size: 0.9rem; margin-bottom: 15px;" id="desc_secundaria">Hemos preseleccionado los trámites recomendados para tu servicio, pero puedes ajustarlos:</p>
                     
-                    <div class="row-checkboxes checkbox-list">
-                        <div class="checkbox-group">
-                            <input type="checkbox" id="trm_general" class="chk-tramite" value="1">
-                            <label for="trm_general">Gestión de trámites en general</label>
-                        </div>
-                        <div class="checkbox-group">
-                            <input type="checkbox" id="trm_hipoteca" class="chk-tramite" value="2">
-                            <label for="trm_hipoteca">Cancelación de hipotecas</label>
-                        </div>
-                        <div class="checkbox-group">
-                            <input type="checkbox" id="trm_poderes" class="chk-tramite" value="3">
-                            <label for="trm_poderes">Poderes notariales</label>
-                        </div>
-                        <div class="checkbox-group">
-                            <input type="checkbox" id="trm_notarial" class="chk-tramite" value="4">
-                            <label for="trm_notarial">Gestión notarial</label>
+                    <div id="contenedor_secundario">
+                        <div class="row-checkboxes checkbox-list" id="bloque_tramites">
+                            <div class="checkbox-group">
+                                <input type="checkbox" id="trm_general" class="chk-tramite" value="1">
+                                <label for="trm_general">Gestión de trámites en general</label>
+                            </div>
+                            <div class="checkbox-group">
+                                <input type="checkbox" id="trm_hipoteca" class="chk-tramite" value="2">
+                                <label for="trm_hipoteca">Cancelación de hipotecas</label>
+                            </div>
+                            <div class="checkbox-group">
+                                <input type="checkbox" id="trm_poderes" class="chk-tramite" value="3">
+                                <label for="trm_poderes">Poderes notariales</label>
+                            </div>
+                            <div class="checkbox-group">
+                                <input type="checkbox" id="trm_notarial" class="chk-tramite" value="4">
+                                <label for="trm_notarial">Gestión notarial</label>
+                            </div>
                         </div>
                     </div>
                 </div>
@@ -156,7 +150,7 @@
     <div id="modalExito" class="modal-overlay" style="display: none;">
         <div class="glass-card modal-content">
             <h3 style="color: var(--texto-principal); font-size: 1.8rem; margin-bottom: 15px;">¡Petición Recibida!</h3>
-            <p style="color: var(--texto-secundario); margin-bottom: 25px;">Nuestro equipo legal revisará los servicios y trámites seleccionados para enviarte una cotización detallada.</p>
+            <p style="color: var(--texto-secundario); margin-bottom: 25px;">Nuestro equipo legal revisará los detalles seleccionados para enviarte una cotización.</p>
             <button onclick="window.location.href='index.html'" class="btn-registrar" style="width: 100%;">Volver al Inicio</button>
         </div>
     </div>
@@ -172,16 +166,49 @@
     <script>
     document.addEventListener('DOMContentLoaded', () => {
         
-        const toggleTramites = document.getElementById('toggle_tramites');
-        const seccionTramites = document.getElementById('seccion_tramites');
+        const toggleExtras = document.getElementById('toggle_extras');
+        const seccionSecundaria = document.getElementById('seccion_secundaria');
         const contenedorUbicacion = document.getElementById('contenedor_ubicacion');
         const checkboxesServicios = document.querySelectorAll('.chk-servicio');
         const checkboxesTramites = document.querySelectorAll('.chk-tramite');
 
-        toggleTramites.addEventListener('change', function() {
-            seccionTramites.style.display = this.checked ? 'block' : 'none';
-        });
+        // Referencias para el Modo Inteligente
+        const tituloFormulario = document.getElementById('titulo_formulario');
+        const subtituloFormulario = document.getElementById('subtitulo_formulario');
+        const tituloPrimario = document.getElementById('titulo_primario');
+        const descPrimaria = document.getElementById('desc_primaria');
+        const labelToggle = document.getElementById('label_toggle');
+        const descSecundaria = document.getElementById('desc_secundaria');
+        const contenedorPrimario = document.getElementById('contenedor_primario');
+        const contenedorSecundario = document.getElementById('contenedor_secundario');
+        const bloqueServicios = document.getElementById('bloque_servicios');
+        const bloqueTramites = document.getElementById('bloque_tramites');
 
+        // Lector de URL
+        const urlParams = new URLSearchParams(window.location.search);
+        const servicioSolicitado = urlParams.get('servicio');
+        const tramiteSolicitado = urlParams.get('tramite');
+
+        let modoActual = 'servicios'; // Modo por defecto
+
+        // MODO INTELIGENTE: Si viene de la página de trámites, volteamos el formulario
+        if (tramiteSolicitado && !servicioSolicitado) {
+            modoActual = 'tramites';
+            
+            // Cambiamos los textos
+            tituloFormulario.innerText = 'Gestoría y Trámites';
+            subtituloFormulario.innerText = 'Selecciona los trámites legales que requieres. Nosotros prepararemos tu expediente.';
+            tituloPrimario.innerText = 'Trámites Principales';
+            descPrimaria.innerText = 'Selecciona los trámites que requieres iniciar:';
+            labelToggle.innerText = '¿Deseas asociar este trámite a un servicio inmobiliario?';
+            descSecundaria.innerText = 'Opcional: Selecciona el servicio inmobiliario relacionado a tu trámite:';
+
+            // Magia pura: Intercambiamos los bloques visualmente sin romper la lógica
+            contenedorPrimario.appendChild(bloqueTramites);
+            contenedorSecundario.appendChild(bloqueServicios);
+        }
+
+        // Relaciones matemáticas
         const relaciones = {
             'srv_compra_part': ['trm_general', 'trm_notarial'],
             'srv_venta_part': ['trm_general', 'trm_hipoteca'],
@@ -189,30 +216,27 @@
             'srv_contado': ['trm_notarial']
         };
 
-        checkboxesServicios.forEach(chkServicio => {
-            chkServicio.addEventListener('change', () => {
-                recalcularTramitesRecomendados();
-            });
-        });
-
-        checkboxesTramites.forEach(trm => {
-            trm.addEventListener('change', evaluarMostrarUbicacion);
-        });
-
         function recalcularTramitesRecomendados() {
-            checkboxesTramites.forEach(trm => trm.checked = false);
-
-            checkboxesServicios.forEach(chkServicio => {
-                if (chkServicio.checked) {
-                    const tramitesRecomendados = relaciones[chkServicio.id];
-                    if (tramitesRecomendados) {
-                        tramitesRecomendados.forEach(idTramite => {
-                            const trmCheckbox = document.getElementById(idTramite);
-                            if (trmCheckbox) trmCheckbox.checked = true;
-                        });
-                    }
+            // Solo auto-sugiere si estamos en el modo clásico de servicios
+            if (modoActual === 'servicios') {
+                const algunServicioMarcado = Array.from(checkboxesServicios).some(chk => chk.checked);
+                
+                if (algunServicioMarcado) {
+                    checkboxesTramites.forEach(trm => trm.checked = false);
+                    
+                    checkboxesServicios.forEach(chkServicio => {
+                        if (chkServicio.checked) {
+                            const tramitesRecomendados = relaciones[chkServicio.id];
+                            if (tramitesRecomendados) {
+                                tramitesRecomendados.forEach(idTramite => {
+                                    const trmCheckbox = document.getElementById(idTramite);
+                                    if (trmCheckbox) trmCheckbox.checked = true;
+                                });
+                            }
+                        }
+                    });
                 }
-            });
+            }
             evaluarMostrarUbicacion();
         }
 
@@ -227,6 +251,37 @@
             });
 
             contenedorUbicacion.style.display = necesitaDireccion ? 'block' : 'none';
+        }
+
+        // Mostrar/Ocultar sección secundaria
+        toggleExtras.addEventListener('change', function() {
+            seccionSecundaria.style.display = this.checked ? 'block' : 'none';
+            if (this.checked && modoActual === 'servicios') recalcularTramitesRecomendados();
+        });
+
+        checkboxesServicios.forEach(chkServicio => {
+            chkServicio.addEventListener('change', recalcularTramitesRecomendados);
+        });
+
+        checkboxesTramites.forEach(trm => {
+            trm.addEventListener('change', evaluarMostrarUbicacion);
+        });
+
+        // Marcar casillas automáticamente según la URL
+        if (servicioSolicitado) {
+            const checkboxServicio = document.getElementById(servicioSolicitado);
+            if (checkboxServicio) {
+                checkboxServicio.checked = true;
+                checkboxServicio.dispatchEvent(new Event('change')); 
+            }
+        }
+
+        if (tramiteSolicitado) {
+            const checkboxTramite = document.getElementById(tramiteSolicitado);
+            if (checkboxTramite) {
+                checkboxTramite.checked = true;
+                checkboxTramite.dispatchEvent(new Event('change')); 
+            }
         }
     });
     </script>
