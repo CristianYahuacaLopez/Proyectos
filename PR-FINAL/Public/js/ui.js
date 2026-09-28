@@ -1,8 +1,5 @@
-// ==========================================
-// ui.js - LÓGICA COMPLETA Y BLINDADA
-// ==========================================
-
 // Funciones globales para que los botones de HTML las encuentren siempre
+// Al agregarlas al objeto 'window', nos aseguramos de que puedan ser llamadas desde cualquier etiqueta <button onclick="...">
 window.abrirModalOpciones = function() {
     const modal = document.getElementById('modalOpciones');
     if(modal) modal.style.display = 'flex';
@@ -13,12 +10,14 @@ window.cerrarModalOpciones = function() {
     if(modal) modal.style.display = 'none';
 };
 
-// Todo el cerebro de la aplicación encapsulado para evitar errores
+// Todo el cerebro de la aplicación encapsulado en una función para evitar que el código se ejecute antes de que el HTML termine de cargar
 function initLuxHouseUI() {
     
-    // 1. LÓGICA DEL TEMA
+    // 1. (Dark/Light Mode)
     const btnTema = document.getElementById('btn-tema');
     const body = document.body;
+    
+    // Leemos la memoria del navegador (localStorage) para ver si el usuario ya había elegido el modo claro en el pasado
     if (localStorage.getItem('lux_theme') === 'claro') {
         body.classList.add('modo-claro');
         if (btnTema) btnTema.textContent = '🌙';
@@ -28,10 +27,10 @@ function initLuxHouseUI() {
 
     if (btnTema) {
         btnTema.addEventListener('click', () => {
-            body.classList.toggle('modo-claro');
+            body.classList.toggle('modo-claro'); // Intercambia la clase CSS
             if (body.classList.contains('modo-claro')) {
                 btnTema.textContent = '🌙';
-                localStorage.setItem('lux_theme', 'claro');
+                localStorage.setItem('lux_theme', 'claro'); // Guarda la preferencia en el navegador
             } else {
                 btnTema.textContent = '☀️';
                 localStorage.setItem('lux_theme', 'oscuro');
@@ -43,12 +42,12 @@ function initLuxHouseUI() {
     const formTramite = document.getElementById('formTramite');
     if (formTramite) {
         
-        // El As bajo la manga: Leemos la memoria interna en vez de la URL vacía
+        // Buscamos si el usuario llegó aquí desde un botón específico (URL) o si el dato se guardó en memoria al hacer clic en las tarjetas
         const urlParams = new URLSearchParams(window.location.search);
         const servicioSolicitado = urlParams.get('servicio') || localStorage.getItem('lxh_servicio');
         const tramiteSolicitado = urlParams.get('tramite') || localStorage.getItem('lxh_tramite');
 
-        // Limpiamos la memoria para futuras visitas libres
+        // Limpiamos la memoria para que, si el usuario refresca la página, el formulario vuelva a su estado normal (vacío)
         localStorage.removeItem('lxh_servicio');
         localStorage.removeItem('lxh_tramite');
 
@@ -59,6 +58,7 @@ function initLuxHouseUI() {
         const checkboxesServicios = document.querySelectorAll('.chk-servicio');
         const checkboxesTramites = document.querySelectorAll('.chk-tramite');
 
+        // Referencias al DOM (Document Object Model) para modificar los textos visuales
         const tituloFormulario = document.getElementById('titulo_formulario');
         const subtituloFormulario = document.getElementById('subtitulo_formulario');
         const tituloPrimario = document.getElementById('titulo_primario');
@@ -71,8 +71,9 @@ function initLuxHouseUI() {
         const bloqueServicios = document.getElementById('bloque_servicios');
         const bloqueTramites = document.getElementById('bloque_tramites');
 
-        let modoActual = 'servicios';
+        let modoActual = 'servicios'; // Modo por defecto
 
+        // Objeto de conocimiento: Relaciona qué trámites van con qué servicio
         const relaciones = {
             'srv_compra_part': ['trm_general', 'trm_notarial'],
             'srv_venta_part': ['trm_general', 'trm_hipoteca'],
@@ -82,6 +83,7 @@ function initLuxHouseUI() {
 
         const mapaTramites = { '1': 'trm_general', '2': 'trm_hipoteca', '3': 'trm_poderes', '4': 'trm_notarial' };
 
+        // Función que evalúa si algún trámite seleccionado requiere que el usuario ingrese su dirección
         const evaluarMostrarUbicacion = () => {
             let necesitaDireccion = false;
             checkboxesTramites.forEach(chk => {
@@ -92,16 +94,17 @@ function initLuxHouseUI() {
             if(contenedorUbicacion) contenedorUbicacion.style.display = necesitaDireccion ? 'block' : 'none';
         };
 
+        // Función de Autoseleccion de checkboxes según el servicio elegido
         const recalcularTramitesRecomendados = () => {
             if (modoActual === 'servicios') {
                 const algunServicioMarcado = Array.from(checkboxesServicios).some(chk => chk.checked);
                 if (algunServicioMarcado) {
-                    checkboxesTramites.forEach(trm => trm.checked = false);
+                    checkboxesTramites.forEach(trm => trm.checked = false); // Resetea primero
                     checkboxesServicios.forEach(chk => {
                         if (chk.checked && relaciones[chk.id]) {
                             relaciones[chk.id].forEach(idTramite => {
                                 const trmCheckbox = document.getElementById(idTramite);
-                                if (trmCheckbox) trmCheckbox.checked = true;
+                                if (trmCheckbox) trmCheckbox.checked = true; // Marca las coincidencias
                             });
                         }
                     });
@@ -110,6 +113,7 @@ function initLuxHouseUI() {
             evaluarMostrarUbicacion();
         };
 
+        // Escuchadores de Eventos (Event Listeners): Disparan acciones cuando el usuario hace clic
         if(toggleExtras) {
             toggleExtras.addEventListener('change', function() {
                 seccionSecundaria.style.display = this.checked ? 'block' : 'none';
@@ -120,9 +124,11 @@ function initLuxHouseUI() {
         checkboxesServicios.forEach(chk => chk.addEventListener('change', recalcularTramitesRecomendados));
         checkboxesTramites.forEach(chk => chk.addEventListener('change', evaluarMostrarUbicacion));
 
-        // Magia: Prioridad Trámites
+        // Prioridad Trámites (Si el usuario viene de la página tramites.html)
         if (tramiteSolicitado && !servicioSolicitado) {
             modoActual = 'tramites';
+            
+            // Cambia los textos para que tengan sentido con el contexto de trámites
             tituloFormulario.innerText = 'Gestoría y Trámites';
             subtituloFormulario.innerText = 'Selecciona los trámites legales que requieres. Nosotros prepararemos tu expediente.';
             tituloPrimario.innerText = 'Trámites Principales';
@@ -130,6 +136,7 @@ function initLuxHouseUI() {
             labelToggle.innerText = '¿Deseas asociar este trámite a un servicio inmobiliario?';
             descSecundaria.innerText = 'Opcional: Selecciona el servicio inmobiliario relacionado a tu trámite:';
 
+            // Mueve el bloque de Trámites arriba y el de Servicios abajo
             contenedorPrimario.appendChild(bloqueTramites);
             contenedorSecundario.appendChild(bloqueServicios);
 
@@ -137,23 +144,22 @@ function initLuxHouseUI() {
             const chkObj = document.getElementById(idRealTramite);
             if (chkObj) {
                 chkObj.checked = true;
-                // Ya no forzamos toggleExtras ni seccionSecundaria a abrirse
-                chkObj.dispatchEvent(new Event('change'));
+                chkObj.dispatchEvent(new Event('change')); // Fuerza a que se ejecute la lógica de evaluación
             }
         } 
-        // Magia: Prioridad Servicios
+        // Prioridad Servicios (Si el usuario viene de la página servicios.html)
         else if (servicioSolicitado) {
             const chkObj = document.getElementById(servicioSolicitado);
             if (chkObj) {
                 chkObj.checked = true;
-                // Ya no forzamos toggleExtras ni seccionSecundaria a abrirse
                 chkObj.dispatchEvent(new Event('change'));
             }
         }
 
-        // Validación al Enviar Trámite
+        // Validación al Enviar Trámite (Evita que se envíen datos en blanco al backend)
         formTramite.addEventListener('submit', async (e) => {
-            e.preventDefault();
+            e.preventDefault(); // Evita que la página se recargue (comportamiento por defecto de HTML)
+            
             let formularioValido = true;
             const camposObligatorios = ['nombre', 'apellido', 'correo', 'telefono_principal', 'id_municipio'];
 
@@ -162,6 +168,7 @@ function initLuxHouseUI() {
                 if (!input) return;
                 const mensajeExistente = input.parentNode.querySelector('.error-text');
 
+                // Si el campo está vacío, le agrega clases de CSS rojas y un mensaje
                 if (!input.value.trim()) {
                     input.classList.add('input-error');
                     formularioValido = false;
@@ -177,9 +184,11 @@ function initLuxHouseUI() {
                 }
             });
 
+            // Recolección de datos
             let serviciosSeleccionados = Array.from(document.querySelectorAll('.chk-servicio:checked')).map(cb => cb.value);
             let tramitesSeleccionados = Array.from(document.querySelectorAll('.chk-tramite:checked')).map(cb => cb.value);
 
+            // Regla de seguridad visual: Si la sección extra está cerrada, no enviamos lo que esté seleccionado adentro
             if (toggleExtras && !toggleExtras.checked && seccionSecundaria) {
                 const casillasOcultas = Array.from(seccionSecundaria.querySelectorAll('input[type="checkbox"]:checked'));
                 casillasOcultas.forEach(chk => {
@@ -201,8 +210,9 @@ function initLuxHouseUI() {
                 if (mensajeCheckbox) mensajeCheckbox.remove();
             }
 
-            if (!formularioValido) return;
+            if (!formularioValido) return; // Si algo falló, se detiene aquí y no habla con el servidor.
 
+            // Objeto (JSON) listo para viajar por la red
             const datosTramite = {
                 nombre: document.getElementById('nombre').value,
                 apellido: document.getElementById('apellido').value,
@@ -216,14 +226,15 @@ function initLuxHouseUI() {
             };
 
             try {
-                const response = await fetch('http://localhost:5000/api/tramite', {
+                // Comunicación asíncrona con el servidor Backend en el puerto 5000
+                const response = await fetch('/api/tramite', {
                     method: 'POST',
-                    headers: { 'Content-Type': 'application/json' },
-                    body: JSON.stringify(datosTramite)
+                    headers: { 'Content-Type': 'application/json' }, // Avisa que enviamos JSON
+                    body: JSON.stringify(datosTramite) // Transforma el objeto JavaScript a texto plano para el viaje
                 });
                 if (response.ok) {
-                    document.getElementById('modalExito').style.display = 'flex';
-                    formTramite.reset();
+                    document.getElementById('modalExito').style.display = 'flex'; // Muestra el mensaje de exito
+                    formTramite.reset(); // Limpia el formulario
                 } else alert("Hubo un error al guardar tu solicitud.");
             } catch (error) {
                 console.error("🚨 Error de conexión:", error);
@@ -231,15 +242,17 @@ function initLuxHouseUI() {
         });
     }
 
-    // 3. VALIDACIÓN FORMULARIO COMPRAR
+    // VALIDACIÓN FORMULARIO COMPRAR
     const formComprar = document.getElementById('formComprar');
     if (formComprar) {
+        // Lógica similar al trámite, pero para el formulario de compra
         const urlParams = new URLSearchParams(window.location.search);
         const idInmuebleSolicitado = urlParams.get('inmueble');
 
+        // Si el usuario llega desde el catálogo para comprar una casa específica, adaptamos el formulario
         if (idInmuebleSolicitado) {
             const seccionPreferencias = document.getElementById('seccion_preferencias');
-            if (seccionPreferencias) seccionPreferencias.style.display = 'none';
+            if (seccionPreferencias) seccionPreferencias.style.display = 'none'; // Oculta preguntas irrelevantes
             const tituloFormulario = document.querySelector('.form-main-title');
             const subtituloFormulario = document.querySelector('.form-subtitle');
             if (tituloFormulario) tituloFormulario.innerText = 'Información de la Propiedad';
@@ -250,8 +263,11 @@ function initLuxHouseUI() {
             e.preventDefault();
             let formularioValido = true;
             let camposObligatorios = ['nombre', 'apellido', 'correo', 'telefono_principal'];
+            
+            // Si NO quiere una casa específica, el presupuesto y pago son obligatorios
             if (!idInmuebleSolicitado) camposObligatorios.push('presupuesto', 'forma_pago');
 
+            // Bucle de validación de campos vacíos (mismo patrón que en trámites)
             camposObligatorios.forEach(id => {
                 const input = document.getElementById(id);
                 if (!input) return;
@@ -276,6 +292,8 @@ function initLuxHouseUI() {
 
             const inputPresupuesto = document.getElementById('presupuesto');
             const inputFormaPago = document.getElementById('forma_pago');
+            
+            // Armado del Payload (paquete de datos)
             const datosCompra = {
                 nombre: document.getElementById('nombre').value,
                 apellido: document.getElementById('apellido').value,
@@ -288,7 +306,7 @@ function initLuxHouseUI() {
             };
 
             try {
-                const response = await fetch('http://localhost:5000/api/comprar', {
+                const response = await fetch('/api/comprar', {
                     method: 'POST',
                     headers: { 'Content-Type': 'application/json' },
                     body: JSON.stringify(datosCompra)
@@ -303,12 +321,14 @@ function initLuxHouseUI() {
         });
     }
 
-    // 4. VALIDACIÓN FORMULARIO VENDER
+    // VALIDACIÓN FORMULARIO VENDER
     const formVender = document.getElementById('formVender');
     if (formVender) {
         formVender.addEventListener('submit', async (e) => {
             e.preventDefault();
             let formularioValido = true;
+            
+            // Todos estos campos son obligatorios para poder cotizar la venta de una casa
             const camposObligatorios = [
                 'nombre', 'apellido', 'correo', 'telefono_principal',
                 'ubicacion', 'codigo_postal', 'id_municipio', 'id_tipo', 'id_estado_in'
@@ -347,13 +367,13 @@ function initLuxHouseUI() {
                 idMunicipio: document.getElementById('id_municipio').value,
                 idTipo: document.getElementById('id_tipo').value,
                 idEstadoIn: document.getElementById('id_estado_in').value,
-                vandalizada: document.getElementById('vandalizada').checked ? 1 : 0,
+                vandalizada: document.getElementById('vandalizada').checked ? 1 : 0, // Convierte booleano a 1 o 0 para SQL
                 invadida: document.getElementById('invadida').checked ? 1 : 0,
                 creditoPendiente: document.getElementById('credito_pendiente').value || 0.00
             };
 
             try {
-                const response = await fetch('http://localhost:5000/api/vender', {
+                const response = await fetch('/api/vender', {
                     method: 'POST',
                     headers: { 'Content-Type': 'application/json' },
                     body: JSON.stringify(datosVenta)
@@ -370,6 +390,8 @@ function initLuxHouseUI() {
 }
 
 // Arrancar de manera segura
+// Verifica si el navegador ya terminó de construir el HTML (el DOM) 
+// Si no ha terminado, espera; si ya terminó, lanza la función principal
 if (document.readyState === 'loading') {
     document.addEventListener('DOMContentLoaded', initLuxHouseUI);
 } else {

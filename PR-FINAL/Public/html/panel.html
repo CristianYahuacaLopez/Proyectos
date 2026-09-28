@@ -7,11 +7,11 @@
     
     <link rel="stylesheet" href="../css/global.css">
     <link rel="stylesheet" href="../css/navbar.css">
-    <link rel="stylesheet" href="../css/panel.css"> <!-- Aquí mandamos llamar tu nuevo CSS -->
+    <link rel="stylesheet" href="../css/panel.css"> //Aquí mandamos llamar CSS
 </head>
 <body>
 
-    <!-- Menú Especial del Panel -->
+    //Menú Especial del Panel 
     <nav class="navbar">
         <div class="logo">
             <h2>LUX HOUSE | INTRANET</h2>
@@ -22,7 +22,7 @@
         </ul>
     </nav>
 
-    <!-- Contenido del Dashboard -->
+     //Contenido del Dashboard 
     <div class="panel-container">
         
         <div class="panel-header">
@@ -46,7 +46,7 @@
                     </tr>
                 </thead>
                 <tbody id="tablaUsuarios">
-                    <!-- Aquí se inyectarán los usuarios desde SQL Server -->
+                    //Aquí se inyectarán los usuarios desde SQL Server 
                     <tr>
                         <td colspan="5" style="text-align: center; padding: 30px;">Cargando usuarios desde la base de datos...</td>
                     </tr>
@@ -55,7 +55,7 @@
         </div>
     </div>
 
-    <!-- Botón de Tema Flotante -->
+    //Botón de Tema Flotante 
     <div class="floating-controls">
         <button id="btn-tema" class="tema-toggle" title="Cambiar tema">☀️</button>
             <a href="login.html" class="btn-login-flotante">
@@ -64,44 +64,48 @@
     </div>    
     <script src="../js/ui.js"></script>
 
-    <!-- LÓGICA DE SEGURIDAD Y CONEXIÓN AL BACKEND -->
+    //LÓGICA DE SEGURIDAD Y CONEXIÓN AL BACKEND 
     <script>
         document.addEventListener('DOMContentLoaded', () => {
-            // 1. VALIDACIÓN DE SEGURIDAD (El Cadenero)
+            // VALIDACIÓN DE SEGURIDAD 
+            // Se busca la llave en la memoria del navegador
             const token = localStorage.getItem('jwt_token');
             
             if (!token) {
-                // Si no hay token, lo mandamos a volar al login
+                // Si no hay token, bloqueamos la visualización y lo expulsamos al login
                 alert('Acceso denegado. Por favor, inicia sesión.');
                 window.location.href = 'login.html';
-                return; // Detenemos la ejecución
+                return; // Detenemos la ejecución del script aquí mismo
             }
 
-            // 2. MOSTRAR DATOS DEL USUARIO LOGUEADO
+            // MOSTRAR DATOS DEL USUARIO LOGUEADO
+            // Se extrae el nombre y rol guardados previamente durante el login
             const userName = localStorage.getItem('user_name') || 'Usuario';
             const userRol = localStorage.getItem('user_rol') || 'Sin Rol Asignado';
             
+            // Se inyectan en el HTML para dar un mensaje de bienvenida personalizado
             document.getElementById('adminName').textContent = userName;
             document.getElementById('adminRol').textContent = userRol;
 
-            // 3. OBTENER DATOS DE LA BASE DE DATOS
+            // OBTENER DATOS DE LA BASE DE DATOS
+            // Como sí hay token, se procede a pedirle los datos al servidor
             obtenerUsuarios(token);
         });
 
         // Función para consumir el endpoint protegido del backend
         async function obtenerUsuarios(token) {
             try {
-                // Hacemos la petición HTTP enviando el Token en las cabeceras
-                const respuesta = await fetch('http://localhost:5000/api/sqlserver/users', {
+                // Hacemos la petición HTTP enviando el Token en las cabeceras (Headers)
+                const respuesta = await fetch('/api/sqlserver/users', {
                     method: 'GET',
                     headers: {
-                        'Authorization': `Bearer ${token}`, // ¡Aquí viaja la llave!
+                        'Authorization': `Bearer ${token}`, // Aquí viaja la llave de acceso
                         'Content-Type': 'application/json'
                     }
                 });
 
                 if (!respuesta.ok) {
-                    // Si el token expiró o es inválido (401 o 403)
+                    // Si el servidor rechaza el token (401 o 403), la sesión caducó o es falsa
                     if (respuesta.status === 401 || respuesta.status === 403) {
                         alert('Tu sesión ha expirado. Vuelve a iniciar sesión.');
                         cerrarSesion();
@@ -110,6 +114,7 @@
                     throw new Error('Error al cargar la lista de usuarios');
                 }
 
+                // Traduce la respuesta JSON a un arreglo de JavaScript
                 const usuarios = await respuesta.json();
                 renderizarTabla(usuarios);
 
@@ -121,16 +126,17 @@
             }
         }
 
-        // Función para dibujar la tabla
+        // Función para dibujar la tabla dinámicamente en el DOM
         function renderizarTabla(usuarios) {
             const tbody = document.getElementById('tablaUsuarios');
-            tbody.innerHTML = ''; // Limpiamos el mensaje de "cargando"
+            tbody.innerHTML = ''; // Limpiamos el mensaje inicial de "cargando..."
 
             if (usuarios.length === 0) {
                 tbody.innerHTML = '<tr><td colspan="5" style="text-align:center;">No hay usuarios activos.</td></tr>';
                 return;
             }
 
+            // Ciclo que construye una fila (<tr>) por cada usuario que mandó el servidor
             usuarios.forEach(user => {
                 tbody.innerHTML += `
                     <tr>
@@ -139,6 +145,7 @@
                         <td>${user.correo}</td>
                         <td><span class="badge-rol">${user.nombre_rol}</span></td>
                         <td>
+                            <!-- Se incrusta el ID directamente en el botón para saber a quién borrar -->
                             <button class="btn-action" onclick="eliminarUsuario(${user.id_usuario})">Dar de baja</button>
                         </td>
                     </tr>
@@ -146,14 +153,16 @@
             });
         }
 
-        // Función para eliminar un usuario (Llamada al backend)
+        // Función para eliminar un usuario enviando una petición DELETE
         async function eliminarUsuario(id) {
+            // Confirmación básica nativa del navegador para evitar borrados accidentales
             if (!confirm('¿Estás seguro de que deseas eliminar (baja lógica) a este usuario?')) return;
 
             const token = localStorage.getItem('jwt_token');
 
             try {
-                const respuesta = await fetch(`http://localhost:5000/api/sqlserver/users/${id}`, {
+                // Se inyecta el ID del usuario directamente en la URL (ej. /api/sqlserver/users/5)
+                const respuesta = await fetch(`/api/sqlserver/users/${id}`, {
                     method: 'DELETE',
                     headers: {
                         'Authorization': `Bearer ${token}`
@@ -164,23 +173,24 @@
 
                 if (respuesta.ok) {
                     alert('Usuario eliminado correctamente.');
-                    obtenerUsuarios(token); // Recargamos la tabla
+                    obtenerUsuarios(token); // Se vuelve a pedir la lista al servidor para que la tabla se actualice sola
                 } else {
-                    alert('Error: ' + data.message); // Por ejemplo, si un Agente intenta borrar a otro
+                    // Si el servidor envía un 403 (Ej. Agente intentando borrar a otro Agente), mostramos el motivo
+                    alert('Error: ' + data.message); 
                 }
             } catch (error) {
                 alert('Ocurrió un error al intentar eliminar el usuario.');
             }
         }
 
-        // Función para salir del sistema
+        // Función para salir del sistema (Cierre de Sesión Stateless)
         function cerrarSesion() {
-            // Destruimos la evidencia (borramos la memoria)
+            // Destruimos la evidencia: Borramos la memoria local del navegador
             localStorage.removeItem('jwt_token');
             localStorage.removeItem('user_name');
             localStorage.removeItem('user_rol');
             
-            // Redirigimos al login
+            // Al no haber token, la seguridad lo redirigirá al login
             window.location.href = 'login.html';
         }
     </script>
