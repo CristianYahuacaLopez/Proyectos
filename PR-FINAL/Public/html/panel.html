@@ -96,7 +96,7 @@
         async function obtenerUsuarios(token) {
             try {
                 // Hacemos la petición HTTP enviando el Token en las cabeceras (Headers)
-                const respuesta = await fetch('/api/sqlserver/users', {
+                const respuesta = await fetch('https://backup-gossip-version.ngrok-free.dev/api/sqlserver/users', {
                     method: 'GET',
                     headers: {
                         'Authorization': `Bearer ${token}`, // Aquí viaja la llave de acceso
@@ -162,7 +162,7 @@
 
             try {
                 // Se inyecta el ID del usuario directamente en la URL (ej. /api/sqlserver/users/5)
-                const respuesta = await fetch(`/api/sqlserver/users/${id}`, {
+                const respuesta = await fetch(`https://backup-gossip-version.ngrok-free.dev/api/sqlserver/users/${id}`, {
                     method: 'DELETE',
                     headers: {
                         'Authorization': `Bearer ${token}`
