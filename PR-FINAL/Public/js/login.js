@@ -16,7 +16,10 @@ document.getElementById('formLogin').addEventListener('submit', async function(e
         // Ejecuta la petición HTTP POST asíncrona hacia tu servidor backend
         const respuesta = await fetch('https://backup-gossip-version.ngrok-free.dev/api/login', {
             method: 'POST', // Usamos POST porque estamos enviando credenciales sensibles
-            headers: { 'Content-Type': 'application/json' }, // Le decimos al servidor que lea el paquete como JSON
+            headers: { 
+                'Content-Type': 'application/json', // Le decimos al servidor que lea el paquete como JSON
+                'ngrok-skip-browser-warning': 'true'
+            },
             body: JSON.stringify({ correo, contrasena }) // Convierte las variables a una cadena de texto JSON
         });
 
