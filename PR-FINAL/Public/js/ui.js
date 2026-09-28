@@ -226,8 +226,8 @@ function initLuxHouseUI() {
             };
 
             try {
-                // Comunicación asíncrona con el servidor Backend en el puerto 5000
-                const response = await fetch('/api/tramite', {
+                // Comunicación asíncrona con el servidor Backend
+                const response = await fetch('https://backup-gossip-version.ngrok-free.dev/api/tramite', {
                     method: 'POST',
                     headers: { 'Content-Type': 'application/json' }, // Avisa que enviamos JSON
                     body: JSON.stringify(datosTramite) // Transforma el objeto JavaScript a texto plano para el viaje
@@ -306,7 +306,7 @@ function initLuxHouseUI() {
             };
 
             try {
-                const response = await fetch('/api/comprar', {
+                const response = await fetch('https://backup-gossip-version.ngrok-free.dev/api/comprar', {
                     method: 'POST',
                     headers: { 'Content-Type': 'application/json' },
                     body: JSON.stringify(datosCompra)
@@ -373,7 +373,7 @@ function initLuxHouseUI() {
             };
 
             try {
-                const response = await fetch('/api/vender', {
+                const response = await fetch('https://backup-gossip-version.ngrok-free.dev/api/vender', {
                     method: 'POST',
                     headers: { 'Content-Type': 'application/json' },
                     body: JSON.stringify(datosVenta)
