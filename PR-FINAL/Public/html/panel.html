@@ -7,11 +7,11 @@
     
     <link rel="stylesheet" href="../css/global.css">
     <link rel="stylesheet" href="../css/navbar.css">
-    <link rel="stylesheet" href="../css/panel.css"> //Aquí mandamos llamar CSS
+    <link rel="stylesheet" href="../css/panel.css"> 
 </head>
 <body>
 
-    //Menú Especial del Panel 
+     
     <nav class="navbar">
         <div class="logo">
             <h2>LUX HOUSE | INTRANET</h2>
@@ -21,8 +21,7 @@
             <li><button class="btn-logout" onclick="cerrarSesion()">Cerrar Sesión</button></li>
         </ul>
     </nav>
-
-     //Contenido del Dashboard 
+ 
     <div class="panel-container">
         
         <div class="panel-header">
@@ -46,7 +45,6 @@
                     </tr>
                 </thead>
                 <tbody id="tablaUsuarios">
-                    //Aquí se inyectarán los usuarios desde SQL Server 
                     <tr>
                         <td colspan="5" style="text-align: center; padding: 30px;">Cargando usuarios desde la base de datos...</td>
                     </tr>
@@ -55,7 +53,6 @@
         </div>
     </div>
 
-    //Botón de Tema Flotante 
     <div class="floating-controls">
         <button id="btn-tema" class="tema-toggle" title="Cambiar tema">☀️</button>
             <a href="login.html" class="btn-login-flotante">
@@ -64,7 +61,6 @@
     </div>    
     <script src="../js/ui.js"></script>
 
-    //LÓGICA DE SEGURIDAD Y CONEXIÓN AL BACKEND 
     <script>
         document.addEventListener('DOMContentLoaded', () => {
             // VALIDACIÓN DE SEGURIDAD 
